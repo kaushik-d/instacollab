@@ -65,6 +65,22 @@
 						$("#Start_Presentation").slideDown("slow");
 					});
 				});
+				
+				$("Whiteboard_Cancell").click(function() {
+					whiteboardClicked = false;
+					$(this).closest('form').find("input[type=text], textarea, input[type=email]").val("");
+					$("#Start_WhitBoard").slideUp("slow", function() {
+						$("#Start_Action_Area").slideDown("slow");
+					});
+				});
+				
+				$("Presentation_Cancell").click(function() {
+					whiteboardClicked = false;
+					$(this).closest('form').find("input[type=text], textarea, input[type=email]").val("");
+					$("#Start_WhitBoard").slideUp("slow", function() {
+						$("#Start_Action_Area").slideDown("slow");
+					});
+				});
 
 				$("#PresentationForm").submit(StartPresentation);
 				$("#WhitboardForm").submit(StartWhiteboard);
@@ -364,9 +380,11 @@
 									<td><input type="email" name="email"
 										placeholder="e-mail@domain.com" required /></td>
 								</tr>
-								<tr style="float: left">
-									<td><input type="submit" value="Submit" /></td>
-									<td><input type="reset" value="Reset" /></td>
+								<tr>
+									<td></td>
+									<td><input type="submit" value="Submit" />
+									<input type="reset" value="Reset" />
+									<input type="reset" id="Whiteboard_Cancell" value="Cancell" />
 								</tr>
 							</table>
 						</div>
@@ -396,9 +414,11 @@
 									<td><label for="presentationFile">Presentation
 											slides:</label></td>
 									<td><input type="file" name="presentationFile" /></td>
-								<tr style="float: left">
-									<td><input type="submit" value="Submit" /></td>
-									<td><input type="reset" value="Reset" /></td>
+								<tr>
+									<td></td>
+									<td><input type="submit" value="Submit" />
+									<input type="reset" value="Reset" />
+									<input type="reset" id="Presentation_Cancell" value="Cancell" />
 								</tr>
 							</table>
 						</div>
