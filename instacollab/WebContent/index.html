@@ -18,68 +18,84 @@
 	var meetingRoomData = {};
 	var isRoomCreated = false;
 
-	$(document).ready(function() {
-		$("#Start_Button").click(function() {
-			if (!startClicked) {
-				startClicked = true;
-				$("#Start_Action_Area").slideDown("slow");
-			} else if (whiteboardClicked) {
-				whiteboardClicked = false;
-				$("#Start_WhitBoard").slideUp("slow", function() {
-					$("#Start_Action_Area").slideDown("slow");
+	$(document).ready(
+			function() {
+				$("#Start_Button").click(function() {
+					if (!startClicked) {
+						startClicked = true;
+						$("#Start_Action_Area").slideDown("slow");
+					} else if (whiteboardClicked) {
+						whiteboardClicked = false;
+						$("#Start_WhitBoard").slideUp("slow", function() {
+							$("#Start_Action_Area").slideDown("slow");
+						});
+					} else if (presentationClicked) {
+						presentationClicked = false;
+						$("#Start_Presentation").slideUp("slow", function() {
+							$("#Start_Action_Area").slideDown("slow");
+						});
+					} else {
+						startClicked = false;
+						$("#Start_Action_Area").slideUp("slow");
+					}
 				});
-			} else if (presentationClicked) {
-				presentationClicked = false;
-				$("#Start_Presentation").slideUp("slow", function() {
-					$("#Start_Action_Area").slideDown("slow");
+				$("#Start_Button").mouseover(
+						function() {
+							$("#Start_Message_Area").removeClass(
+									"Message_Area_Start_Clear").addClass(
+									"Message_Area_Start_Focus").text(
+									"Start a meeting");
+						});
+				$("#Start_Button").mouseout(
+						function() {
+							$("#Start_Message_Area").removeClass(
+									"Message_Area_Start_Focus").addClass(
+									"Message_Area_Start_Clear").text("");
+						});
+
+				$("#whitboard").click(function() {
+					whiteboardClicked = true;
+					$("#Start_Action_Area").slideUp("slow", function() {
+						$("#Start_WhitBoard").slideDown("slow");
+					});
 				});
-			} else {
-				startClicked = false;
-				$("#Start_Action_Area").slideUp("slow");
-			}
-		});
-		$("#Start_Button").mouseover(function(){
-			$("#Start_Message_Area")
-				.removeClass("Message_Area_Start_Clear")
-				.addClass("Message_Area_Start_Focus")
-				.text("Start a meeting");
-		});
-		$("#Start_Button").mouseout(function(){
-			$("#Start_Message_Area")
-			.removeClass("Message_Area_Start_Focus")
-			.addClass("Message_Area_Start_Clear")
-			.text("");
-	});
-			
-		$("#whitboard").click(function() {
-			whiteboardClicked = true;
-			$("#Start_Action_Area").slideUp("slow", function() {
-				$("#Start_WhitBoard").slideDown("slow");
-			});
-		});
-		$("#presentation").click(function() {
-			presentationClicked = true;
-			$("#Start_Action_Area").slideUp("slow", function() {
-				$("#Start_Presentation").slideDown("slow");
-			});
-		});
+				$("#presentation").click(function() {
+					presentationClicked = true;
+					$("#Start_Action_Area").slideUp("slow", function() {
+						$("#Start_Presentation").slideDown("slow");
+					});
+				});
 
-		$("#PresentationForm").submit(StartPresentation);
-		$("#WhitboardForm").submit(StartWhiteboard);
+				$("#PresentationForm").submit(StartPresentation);
+				$("#WhitboardForm").submit(StartWhiteboard);
 
-		$("#Share_Button").click(function() {
-			//presentationClicked = true;
-			$("#Share_Action_Area").slideToggle("slow", function() {
-			});
-		});
-		
-		$("#Join_Button").click(function() {
-			//presentationClicked = true;
-			$("#Join_Action_Area").slideToggle("slow", function() {
-			});
-		});
+				$("#Share_Button").click(function() {
+					//presentationClicked = true;
+					$("#Share_Action_Area").slideToggle("slow", function() {
+					});
+				});
+				
+				$("#Share_Button").mouseover(
+						function() {
+							$("#Share_Message_Area").removeClass(
+									"Message_Area_Start_Clear").addClass(
+									"Message_Area_Start_Focus").text(
+									"Share your meeting room");
+						});
+				$("#Share_Button").mouseout(
+						function() {
+							$("#Share_Message_Area").removeClass(
+									"Message_Area_Start_Focus").addClass(
+									"Message_Area_Start_Clear").text("");
+						});
 
-	});
+				$("#Join_Button").click(function() {
+					//presentationClicked = true;
+					$("#Join_Action_Area").slideToggle("slow", function() {
+					});
+				});
+
+			});
 
 	StartPresentation = function(evt) {
 		var formElement = document.getElementById("PresentationForm");
@@ -101,7 +117,8 @@
 
 	StartSubmit = function(evt, data) {
 		var url = "login";
-		$.ajax({
+		$
+				.ajax({
 					type : "POST",
 					url : url,
 					data : data,
@@ -122,12 +139,6 @@
 
 		evt.preventDefault()
 		return false; // avoid to execute the actual submit of the form.
-	}
-
-	function StartMessage() {
-		var startMessageArea = document.getElementById("Start_Message_Area");
-		$("#Start_Message_Area").removeclass("Message_Area_Start_Clear").addclass("Message_Area_Start_Focus");
-		startMessageArea.innerHTML = "Start a meeting";
 	}
 
 	function Start(startButton) {
@@ -211,24 +222,6 @@
 
 	function startclicked() {
 		alert();
-	}
-
-	function ClearStartMessage() {
-		$("#Start_Message_Area").removeclass("Message_Area_Start_Focus").removeclass("Message_Area_Start_Clear");
-		var MessageArea = document.getElementById("Start_Message_Area");
-		clear(MessageArea);
-	}
-
-	function ShareMessage(startButton) {
-		if (!isRoomCreated) {
-			var MessageArea = document.getElementById("Share_Message_Area");
-			MessageArea.innerHTML = "Share your meeting room.";
-		}
-	}
-
-	function ClearShareMessage(element) {
-		var MessageArea = document.getElementById("Share_Message_Area");
-		clear(MessageArea);
 	}
 
 	function JoinMessage(startButton) {
@@ -344,7 +337,7 @@
 		<div id=button_holder>
 			<div id="Start_Message_Area" class="Message_Area_Start_Clear"></div>
 			<div id="Start_div">
-				<button  id="Start_Button">Start</button>
+				<button id="Start_Button">Start</button>
 			</div>
 			<div id="Start_Action_Area_holder" class="Action_Area_holder">
 				<div id="Start_Action_Area" class="Start_Action">
@@ -371,7 +364,7 @@
 									<td><input type="email" name="email"
 										placeholder="e-mail@domain.com" required /></td>
 								</tr>
-								<tr style="float:left">
+								<tr style="float: left">
 									<td><input type="submit" value="Submit" /></td>
 									<td><input type="reset" value="Reset" /></td>
 								</tr>
@@ -387,7 +380,7 @@
 								<tr>
 									<td><label for="topic">Topic:</label></td>
 									<td><input type="text" name="topic"
-										placeholder="Meeting topic"  required/></td>
+										placeholder="Meeting topic" required /></td>
 								</tr>
 								<tr>
 									<td><label for="name">Name:</label></td>
@@ -403,7 +396,7 @@
 									<td><label for="presentationFile">Presentation
 											slides:</label></td>
 									<td><input type="file" name="presentationFile" /></td>
-								<tr  style="float:left">
+								<tr style="float: left">
 									<td><input type="submit" value="Submit" /></td>
 									<td><input type="reset" value="Reset" /></td>
 								</tr>
@@ -413,57 +406,56 @@
 				</div>
 			</div>
 
-			<div id="Share_Message_Area" style="height: 50px"></div>
+			<div id="Share_Message_Area" class="Message_Area_Start_Clear"></div>
 			<div id="Share_div">
-				<button onmouseover="ShareMessage(this)"
-					onmouseout="ClearShareMessage(this)" id="Share_Button">Share</button>
+				<button id="Share_Button">Share</button>
 			</div>
 
 			<div id="Share_Action_Area_holder" class="Action_Area_holder">
 				<div id="Share_Action_Area" class="Start_Action">
-				<div id="Join_Holder" style="text-align: center;" class="holder">
-				<table>
-				<tr>
-					<td><label for="MeetingRoomNumInput">Meeting room#:</label> 
-					    <input type="text" name="MeetingRoom" id="MeetingRoomNumInput" /></td>
-				</tr>
-				<tr>
-				<td>
-					<ul class="social-icons">
-						<!-- Facebook Button-->
-						<li class="social-icon facebook"><a
-							onclick="javascript:popupCenter('https://www.facebook.com/sharer/sharer.php?u=www.test.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID','Facebook Share', '540', '400');return false;"
-							href="https://www.facebook.com/sharer/sharer.php?u=www.test.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID"
-							target="blank"><i class="fa fa-facebook"></i> Share </a></li>
-						<!-- Twitter Button -->
-						<li class="social-icon twitter"><a
-							onclick="javascript:popupCenter('https://twitter.com/share?&amp;url=www.test.com&amp;text=TestTitle','Tweet', '540', '400');return false;"
-							href="https://twitter.com/share?&amp;url=www.test.com&amp;text=www.test.com"
-							target="blank"><i class="fa fa-twitter"></i> Tweet </a></li>
-						<!-- Google + Button-->
-						<li class="social-icon google-plus"><a
-							onclick="javascript:popupCenter('https://plus.google.com/share?url=www.test.com','Share on Google+', '600', '600');return false;"
-							href="https://plus.google.com/share?url=www.test.com"
-							target="blank"><i class="fa fa-google-plus"></i> Google+</a></li>
-						<!-- Flattr Button
+					<div id="Join_Holder" style="text-align: center;" class="holder">
+						<table>
+							<tr>
+								<td><label for="MeetingRoomNumInput">Meeting room#:</label>
+									<input type="text" name="MeetingRoom" id="MeetingRoomNumInput" /></td>
+							</tr>
+							<tr>
+								<td>
+									<ul class="social-icons">
+										<!-- Facebook Button-->
+										<li class="social-icon facebook"><a
+											onclick="javascript:popupCenter('https://www.facebook.com/sharer/sharer.php?u=www.test.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID','Facebook Share', '540', '400');return false;"
+											href="https://www.facebook.com/sharer/sharer.php?u=www.test.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID"
+											target="blank"><i class="fa fa-facebook"></i> Share </a></li>
+										<!-- Twitter Button -->
+										<li class="social-icon twitter"><a
+											onclick="javascript:popupCenter('https://twitter.com/share?&amp;url=www.test.com&amp;text=TestTitle','Tweet', '540', '400');return false;"
+											href="https://twitter.com/share?&amp;url=www.test.com&amp;text=www.test.com"
+											target="blank"><i class="fa fa-twitter"></i> Tweet </a></li>
+										<!-- Google + Button-->
+										<li class="social-icon google-plus"><a
+											onclick="javascript:popupCenter('https://plus.google.com/share?url=www.test.com','Share on Google+', '600', '600');return false;"
+											href="https://plus.google.com/share?url=www.test.com"
+											target="blank"><i class="fa fa-google-plus"></i> Google+</a></li>
+										<!-- Flattr Button
 						<li class="social-icon flattr"><a
 							onclick="javascript:popupCenter('https://flattr.com/submit/auto?title=TestTitle&language=de_DE&&category=text','Support with Flattr', '680', '400');return false;"
 							href="https://flattr.com/submit/auto?url=www.test.comm&title=TestTitle&language=en_EN&&category=text"
 							target="blank" rel="nofollow">Flattr</a></li>
 							-->
-						<!-- LinkedIn Button -->
-						<li class="social-icon linkedin"><a
-							onclick="javascript:popupCenter('http://www.linkedin.com/shareArticle?mini=true&amp;url=www.TestUrl.com&amp;title=Title&amp;source=StieURl','Share on LinkedIn', '520', '570');return false;"
-							href="http://www.linkedin.com/shareArticle?mini=true&amp;url=www.testUrl.com&amp;title=TitleTest&amp;source=UrlSource"
-							target="blank"><i class="fa fa-linkedin"></i> LinkedIn </a></li>
-					</ul>
-					<td>
-					</tr>
-					</table>
+										<!-- LinkedIn Button -->
+										<li class="social-icon linkedin"><a
+											onclick="javascript:popupCenter('http://www.linkedin.com/shareArticle?mini=true&amp;url=www.TestUrl.com&amp;title=Title&amp;source=StieURl','Share on LinkedIn', '520', '570');return false;"
+											href="http://www.linkedin.com/shareArticle?mini=true&amp;url=www.testUrl.com&amp;title=TitleTest&amp;source=UrlSource"
+											target="blank"><i class="fa fa-linkedin"></i> LinkedIn </a></li>
+									</ul>
+								<td>
+							</tr>
+						</table>
 					</div>
 				</div>
 			</div>
- 
+
 
 			<div id="Join_Message_Area" style="height: 50px"></div>
 			<div id="Join_div">
@@ -471,22 +463,23 @@
 					onmouseout="ClearJoinMessage(this)" id="Join_Button">Join</button>
 			</div>
 			<div id="Join_Action_Area_holder" class="Action_Area_holder">
-			<div id="Join_Action_Area"  class="Start_Action">
-			<div id="Join_Holder" style="text-align: center;" class="holder">
-			<form action="joinMeeting" method="post" id="JoinForm">
-				<table>
-				<tr>
-					<td><label for="MeetingRoomNumInput">Meeting room#:</label> 
-					    <input type="text" name="MeetingRoom" id="MeetingRoomNumInput" /></td>
-				</tr>
-				<tr style="float:left">
-					<td><input type="submit" value="Submit" /></td>
-					<td><input type="reset" value="Reset" /></td>
-				</tr>
-				</table>
-			</form>
-			</div>
-			</div>
+				<div id="Join_Action_Area" class="Start_Action">
+					<div id="Join_Holder" style="text-align: center;" class="holder">
+						<form action="joinMeeting" method="post" id="JoinForm">
+							<table>
+								<tr>
+									<td><label for="MeetingRoomNumInput">Meeting
+											room#:</label> <input type="text" name="MeetingRoom"
+										id="MeetingRoomNumInput" /></td>
+								</tr>
+								<tr style="float: left">
+									<td><input type="submit" value="Submit" /></td>
+									<td><input type="reset" value="Reset" /></td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 
