@@ -28,18 +28,29 @@
 				$("#Start_WhitBoard").slideUp("slow", function() {
 					$("#Start_Action_Area").slideDown("slow");
 				});
-
 			} else if (presentationClicked) {
 				presentationClicked = false;
 				$("#Start_Presentation").slideUp("slow", function() {
 					$("#Start_Action_Area").slideDown("slow");
 				});
-
 			} else {
 				startClicked = false;
 				$("#Start_Action_Area").slideUp("slow");
 			}
 		});
+		$("#Start_Button").mouseover(function(){
+			$("#Start_Message_Area")
+				.removeClass("Message_Area_Start_Clear")
+				.addClass("Message_Area_Start_Focus")
+				.text("Start a meeting");
+		});
+		$("#Start_Button").mouseout(function(){
+			$("#Start_Message_Area")
+			.removeClass("Message_Area_Start_Focus")
+			.addClass("Message_Area_Start_Clear")
+			.text("");
+	});
+			
 		$("#whitboard").click(function() {
 			whiteboardClicked = true;
 			$("#Start_Action_Area").slideUp("slow", function() {
@@ -90,9 +101,7 @@
 
 	StartSubmit = function(evt, data) {
 		var url = "login";
-
-		$
-				.ajax({
+		$.ajax({
 					type : "POST",
 					url : url,
 					data : data,
@@ -115,8 +124,9 @@
 		return false; // avoid to execute the actual submit of the form.
 	}
 
-	function StartMessage(startButton) {
+	function StartMessage() {
 		var startMessageArea = document.getElementById("Start_Message_Area");
+		$("#Start_Message_Area").removeclass("Message_Area_Start_Clear").addclass("Message_Area_Start_Focus");
 		startMessageArea.innerHTML = "Start a meeting";
 	}
 
@@ -203,7 +213,8 @@
 		alert();
 	}
 
-	function ClearStartMessage(element) {
+	function ClearStartMessage() {
+		$("#Start_Message_Area").removeclass("Message_Area_Start_Focus").removeclass("Message_Area_Start_Clear");
 		var MessageArea = document.getElementById("Start_Message_Area");
 		clear(MessageArea);
 	}
@@ -331,10 +342,9 @@
 
 	<div id="background">
 		<div id=button_holder>
-			<div id="Start_Message_Area" style="height: 50px"></div>
+			<div id="Start_Message_Area" class="Message_Area_Start_Clear"></div>
 			<div id="Start_div">
-				<button onmouseover="StartMessage(this)"
-					onmouseout="ClearStartMessage(this)" id="Start_Button">Start</button>
+				<button  id="Start_Button">Start</button>
 			</div>
 			<div id="Start_Action_Area_holder" class="Action_Area_holder">
 				<div id="Start_Action_Area" class="Start_Action">
