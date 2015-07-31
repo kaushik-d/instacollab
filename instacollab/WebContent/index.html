@@ -157,89 +157,6 @@
 		return false; // avoid to execute the actual submit of the form.
 	}
 
-	function Start(startButton) {
-		if (!startClicked) {
-			var startActionArea = document.getElementById("Start_Action_Area");
-
-			var BoardInputArea = document.createElement("BoardInputArea");
-			BoardInputArea.setAttribute("id", "BoardInputArea");
-			startActionArea.appendChild(BoardInputArea);
-
-			var nameInput = document.createElement("INPUT");
-			nameInput.setAttribute("type", "text");
-			nameInput.setAttribute("placeholder", "Name");
-			nameInput.setAttribute("id", "nameInput");
-			BoardInputArea.appendChild(nameInput);
-
-			var topicInput = document.createElement("INPUT");
-			topicInput.setAttribute("type", "text");
-			topicInput.setAttribute("placeholder", "Meeting topic");
-			topicInput.setAttribute("id", "topicInput");
-			BoardInputArea.appendChild(topicInput);
-
-			var submitInput = document.createElement("INPUT");
-			submitInput.setAttribute("type", "submit");
-			submitInput.appendChild(document.createTextNode("Submit"));
-			submitInput.setAttribute("id", "submitInput");
-			BoardInputArea.appendChild(submitInput);
-
-			submitInput.onclick = function() {
-				var nameEntered = nameInput.value;
-				var topicEntered = topicInput.value;
-				var dontSend = false;
-				if (nameEntered === "") {
-					nameInput.style = "color:red";
-					dontSend = true;
-				}
-				if (topicEntered === "") {
-					topicInput.style = "color:red";
-					dontSend = true;
-				}
-				if (!dontSend) {
-					xmlhttp = new XMLHttpRequest();
-					xmlhttp.onreadystatechange = function() {
-						if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-							meetingRoomData = JSON.parse(xmlhttp.responseText);
-							isRoomCreated = true;
-							document.getElementById("Start_Action_Area").innerHTML = '';
-							document.getElementById("Share_Message_Area").innerHTML = "Meeting room# "
-									+ meetingRoomData.roomNumber;
-							document.getElementById("Join_Message_Area").innerHTML = "Meeting room# "
-									+ meetingRoomData.roomNumber;
-							startClicked = false;
-						}
-					}
-					xmlhttp.open("POST", "login", true);
-					var params = "data=" + encodeURIComponent(JSON.stringify({
-						functName : "createRoom",
-						isPresentation : false,
-						name : nameEntered,
-						topic : topicEntered
-					}));
-					xmlhttp.setRequestHeader("Content-type",
-							"application/x-www-form-urlencoded");
-					xmlhttp.send(params);
-				}
-			};
-
-			var submitCancel = document.createElement("BUTTON");
-			submitCancel.setAttribute("name", "Cancel");
-			submitCancel.appendChild(document.createTextNode("Cancel"));
-			submitCancel.setAttribute("id", "submitCancel");
-			BoardInputArea.appendChild(submitCancel);
-			submitCancel.onclick = function() {
-				document.getElementById("Start_Action_Area").innerHTML = '';
-				startClicked = false;
-			};
-
-			startClicked = true;
-		}
-	}
-
-	function startclicked() {
-		alert();
-	}
-
 	function JoinMessage(startButton) {
 		if (!isRoomCreated) {
 			var MessageArea = document.getElementById("Join_Message_Area");
@@ -274,10 +191,6 @@
 					"application/x-www-form-urlencoded");
 			xmlhttp.send(params);
 		}
-	}
-
-	function clear(element) {
-		element.innerHTML = "";
 	}
 
 	var popupCenter = function(url, title, w, h) {
