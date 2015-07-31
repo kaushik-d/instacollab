@@ -1,0 +1,140 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+*:fullscreen, *:-webkit-full-screen, *:-moz-full-screen {
+	background-color: rgba(255, 255, 0, 1);
+}
+
+#container:fullscreen {
+	background-color: rgba(255, 255, 255, 0);
+}
+
+#container:-webkit-full-screen {
+	background-color: rgba(255, 255, 255, 0);
+}
+
+#container:-moz-full-screen {
+	background-color: rgba(255, 255, 255, 0);
+}
+
+div:-webkit-full-screen>canvas {
+	width: 100%;
+}
+
+div:-moz-full-screen>canvas {
+	width: 100%;
+}
+
+div:-ms-fullscreen>canvas {
+	width: 100%;
+}
+
+div:fullscreen>canvas {
+	width: 100%;
+}
+
+input#chat {
+	width: 410px;
+	position: relative;
+}
+
+#console-container {
+	width: 400px;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#console {
+	border: 1px solid #CCCCCC;
+	border-right-color: #999999;
+	border-bottom-color: #999999;
+	height: 170px;
+	overflow-y: scroll;
+	padding: 5px;
+	width: 100%;
+	position: relative;
+}
+
+#console p {
+	padding: 0;
+	margin: 0;
+	position: relative;
+}
+
+#canvasDiv {
+	position: relative;
+	width: 512px; /* 1024×576 or 16:9 */
+	height: 288px;
+	position: relative;
+	border: 1px solid;
+	margin-left: auto;
+	margin-right: auto;
+	/*background-color:white;
+	z-index: -20000;*/
+}
+
+#messageDiv {
+	position: relative;
+	position: relative;
+	border: 1px solid;
+	margin-left: auto;
+	margin-right: auto;
+	width: 400px;
+}
+
+#chatArea {
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+
+p {
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+canvas {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+#menuDiv {
+	position: absolute;
+	width: 100%;
+	border: 0px solid;
+	top: 2px;
+	height: 30px;
+}
+
+button {
+	position: relative;
+	padding: 1px;
+	font-size: 12px;
+    /*font-weight: bold;*/
+    /*background-color: blue;*/
+    background-color:blue;
+    opacity: 0.25;
+	color: white;
+	border: 0;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+button:hover {
+	background-color:blue;
+	color: white;
+	opacity: 1;
+}
+
+HeaderDiv{
+	width:100%;
+	height:30px;
+}

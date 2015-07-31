@@ -1,0 +1,232 @@
+body {
+	position: relative;
+	background-image: url("images/officeBkG_1.jpg");
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div {
+	text-align: center; 
+	vertical-align: bottom;
+	height: 100%;
+	padding: 5px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+
+#background {
+	width 100%;
+	height 100%;
+	
+}
+
+#button_holder {
+	width: 430px;
+	height: 670px;
+	background:rgba(255,255,255,0.5);
+	border-radius: 25px;
+}
+
+#Start_div {
+	height: 20px;
+}
+
+#Share_div {
+	height: 20px;
+}
+
+#Join_div {
+	height: 20px;
+}
+
+button {
+	position: relative;
+	padding: 5px;
+	font-size: 14px;
+    font-weight: bold;
+    background-color: blue;
+	color: white;
+	border: 0;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+button:hover {
+	background-color: #00ff00;
+	color: black;
+}
+
+input {
+	padding: 3px;
+}
+
+input[type="text"], input[type="email"]{
+	text-align:left;
+	/*float: right;*/
+	display:inline;
+	width: 250px;
+}
+
+.label{
+	width: 75px;
+}
+ 
+.Action_Area_holder {
+	width: 100%;
+	height: 160px;
+	/*position: fixed;*/
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.Start_Action {
+	display: none;
+	width: 400px;
+	height: 85px;
+	/*position: fixed;*/
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#BoardInputArea {
+	width: 200px;
+	/*position: fixed;*/
+	margin-left: auto;
+	margin-right: auto;
+	zIndex: 1;
+}
+
+.holder{
+	float: left;
+	padding: 5px;
+	text-align: left;
+	vertical-align: top;
+	margin-top:0px;
+	background:white;
+	border: 1px solid blue;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+video#bgvid {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -100;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	/*background: url(polina.jpg) no-repeat;*/
+	background-size: cover;
+}
+
+#FBSend {
+	width: 20px;
+	height: 20px;
+}
+/************Social media style****************************/
+/* General Social Button Styling */
+.social-icons {
+	height: 25px;
+	padding: 3px;
+	margin-top: auto;
+	margin-left: auto;
+}
+
+.social-icons ul {
+	text-align:center
+}
+
+.social-icons li {
+	list-style-type: none !important;
+	/*float: left;*/
+	display:inline;
+	margin-top: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.social-icons a {
+	padding: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+/* Facebook Button Styling */
+li.social-icon.facebook a {
+	border-top: 1px solid #3b5998;
+	border-left: 1px solid #3b5998;
+	border-bottom: 1px solid #3b5998;
+	border-right: 1px solid #3b5998;
+	color: #3b5998;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+	text-decoration: none;
+}
+
+li.social-icon.facebook a:hover {
+	background-color: #3b5998;
+	color: white;
+}
+
+/* Twitter Button Styling */
+li.social-icon.twitter a {
+	border-top: 1px solid #55acee;
+	border-left: 1px solid #55acee;
+	border-bottom: 1px solid #55acee;
+	border-right: 1px solid #55acee;
+	color: #55acee;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+	text-decoration: none;
+}
+
+li.social-icon.twitter a:hover {
+	background-color: #55acee;
+	color: white;
+}
+
+/* Google+ Button Styling */
+li.social-icon.google-plus a {
+	border-top: 1px solid #dd4b39;
+	border-left: 1px solid #dd4b39;
+	border-bottom: 1px solid #dd4b39;
+	border-right: 1px solid #dd4b39;
+	color: #dd4b39;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+	text-decoration: none;
+}
+
+li.social-icon.google-plus a:hover {
+	background-color: #dd4b39;
+	color: white;
+}
+
+/* LinkedIn Button Styling */
+
+li.social-icon.linkedin a {
+	border-top: 1px solid #0976b4;
+	border-left: 1px solid #0976b4;
+	border-bottom: 1px solid #0976b4;
+	border-right: 1px solid #0976b4;
+	color: #0976b4;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+	text-decoration: none;
+}
+
+li.social-icon.linkedin a:hover {
+	background-color: #0976b4;
+	color: white;
+}
+
+/****************************************/

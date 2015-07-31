@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Start Collaboration Now</title>
+<link rel="stylesheet" type="text/css" href="index.css?v=1.0">
+<link
+	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src='http://connect.facebook.net/en_US/all.js'></script>
+<script>
+	var startClicked = false;
+	var whiteboardClicked = false;
+	var presentationClicked = false;
+
+	var meetingRoomData = {};
+	var isRoomCreated = false;
+
+	$(document).ready(function() {
+		$("#Start_Button").click(function() {
+			if (!startClicked) {
+				startClicked = true;
+				$("#Start_Action_Area").slideDown("slow");
+			} else if (whiteboardClicked) {
+				whiteboardClicked = false;
+				$("#Start_WhitBoard").slideUp("slow", function() {
+					$("#Start_Action_Area").slideDown("slow");
+				});
+
+			} else if (presentationClicked) {
+				presentationClicked = false;
+				$("#Start_Presentation").slideUp("slow", function() {
+					$("#Start_Action_Area").slideDown("slow");
+				});
+
+			} else {
+				startClicked = false;
+				$("#Start_Action_Area").slideUp("slow");
+			}
+		});
+		$("#whitboard").click(function() {
+			whiteboardClicked = true;
+			$("#Start_Action_Area").slideUp("slow", function() {
+				$("#Start_WhitBoard").slideDown("slow");
+			});
+		});
+		$("#presentation").click(function() {
+			presentationClicked = true;
+			$("#Start_Action_Area").slideUp("slow", function() {
+				$("#Start_Presentation").slideDown("slow");
+			});
+		});
+
+		$("#PresentationForm").submit(StartPresentation);
+		$("#WhitboardForm").submit(StartWhiteboard);
+
+		$("#Share_Button").click(function() {
+			//presentationClicked = true;
+			$("#Share_Action_Area").slideToggle("slow", function() {
+			});
+		});
+		
+		$("#Join_Button").click(function() {
+			//presentationClicked = true;
+			$("#Join_Action_Area").slideToggle("slow", function() {
+			});
+		});
+
+	});
+
+	StartPresentation = function(evt) {
+		var formElement = document.getElementById("PresentationForm");
+		var data = new FormData(formElement);
+		data.append("isPresentation", "true");
+		data.append("presentationURI", "NotAvailable");
+		data.append("functName", "createRoom");
+		StartSubmit(evt, data);
+	}
+
+	StartWhiteboard = function(evt) {
+		var formElement = document.getElementById("WhitboardForm");
+		var data = new FormData(formElement);
+		data.append("isPresentation", "false");
+		data.append("presentationURI", "NotAPresentation");
+		data.append("functName", "createRoom");
+		StartSubmit(evt, data);
+	}
+
+	StartSubmit = function(evt, data) {
+		var url = "login";
+
+		$
+				.ajax({
+					type : "POST",
+					url : url,
+					data : data,
+					cache : false,
+					contentType : false,
+					processData : false,
+					success : function(data) {
+						meetingRoomData = data;
+						isRoomCreated = true;
+						document.getElementById("Start_Action_Area").innerHTML = '';
+						document.getElementById("Share_Message_Area").innerHTML = "Meeting room# "
+								+ meetingRoomData.roomNumber;
+						document.getElementById("Join_Message_Area").innerHTML = "Meeting room# "
+								+ meetingRoomData.roomNumber;
+						startClicked = false;
+					}
+				});
+
+		evt.preventDefault()
+		return false; // avoid to execute the actual submit of the form.
+	}
+
+	function StartMessage(startButton) {
+		var startMessageArea = document.getElementById("Start_Message_Area");
+		startMessageArea.innerHTML = "Start a meeting";
+	}
+
+	function Start(startButton) {
+		if (!startClicked) {
+			var startActionArea = document.getElementById("Start_Action_Area");
+
+			var BoardInputArea = document.createElement("BoardInputArea");
+			BoardInputArea.setAttribute("id", "BoardInputArea");
+			startActionArea.appendChild(BoardInputArea);
+
+			var nameInput = document.createElement("INPUT");
+			nameInput.setAttribute("type", "text");
+			nameInput.setAttribute("placeholder", "Name");
+			nameInput.setAttribute("id", "nameInput");
+			BoardInputArea.appendChild(nameInput);
+
+			var topicInput = document.createElement("INPUT");
+			topicInput.setAttribute("type", "text");
+			topicInput.setAttribute("placeholder", "Meeting topic");
+			topicInput.setAttribute("id", "topicInput");
+			BoardInputArea.appendChild(topicInput);
+
+			var submitInput = document.createElement("INPUT");
+			submitInput.setAttribute("type", "submit");
+			submitInput.appendChild(document.createTextNode("Submit"));
+			submitInput.setAttribute("id", "submitInput");
+			BoardInputArea.appendChild(submitInput);
+
+			submitInput.onclick = function() {
+				var nameEntered = nameInput.value;
+				var topicEntered = topicInput.value;
+				var dontSend = false;
+				if (nameEntered === "") {
+					nameInput.style = "color:red";
+					dontSend = true;
+				}
+				if (topicEntered === "") {
+					topicInput.style = "color:red";
+					dontSend = true;
+				}
+				if (!dontSend) {
+					xmlhttp = new XMLHttpRequest();
+					xmlhttp.onreadystatechange = function() {
+						if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+							meetingRoomData = JSON.parse(xmlhttp.responseText);
+							isRoomCreated = true;
+							document.getElementById("Start_Action_Area").innerHTML = '';
+							document.getElementById("Share_Message_Area").innerHTML = "Meeting room# "
+									+ meetingRoomData.roomNumber;
+							document.getElementById("Join_Message_Area").innerHTML = "Meeting room# "
+									+ meetingRoomData.roomNumber;
+							startClicked = false;
+						}
+					}
+					xmlhttp.open("POST", "login", true);
+					var params = "data=" + encodeURIComponent(JSON.stringify({
+						functName : "createRoom",
+						isPresentation : false,
+						name : nameEntered,
+						topic : topicEntered
+					}));
+					xmlhttp.setRequestHeader("Content-type",
+							"application/x-www-form-urlencoded");
+					xmlhttp.send(params);
+				}
+			};
+
+			var submitCancel = document.createElement("BUTTON");
+			submitCancel.setAttribute("name", "Cancel");
+			submitCancel.appendChild(document.createTextNode("Cancel"));
+			submitCancel.setAttribute("id", "submitCancel");
+			BoardInputArea.appendChild(submitCancel);
+			submitCancel.onclick = function() {
+				document.getElementById("Start_Action_Area").innerHTML = '';
+				startClicked = false;
+			};
+
+			startClicked = true;
+		}
+	}
+
+	function startclicked() {
+		alert();
+	}
+
+	function ClearStartMessage(element) {
+		var MessageArea = document.getElementById("Start_Message_Area");
+		clear(MessageArea);
+	}
+
+	function ShareMessage(startButton) {
+		if (!isRoomCreated) {
+			var MessageArea = document.getElementById("Share_Message_Area");
+			MessageArea.innerHTML = "Share your meeting room.";
+		}
+	}
+
+	function ClearShareMessage(element) {
+		var MessageArea = document.getElementById("Share_Message_Area");
+		clear(MessageArea);
+	}
+
+	function JoinMessage(startButton) {
+		if (!isRoomCreated) {
+			var MessageArea = document.getElementById("Join_Message_Area");
+			MessageArea.innerHTML = "Join an exsisting meeting.<br>You will need a meeting room number.";
+		}
+	}
+
+	function ClearJoinMessage(element) {
+		var MessageArea = document.getElementById("Join_Message_Area");
+		clear(MessageArea);
+	}
+
+	function Join(joinButton) {
+		if (isRoomCreated) {
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					window.location = xmlhttp.responseText;
+					isRoomCreated = false;
+					startClicked = true;
+				}
+			}
+			xmlhttp.open("POST", "joinMeeting", true);
+			var params = "data=" + encodeURIComponent(JSON.stringify({
+				functName : "joinMeeting",
+				isPresentation : false,
+				name : meetingRoomData.name,
+				topic : meetingRoomData.topic,
+				roomNumber : meetingRoomData.roomNumber
+			}));
+			xmlhttp.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			xmlhttp.send(params);
+		}
+	}
+
+	function clear(element) {
+		element.innerHTML = "";
+	}
+
+	var popupCenter = function(url, title, w, h) {
+		// Fixes dual-screen position                         Most browsers      Firefox
+		var dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft
+				: screen.left;
+		var dualScreenTop = window.screenTop !== undefined ? window.screenTop
+				: screen.top;
+
+		var width = window.innerWidth ? window.innerWidth
+				: document.documentElement.clientWidth ? document.documentElement.clientWidth
+						: screen.width;
+		var height = window.innerHeight ? window.innerHeight
+				: document.documentElement.clientHeight ? document.documentElement.clientHeight
+						: screen.height;
+
+		var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+		var top = ((height / 3) - (h / 3)) + dualScreenTop;
+
+		var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w
+				+ ', height=' + h + ', top=' + top + ', left=' + left);
+
+		// Puts focus on the newWindow
+		if (window.focus) {
+			newWindow.focus();
+		}
+	};
+
+	//  =======================================
+
+	window
+			.addEventListener(
+					'load',
+					function(e) {
+						window.applicationCache
+								.addEventListener(
+										'updateready',
+										function(e) {
+											if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+												// Browser downloaded a new app cache.
+												// Swap it in and reload the page to get the new hotness.
+												window.applicationCache
+														.swapCache();
+												// if (confirm('A new version of this site is available. Load it?')) {
+												window.location.reload();
+												// }
+											} else {
+												// Manifest didn't changed. Nothing new to server.
+											}
+										}, false);
+
+					}, false);
+</script>
+
+</head>
+<body>
+	<!--  Facebook -->
+	<div id="fb-root"></div>
+	<script>
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id))
+				return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=312941762107579";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	<!--  Facebook ends -->
+
+	<div id="background">
+		<div id=button_holder>
+			<div id="Start_Message_Area" style="height: 50px"></div>
+			<div id="Start_div">
+				<button onmouseover="StartMessage(this)"
+					onmouseout="ClearStartMessage(this)" id="Start_Button">Start</button>
+			</div>
+			<div id="Start_Action_Area_holder" class="Action_Area_holder">
+				<div id="Start_Action_Area" class="Start_Action">
+					<button id="whitboard">Whitboard</button>
+					<button id="presentation">Presentation</button>
+				</div>
+				<div id="Start_WhitBoard" class="Start_Action">
+					<form action="login" method="post" enctype="multipart/form-data"
+						id="WhitboardForm">
+						<div id="WhitboardFormHolder" class="holder">
+							<table>
+								<tr>
+									<td><label for="topic">Topic:</label></td>
+									<td><input type="text" name="topic"
+										placeholder="Meeting topic" required /></td>
+								</tr>
+								<tr>
+									<td><label for="name">Name:</label></td>
+									<td><input type="text" name="name"
+										placeholder="First name and last name" required /></td>
+								</tr>
+								<tr>
+									<td><label for="email">E-mail:</label></td>
+									<td><input type="email" name="email"
+										placeholder="e-mail@domain.com" required /></td>
+								</tr>
+								<tr style="float:left">
+									<td><input type="submit" value="Submit" /></td>
+									<td><input type="reset" value="Reset" /></td>
+								</tr>
+							</table>
+						</div>
+					</form>
+				</div>
+				<div id="Start_Presentation" class="Start_Action">
+					<form action="login" method="post" enctype="multipart/form-data"
+						id="PresentationForm">
+						<div id="PresentationFormHolder" class="holder">
+							<table>
+								<tr>
+									<td><label for="topic">Topic:</label></td>
+									<td><input type="text" name="topic"
+										placeholder="Meeting topic"  required/></td>
+								</tr>
+								<tr>
+									<td><label for="name">Name:</label></td>
+									<td><input type="text" name="name"
+										placeholder="First name and last name" required /></td>
+								</tr>
+								<tr>
+									<td><label for="email">E-mail:</label></td>
+									<td><input type="email" name="email"
+										placeholder="e-mail@domain.com" required /></td>
+								</tr>
+								<tr>
+									<td><label for="presentationFile">Presentation
+											slides:</label></td>
+									<td><input type="file" name="presentationFile" /></td>
+								<tr  style="float:left">
+									<td><input type="submit" value="Submit" /></td>
+									<td><input type="reset" value="Reset" /></td>
+								</tr>
+							</table>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div id="Share_Message_Area" style="height: 50px"></div>
+			<div id="Share_div">
+				<button onmouseover="ShareMessage(this)"
+					onmouseout="ClearShareMessage(this)" id="Share_Button">Share</button>
+			</div>
+
+			<div id="Share_Action_Area_holder" class="Action_Area_holder">
+				<div id="Share_Action_Area" class="Start_Action">
+				<div id="Join_Holder" style="text-align: center;" class="holder">
+				<table>
+				<tr>
+					<td><label for="MeetingRoomNumInput">Meeting room#:</label> 
+					    <input type="text" name="MeetingRoom" id="MeetingRoomNumInput" /></td>
+				</tr>
+				<tr>
+				<td>
+					<ul class="social-icons">
+						<!-- Facebook Button-->
+						<li class="social-icon facebook"><a
+							onclick="javascript:popupCenter('https://www.facebook.com/sharer/sharer.php?u=www.test.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID','Facebook Share', '540', '400');return false;"
+							href="https://www.facebook.com/sharer/sharer.php?u=www.test.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID"
+							target="blank"><i class="fa fa-facebook"></i> Share </a></li>
+						<!-- Twitter Button -->
+						<li class="social-icon twitter"><a
+							onclick="javascript:popupCenter('https://twitter.com/share?&amp;url=www.test.com&amp;text=TestTitle','Tweet', '540', '400');return false;"
+							href="https://twitter.com/share?&amp;url=www.test.com&amp;text=www.test.com"
+							target="blank"><i class="fa fa-twitter"></i> Tweet </a></li>
+						<!-- Google + Button-->
+						<li class="social-icon google-plus"><a
+							onclick="javascript:popupCenter('https://plus.google.com/share?url=www.test.com','Share on Google+', '600', '600');return false;"
+							href="https://plus.google.com/share?url=www.test.com"
+							target="blank"><i class="fa fa-google-plus"></i> Google+</a></li>
+						<!-- Flattr Button
+						<li class="social-icon flattr"><a
+							onclick="javascript:popupCenter('https://flattr.com/submit/auto?title=TestTitle&language=de_DE&&category=text','Support with Flattr', '680', '400');return false;"
+							href="https://flattr.com/submit/auto?url=www.test.comm&title=TestTitle&language=en_EN&&category=text"
+							target="blank" rel="nofollow">Flattr</a></li>
+							-->
+						<!-- LinkedIn Button -->
+						<li class="social-icon linkedin"><a
+							onclick="javascript:popupCenter('http://www.linkedin.com/shareArticle?mini=true&amp;url=www.TestUrl.com&amp;title=Title&amp;source=StieURl','Share on LinkedIn', '520', '570');return false;"
+							href="http://www.linkedin.com/shareArticle?mini=true&amp;url=www.testUrl.com&amp;title=TitleTest&amp;source=UrlSource"
+							target="blank"><i class="fa fa-linkedin"></i> LinkedIn </a></li>
+					</ul>
+					<td>
+					</tr>
+					</table>
+					</div>
+				</div>
+			</div>
+ 
+
+			<div id="Join_Message_Area" style="height: 50px"></div>
+			<div id="Join_div">
+				<button onmouseover="JoinMessage(this)"
+					onmouseout="ClearJoinMessage(this)" id="Join_Button">Join</button>
+			</div>
+			<div id="Join_Action_Area_holder" class="Action_Area_holder">
+			<div id="Join_Action_Area"  class="Start_Action">
+			<div id="Join_Holder" style="text-align: center;" class="holder">
+			<form action="joinMeeting" method="post" id="JoinForm">
+				<table>
+				<tr>
+					<td><label for="MeetingRoomNumInput">Meeting room#:</label> 
+					    <input type="text" name="MeetingRoom" id="MeetingRoomNumInput" /></td>
+				</tr>
+				<tr style="float:left">
+					<td><input type="submit" value="Submit" /></td>
+					<td><input type="reset" value="Reset" /></td>
+				</tr>
+				</table>
+			</form>
+			</div>
+			</div>
+			</div>
+		</div>
+
+		<!-- <video autoplay loop poster="polina.jpg" id="bgvid"> -->
+		<!--  
+		<video autoplay loop id="bgvid">
+			<source src="images/EarthSpin.mov" type="video/mp4">
+		</video>
+		-->
+
+	</div>
+</body>
+
+
+</html>
