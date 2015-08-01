@@ -7,10 +7,47 @@ function writeMessage(message) {
 
 function getMousePos(canvas, evt) {
 	var rect = canvas.getBoundingClientRect();
-	return {
-		x : (evt.clientX - rect.left)/CURRENTCANVASWIDTH,
-		y : (evt.clientY - rect.top)/CURRENTCANVASHEIGHT
-	};
+	
+	var eventType = String(evt.type);
+	
+	//var message = 'Client position2:' + eventType;
+	//writeMessage(message);
+	
+	if(eventType == "mouseup" || 
+			eventType == "mousedown" || 
+			eventType == "mousemove" ||
+			eventType == "mouseout") {
+		return {
+			x : (evt.clientX - rect.left)/CURRENTCANVASWIDTH,
+			y : (evt.clientY - rect.top)/CURRENTCANVASHEIGHT
+		};
+	}
+	else if (eventType == "touchup" || 
+			eventType == "touchout" || 
+			eventType == "touchleave" ||
+			eventType == "touchout" ||
+			eventType == "touchstart" ||
+				eventType == "touchmove") {
+		
+		//writeMessage("hello");
+		
+		var touchEvent = evt.changedTouches[0];
+		
+		//var message = 'touch:' + touchEvent.clientX;
+		//writeMessage(message);
+		
+		return {
+			x : (touchEvent.clientX - rect.left)/CURRENTCANVASWIDTH,
+			y : (touchEvent.clientY - rect.top)/CURRENTCANVASHEIGHT
+		};
+	}
+	else {
+		return {
+			x : null,
+			y : null
+		};
+	}
+
 	// offset = getOffset( canvas );
 	// return {
 	// x : evt.pageX - offset.x,
@@ -22,7 +59,7 @@ function updateMousePosition(evt) {
 	var mousePos = getMousePos(this, evt);
 	var message = 'Mouse position: ' + this.id + ':' + mousePos.x + ','
 			+ mousePos.y;
-	writeMessage(message);
+	//writeMessage(message);
 }
 
 function getOffset(elem) {
@@ -72,8 +109,16 @@ function restore() {
 
 	if (!window.screenTop && !window.screenY) {
 		console.log('not fullscreen');
-		CURRENTCANVASWIDTH = screen.width;
-		CURRENTCANVASHEIGHT = screen.height;
+		
+		if(screen.width > screen.height) {
+			CURRENTCANVASWIDTH = screen.width;
+			CURRENTCANVASHEIGHT = screen.height;
+		} else {
+			CURRENTCANVASWIDTH = screen.height;
+			CURRENTCANVASHEIGHT = CURRENTCANVASWIDTH*INITICANVASHEIGHT/INITICANVASWIDTH;
+		}
+
+		
 		$("#canvasDiv").attr({
 			"width" : CURRENTCANVASWIDTH,
 			"height" : CURRENTCANVASHEIGHT
@@ -90,6 +135,9 @@ function restore() {
 			"top" : CURRENTCANVASHEIGHT - MENUBARHEIGHT,
 		 "buttom":CURRENTCANVASHEIGHT-MENUBARHEIGHT
 		});
+		
+		var message = 'CURRENTCANVASWIDTH: ' + CURRENTCANVASWIDTH + '\nCURRENTCANVASHEIGHT:' + CURRENTCANVASHEIGHT;
+		writeMessage(message);
 
 		redrawCurrentPageContents();
 
@@ -114,7 +162,8 @@ function restore() {
 		});
 
 		redrawCurrentPageContents();
-
+		var message = 'CURRENTCANVASWIDTH: ' + CURRENTCANVASWIDTH + '\nCURRENTCANVASHEIGHT:' + CURRENTCANVASHEIGHT;
+		writeMessage(message);
 		console.log('fullscreen');
 	}
 }

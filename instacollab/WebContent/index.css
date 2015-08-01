@@ -15,7 +15,25 @@ div {
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
 }
+
+.Message_Area_Start_Clear{
+	height: 20px;
+}
+
+.Message_Area_Start_Focus{
+	background-color: yellow;
+	color: black;
+	border: 1px solid black;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	height: 20px;
+	/*width: 100px;*/
+	display: inline-block
+	margin: auto;
+}
+
 
 #background {
 	width 100%;
@@ -52,6 +70,9 @@ button {
 	border: 0;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
+	-ms-transform: translate(-10px,0px); /* IE 9 */
+   	-webkit-transform: translate(-10px,0px); /* Safari */
+    transform: translate(-10px,0px);
 }
 
 button:hover {
@@ -89,6 +110,10 @@ input[type="text"], input[type="email"]{
 	/*position: fixed;*/
 	margin-left: auto;
 	margin-right: auto;
+	
+	-ms-transform: translate(-10px,0px); /* IE 9 */
+   	-webkit-transform: translate(-10px,0px); /* Safari */
+    transform: translate(-10px,0px);
 }
 
 #BoardInputArea {
@@ -109,6 +134,13 @@ input[type="text"], input[type="email"]{
 	border: 1px solid blue;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
+	font-size: 14px;
+}
+
+.holder_ajax_load{
+	background-image: url("images/ajax-loader.gif");
+	background-repeat: no-repeat;
+    background-position: center; 
 }
 
 video#bgvid {

@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.google.gson.Gson;
-
+//
+//// Not in use
+//
 @WebServlet("/joinMeeting")
 public class joinMeeting extends HttpServlet {
 	private static final long serialVersionUID = 1L;
