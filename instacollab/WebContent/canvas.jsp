@@ -58,6 +58,19 @@
 		$("#fullScreenButton").click(goFullScreen);
 	});
 </script>
+<script>
+window.onbeforeunload = function (e) {
+    e = e || window.event;
+
+    // For IE and Firefox prior to version 4
+    if (e) {
+        e.returnValue = 'Sure?';
+    }
+
+    // For Safari
+    return 'Sure?';
+};
+</script>
 </head>
 <body>
     <div id="HeaderDiv">
@@ -67,14 +80,19 @@
     		<a>Terms and conditions</a>
     	</div>
 	<div id="canvasDiv"></div>
+	<div id="messageDiv_holder">
 	<div id="messageDiv">
-		<p id="message">Mouse position:</p>
+		<p id="MeetingRoom">Meeting room#:</p>
+		<p id="MeetingTopic">Meeting topic:</p>
+		<p id="MeetingHost">Meeting host:</p>
+		<p id="MeetingHostEmail">Host e-mail:</p>
+	</div>
 	</div>
 	<div id="chatArea">
-		<p>
+		<div  id="inputDiv">
 			<input type="text" placeholder="type and press enter to chat"
 				id="chat" />
-		</p>
+		</div>
 		<div id="console-container">
 			<div id="console"></div>
 		</div>

@@ -6,6 +6,21 @@ body {
 	height: 100%;
 }
 
+
+div {
+	
+	vertical-align: bottom;
+	height: 100%;
+	padding: 0px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+	
+}
+
+
 #HeaderDiv {
 	width: 350px;
 	height: 20px;
@@ -46,26 +61,36 @@ div:fullscreen>canvas {
 }
 
 input#chat {
-	width: 410px;
+	width: 500px;
 	position: relative;
+	font-size: 14px;
+}
+
+#inputDiv {
+	padding: 3px;
+	border: 2px solid #ff9900;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	width: 505px;
 }
 
 #console-container {
-	width: 400px;
+	width: 100%;
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 #console {
-	border: 1px solid #CCCCCC;
-	border-right-color: #999999;
-	border-bottom-color: #999999;
+	border: 2px solid #ff9900;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
 	height: 170px;
 	overflow-y: scroll;
 	padding: 5px;
-	width: 100%;
+	width: 500px;
 	position: relative;
+	top: 2px;
 }
 
 #console p {
@@ -79,32 +104,45 @@ input#chat {
 	width: 512px; /* 1024×576 or 16:9 */
 	height: 288px;
 	position: relative;
-	border: 1px solid;
+	border: 2px solid #ff9900;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
 	margin-left: auto;
 	margin-right: auto;
 	/*background-color:white;
 	z-index: -20000;*/
 }
 
+
+#messageDiv_holder {
+	padding: 5px;
+	width: 512px;
+}
+
 #messageDiv {
 	position: relative;
 	position: relative;
-	border: 1px solid;
+	border: 2px solid #ff9900;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
 	margin-left: auto;
 	margin-right: auto;
-	width: 400px;
+	width: 100%;
 }
 
 #chatArea {
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
+	width: 512px;
 }
 
 p {
-	width: 400px;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: 0em;
+    margin-bottom: 0em;
 }
 
 canvas {
@@ -113,12 +151,13 @@ canvas {
 	height: 100%;
 }
 
+
 #menuDiv {
 	position: absolute;
 	width: 100%;
 	border: 0px solid;
-	top: 2px;
 	height: 30px;
+	text-align: center;
 }
 
 button {
@@ -145,3 +184,4 @@ HeaderDiv{
 	width:100%;
 	height:30px;
 }
+

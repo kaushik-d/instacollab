@@ -2,7 +2,7 @@
  * 
  */
 function writeMessage(message) {
-	document.getElementById('message').innerHTML = message;
+	//document.getElementById('message').innerHTML = message;
 }
 
 function getMousePos(canvas, evt) {
