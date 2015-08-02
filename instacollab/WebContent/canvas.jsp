@@ -61,9 +61,11 @@
 </head>
 <body>
     <div id="HeaderDiv">
-    	<a>Feedback</a>
-    	<a>Terms and conditions</a>
-    </div>
+			<a>Demo</a> |
+			<a>Help</a> |
+    		<a>Feedback</a> |
+    		<a>Terms and conditions</a>
+    	</div>
 	<div id="canvasDiv"></div>
 	<div id="messageDiv">
 		<p id="message">Mouse position:</p>

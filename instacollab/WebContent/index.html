@@ -30,7 +30,7 @@
 						$("#Start_Action_Area").slideDown("slow");
 					} else if (whiteboardClicked) {
 						whiteboardClicked = false;
-						$("#Start_WhitBoard").slideUp("slow", function() {
+						$("#Start_WhiteBoard").slideUp("slow", function() {
 							$("#Start_Action_Area").slideDown("slow");
 						});
 					} else if (presentationClicked) {
@@ -57,10 +57,10 @@
 									"Message_Area_Start_Clear").text("");
 						});
 
-				$("#whitboard").click(function() {
+				$("#whiteboard").click(function() {
 					whiteboardClicked = true;
 					$("#Start_Action_Area").slideUp("slow", function() {
-						$("#Start_WhitBoard").slideDown("slow");
+						$("#Start_WhiteBoard").slideDown("slow");
 					});
 				});
 				$("#presentation").click(function() {
@@ -70,24 +70,24 @@
 					});
 				});
 				
-				$("Whiteboard_Cancell").click(function() {
+				$("Whiteboard_Cancel").click(function() {
 					whiteboardClicked = false;
 					$(this).closest('form').find("input[type=text], textarea, input[type=email]").val("");
-					$("#Start_WhitBoard").slideUp("slow", function() {
+					$("#Start_WhiteBoard").slideUp("slow", function() {
 						$("#Start_Action_Area").slideDown("slow");
 					});
 				});
 				
-				$("Presentation_Cancell").click(function() {
+				$("Presentation_Cancel").click(function() {
 					whiteboardClicked = false;
 					$(this).closest('form').find("input[type=text], textarea, input[type=email]").val("");
-					$("#Start_WhitBoard").slideUp("slow", function() {
+					$("#Start_WhiteBoard").slideUp("slow", function() {
 						$("#Start_Action_Area").slideDown("slow");
 					});
 				});
 
 				$("#PresentationForm").submit(StartPresentation);
-				$("#WhitboardForm").submit(StartWhiteboard);
+				$("#WhiteboardForm").submit(StartWhiteboard);
 
 				$("#Share_Button").click(function() {
 					//presentationClicked = true;
@@ -109,6 +109,20 @@
 									"Message_Area_Start_Clear").text("");
 						});
 
+				$("#Join_Button").mouseover(
+						function() {
+							$("#Join_Message_Area").removeClass(
+									"Message_Area_Start_Clear").addClass(
+									"Message_Area_Start_Focus").text(
+									"Join a meeting room");
+						});
+				$("#Join_Button").mouseout(
+						function() {
+							$("#Join_Message_Area").removeClass(
+									"Message_Area_Start_Focus").addClass(
+									"Message_Area_Start_Clear").text("");
+						});
+				
 				$("#Join_Button").click(function() {
 					//presentationClicked = true;
 					$("#Join_Action_Area").slideToggle("slow");
@@ -138,13 +152,13 @@
 	}
 
 	StartWhiteboard = function(evt) {
-		var formElement = document.getElementById("WhitboardForm");
+		var formElement = document.getElementById("WhiteboardForm");
 		var data = new FormData(formElement);
 		data.append("isPresentation", "false");
 		data.append("presentationURI", "NotAPresentation");
 		data.append("functName", "createRoom");
 		whiteboardClicked = false;
-		$("#Start_WhitBoard").slideUp("slow");
+		$("#Start_WhiteBoard").slideUp("slow");
 		StartSubmit(evt, data);
 	}
 
@@ -269,6 +283,12 @@
 	<!--  Facebook ends -->
 
 	<div id="background">
+		<div id="HeaderDiv">
+			<a>Demo</a> |
+			<a>Help</a> |
+    		<a>Feedback</a> |
+    		<a>Terms and conditions</a>
+    	</div>
 		<div id=button_holder>
 			<div id="Start_Message_Area" class="Message_Area_Start_Clear"></div>
 			<div id="Start_div">
@@ -276,13 +296,13 @@
 			</div>
 			<div id="Start_Action_Area_holder" class="Action_Area_holder">
 				<div id="Start_Action_Area" class="Start_Action">
-					<button id="whitboard" style="width : 100px" >Whitboard</button>
+					<button id="whiteboard" style="width : 100px" >Whiteboard</button>
 					<button id="presentation" style="width : 100px">Presentation</button>
 				</div>
-				<div id="Start_WhitBoard" class="Start_Action">
+				<div id="Start_WhiteBoard" class="Start_Action">
 					<form action="login" method="post" enctype="multipart/form-data"
-						id="WhitboardForm">
-						<div id="WhitboardFormHolder" class="holder">
+						id="WhiteboardForm">
+						<div id="WhiteboardFormHolder" class="holder">
 							<table>
 								<tr>
 									<td><label for="topic">Topic:</label></td>
@@ -303,7 +323,7 @@
 									<td></td>
 									<td><input type="submit" value="Submit" />
 									<input type="reset" value="Reset" />
-									<input type="reset" id="Whiteboard_Cancell" value="Cancell" />
+									<input type="reset" id="Whiteboard_Cancel" value="Cancel" />
 								</tr>
 							</table>
 						</div>
@@ -332,12 +352,12 @@
 								<tr>
 									<td><label for="presentationFile">Presentation
 											slides:</label></td>
-									<td><input type="file" name="presentationFile" /></td>
+									<td><input type="file" name="presentationFile" accept="application/vnd.openxmlformats-officedocument.presentationml.presentation,application/pdf"/></td>
 								<tr>
 									<td></td>
 									<td><input type="submit" value="Submit" />
 									<input type="reset" value="Reset" />
-									<input type="reset" id="Presentation_Cancell" value="Cancell" />
+									<input type="reset" id="Presentation_Cancel" value="Cancel" />
 								</tr>
 							</table>
 						</div>
@@ -350,7 +370,7 @@
 				<button id="Share_Button">Share</button>
 			</div>
 
-			<div id="Share_Action_Area_holder" class="Action_Area_holder">
+			<div id="Share_Action_Area_holder" class="Action_Area_holder"  style="height:100px">
 				<div id="Share_Action_Area" class="Start_Action">
 					<div id="Join_Holder" style="text-align: center;" class="holder">
 						<table>
@@ -396,11 +416,11 @@
 			</div>
 
 
-			<div id="Join_Message_Area" style="height: 50px"></div>
+			<div id="Join_Message_Area" class="Message_Area_Start_Clear"></div>
 			<div id="Join_div">
 				<button id="Join_Button">Join</button>
 			</div>
-			<div id="Join_Action_Area_holder" class="Action_Area_holder">
+			<div id="Join_Action_Area_holder" class="Action_Area_holder"  style="height:100px">
 				<div id="Join_Action_Area" class="Start_Action">
 					<div id="Join_Holder" style="text-align: center;" class="holder">
 						<form action="canvas.jsp" method="get" id="JoinForm">
