@@ -51,12 +51,13 @@ public class login extends HttpServlet {
 		String functName = request.getParameter("functName");
 		String meetingHostIP = request.getRemoteAddr();
 		String name = request.getParameter("name");
+		String email = request.getParameter("email");
 
 		Gson gson = new Gson();
 
 		meetingRoomData MeetingRoomData = new meetingRoomData(functName,
 				isPresentation, name, topic, "NotAvailable", null,
-				meetingHostIP);
+				meetingHostIP,email);
 
 		String roomNumber = createMeetingRoom();
 		MeetingRoomData.setMeetingRoomNumber(roomNumber);

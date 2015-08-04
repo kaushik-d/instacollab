@@ -7,6 +7,9 @@ public class commandToClient {
 	private String canvasID;
 	private boolean isPresentation = false;
 	private String presentationURI = "NotAPresentation";
+	private String email;
+	private String topic;
+	private String name;
 	
 	public commandToClient(){
 		
@@ -14,12 +17,15 @@ public class commandToClient {
 	}
 
 	public commandToClient(String command, String room, String nickname,
-			boolean isPresentation, String presentationURI){
+			boolean isPresentation, String presentationURI, String email, String topic, String name){
 		this.command = command;
 		this.room = room;
 		this.canvasID = nickname;
 		this.isPresentation = isPresentation;
 		this.presentationURI = presentationURI;
+		this.email = email;
+		this.topic = topic;
+		this.name = name;
 	}
 	
 	String getRoomNumber(){

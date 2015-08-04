@@ -34,7 +34,7 @@ public class downloadFile extends HttpServlet {
 		ServletContext context = getServletContext();
 
 		DBconnection dBconnection = new DBconnection();
-		Blob blob = dBconnection.getFileToDb(MeetingRoomData);
+		Blob blob = dBconnection.getFileFromDb(MeetingRoomData);
 		
 		
 		InputStream inputStream = null;

@@ -37,6 +37,7 @@ import javax.websocket.server.ServerEndpoint;
 
 
 
+
 import com.google.gson.Gson;
 
 import java.util.logging.Level;
@@ -70,6 +71,7 @@ public class ChatAnnotation {
 
 		ServletContext servletContext = (ServletContext) config
 				.getUserProperties().get("servletContext");
+		@SuppressWarnings("unchecked")
 		HashMap<String, meetingRoomData> meetingRooms = (HashMap<String, meetingRoomData>) servletContext
 				.getAttribute("meetingRoomList");
 
@@ -84,6 +86,7 @@ public class ChatAnnotation {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			return; // Meeting room not found
 		}
 
 		session.getUserProperties().put("room", room);
@@ -99,7 +102,10 @@ public class ChatAnnotation {
 		commandToClient CommandToClient = new commandToClient(
 				"initCanvasSlave", room.trim(), nickname,
 				MeetingRoomData.getisPresentation(),
-				MeetingRoomData.getPresentationURI());
+				MeetingRoomData.getPresentationURI(),
+				MeetingRoomData.getEmail(),
+				MeetingRoomData.getTopic(),
+				MeetingRoomData.getName());
 		
 		Gson gson = new Gson();
 		String message = gson.toJson(CommandToClient, commandToClient.class);
@@ -117,7 +123,10 @@ public class ChatAnnotation {
 		commandToClient CommandToClient = new commandToClient(
 				"finalizeCanvasSlave", room.trim(), nickname,
 				MeetingRoomData.getisPresentation(),
-				MeetingRoomData.getPresentationURI());
+				MeetingRoomData.getPresentationURI(),
+				MeetingRoomData.getEmail(),
+				MeetingRoomData.getTopic(),
+				MeetingRoomData.getName());
 		
 		Gson gson = new Gson();
 		String message = gson.toJson(CommandToClient, commandToClient.class);
@@ -185,7 +194,10 @@ public class ChatAnnotation {
 			commandToClient CommandToClient = new commandToClient(
 					"finalizeCanvasSlave", room.trim(), nickname,
 					MeetingRoomData.getisPresentation(),
-					MeetingRoomData.getPresentationURI());
+					MeetingRoomData.getPresentationURI(),
+					MeetingRoomData.getEmail(),
+					MeetingRoomData.getTopic(),
+					MeetingRoomData.getName());
 			
 			Gson gson = new Gson();
 			String message = gson.toJson(CommandToClient, commandToClient.class);
@@ -204,7 +216,10 @@ public class ChatAnnotation {
 		commandToClient CommandToClient = new commandToClient(
 				"setMySlaveID", room.trim(), client.nickname,
 				MeetingRoomData.getisPresentation(),
-				MeetingRoomData.getPresentationURI());
+				MeetingRoomData.getPresentationURI(),
+				MeetingRoomData.getEmail(),
+				MeetingRoomData.getTopic(),
+				MeetingRoomData.getName());
 		
 		Gson gson = new Gson();
 		String message = gson.toJson(CommandToClient, commandToClient.class);
@@ -218,7 +233,10 @@ public class ChatAnnotation {
 				commandToClient CommandToClient1 = new commandToClient(
 						"initCanvasSlave", room.trim(), otherclient.nickname,
 						MeetingRoomData.getisPresentation(),
-						MeetingRoomData.getPresentationURI());
+						MeetingRoomData.getPresentationURI(),
+						MeetingRoomData.getEmail(),
+						MeetingRoomData.getTopic(),
+						MeetingRoomData.getName());
 				
 				//Gson gson = new Gson();
 				String messageOther = gson.toJson(CommandToClient1, commandToClient.class);

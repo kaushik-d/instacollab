@@ -101,10 +101,15 @@ setMySlaveID = function(mes){
 	if(!isPresentation) {
 		currentPage = 0;
 	}
-	//else {
-	//	currentPage = 0;
-	//	initCanvasPresentation();
-	//}
+	
+	email = mes.email;
+	name = mes.name;
+	topic = mes.topic;
+	
+	$("#MeetingRoom").html('<span class=\"infolabel\">Meeting room#:</span> <span class=\"info\">'+ myMeeringRoomNum+'</span>');
+	$("#MeetingTopic").html('<span class=\"infolabel\">Meeting topic: </span><span class=\"info\">' + topic+'</span>');
+	$("#MeetingHost").html('<span class=\"infolabel\">Meeting host: </span><span class=\"info\">' + name+'</span>');
+	$("#MeetingHostEmail").html('<span class=\"infolabel\">Host e-mail: </span><span class=\"info\">' + email +'</span>');
 }
 
 

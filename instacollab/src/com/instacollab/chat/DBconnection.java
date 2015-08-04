@@ -37,7 +37,7 @@ public class DBconnection {
 			String sql = "INSERT INTO " + dbTable
 					+ " (isPresentation, host_name, meeting_topic, presentationURI,"
 					+ " roomNumber, fileContent, create_datetime, start_datetime,"
-					+ " end_datetime, IPaddress) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					+ " end_datetime, IPaddress, email) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			
 			statement.setBoolean(1, roomData.getisPresentation());
@@ -49,6 +49,7 @@ public class DBconnection {
 			statement.setNull(8, Types.TIMESTAMP);
 			statement.setNull(9, Types.TIMESTAMP);
 			statement.setString(10, roomData.getMeetingHostIP());
+			statement.setString(11, roomData.getEmail());
 
 			if (fileContent != null) {
 				// fetches input stream of the upload file for the blob column
@@ -78,7 +79,7 @@ public class DBconnection {
 		}
 	}
 	
-	Blob getFileToDb(commandToClient CommandToClient){
+	Blob getFileFromDb(commandToClient CommandToClient){
 		
 		Blob blob = null;
 		String meetingRoomNum = CommandToClient.getRoomNumber();

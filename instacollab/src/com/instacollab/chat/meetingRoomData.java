@@ -11,10 +11,11 @@ public class meetingRoomData {
 	private String presentationURI = "NotAPresentation";
 	private String roomNumber;
 	private String meetingHostIP;
+	private String email;
 
 	public meetingRoomData(String functName, boolean isPresentation,
 			String name, String topic, String presentationURI,
-			String roomNumber, String meetingHostIP) {
+			String roomNumber, String meetingHostIP, String email) {
 
 		this.functName = functName;
 		this.isPresentation = isPresentation;
@@ -23,6 +24,7 @@ public class meetingRoomData {
 		this.presentationURI = presentationURI;
 		this.roomNumber = roomNumber;
 		this.meetingHostIP = meetingHostIP;
+		this.email = email;
 
 	}
 
@@ -74,5 +76,9 @@ public class meetingRoomData {
 
 	public String getMeetingHostIP() {
 		return this.meetingHostIP;
+	}
+	
+	public String getEmail() {
+		return this.email;
 	}
 }

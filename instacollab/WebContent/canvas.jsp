@@ -36,6 +36,9 @@
 	var contextPresentation = null;
 	var numPresentationPages = 1;
 	var presentationPdf = null;
+	var name = null;
+	var email = null;
+	var topic = null;
 </script>
 <script>
 	$(document).ready(function() {
