@@ -15,7 +15,7 @@ import javax.servlet.ServletContext;
 public class DBconnection {
 
 	private static String dbName = "rooms";
-	private static String dbURL = "jdbc:mysql://localhost:3306/"+dbName;
+	private static String dbURL = "jdbc:mysql://localhost:3306/" + dbName;
 	private static String dbUser = "root";
 	private static String dbPass = "1234";
 	private static String dbTable = "roomdata";
@@ -26,26 +26,26 @@ public class DBconnection {
 
 	public void saveToDb(meetingRoomData roomData, InputStream fileContent) {
 		Connection conn = null; // connection to the database
-		String message = null; // message will be sent back to client
-
 		try {
 			// connects to the database
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 			conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
 
 			// constructs SQL statement
-			String sql = "INSERT INTO " + dbTable
+			String sql = "INSERT INTO "
+					+ dbTable
 					+ " (isPresentation, host_name, meeting_topic, presentationURI,"
 					+ " roomNumber, fileContent, create_datetime, start_datetime,"
 					+ " end_datetime, IPaddress, email) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = conn.prepareStatement(sql);
-			
+
 			statement.setBoolean(1, roomData.getisPresentation());
 			statement.setString(2, roomData.getName());
 			statement.setString(3, roomData.getTopic());
 			statement.setString(4, roomData.getPresentationURI());
 			statement.setString(5, roomData.getMeetingRoomNumber());
-			statement.setTimestamp(7, new java.sql.Timestamp(System.currentTimeMillis()));
+			statement.setTimestamp(7,
+					new java.sql.Timestamp(System.currentTimeMillis()));
 			statement.setNull(8, Types.TIMESTAMP);
 			statement.setNull(9, Types.TIMESTAMP);
 			statement.setString(10, roomData.getMeetingHostIP());
@@ -61,10 +61,8 @@ public class DBconnection {
 			// sends the statement to the database server
 			int row = statement.executeUpdate();
 			if (row > 0) {
-				message = "File uploaded and saved into database";
 			}
 		} catch (SQLException ex) {
-			message = "ERROR: " + ex.getMessage();
 			ex.printStackTrace();
 		} finally {
 			if (conn != null) {
@@ -78,45 +76,97 @@ public class DBconnection {
 
 		}
 	}
-	
-	Blob getFileFromDb(commandToClient CommandToClient){
-		
+
+	Blob getFileFromDb(commandToClient CommandToClient) {
+
 		Blob blob = null;
 		String meetingRoomNum = CommandToClient.getRoomNumber();
-        
-        Connection conn = null; // connection to the database
-         
-        try {
-            // connects to the database
-            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
- 
-            // queries the database
-            String sql = "SELECT * FROM " + dbTable
-            		+ " files_upload WHERE roomNumber = ?";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, meetingRoomNum);
- 
-            ResultSet result = statement.executeQuery();
-            if (result.next()) {
-                blob = result.getBlob("fileContent");         
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-           // response.getWriter().print("SQL Error: " + ex.getMessage());
-        } finally {
-            if (conn != null) {
-                // closes the database connection
-                try {
-                    conn.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }          
-        }
-        
-        return blob;
-		
+
+		Connection conn = null; // connection to the database
+
+		try {
+			// connects to the database
+			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
+
+			// queries the database
+			String sql = "SELECT * FROM " + dbTable
+					+ " files_upload WHERE roomNumber = ?";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, meetingRoomNum);
+
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				blob = result.getBlob("fileContent");
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			// response.getWriter().print("SQL Error: " + ex.getMessage());
+		} finally {
+			if (conn != null) {
+				// closes the database connection
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+
+		return blob;
+
+	}
+
+	meetingRoomData getRoomData(String meetingRoomNum) {
+
+		Connection conn = null; // connection to the database
+		meetingRoomData roomData = null;
+
+		try {
+			// connects to the database
+			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
+
+			// queries the database
+			String sql = "SELECT * FROM " + dbTable
+					+ " files_upload WHERE roomNumber = ?";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, meetingRoomNum);
+
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+
+				String functName = null;
+				boolean isPresentation = result.getBoolean("isPresentation");
+				String name = result.getString("host_name");
+				String topic = result.getString("meeting_topic");
+				String presentationURI = result.getString("presentationURI");
+				String roomNumber = result.getString("roomNumber");
+				String meetingHostIP = result.getString("IPaddress");
+				String email = result.getString("email");
+
+				roomData = new meetingRoomData(functName, isPresentation, name,
+						topic, presentationURI, roomNumber, meetingHostIP,
+						email);
+				
+
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			// response.getWriter().print("SQL Error: " + ex.getMessage());
+		} finally {
+			if (conn != null) {
+				// closes the database connection
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+
+		return roomData;
+
 	}
 
 }

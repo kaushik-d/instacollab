@@ -38,6 +38,8 @@ import javax.websocket.server.ServerEndpoint;
 
 
 
+
+
 import com.google.gson.Gson;
 
 import java.util.logging.Level;
@@ -75,10 +77,14 @@ public class ChatAnnotation {
 		HashMap<String, meetingRoomData> meetingRooms = (HashMap<String, meetingRoomData>) servletContext
 				.getAttribute("meetingRoomList");
 
-		MeetingRoomData = null;
+		MeetingRoomData = null; 
 		
-		if (meetingRooms.containsKey(room)) {
-			MeetingRoomData = meetingRooms.get(room);
+		//if (meetingRooms.containsKey(room)) {
+		//	MeetingRoomData = meetingRooms.get(room);
+		DBconnection dBconnection = new DBconnection();
+		MeetingRoomData = dBconnection.getRoomData(room);
+		if(MeetingRoomData!=null){
+		
 		} else {
 			try {
 				session.close();
