@@ -169,4 +169,45 @@ public class DBconnection {
 
 	}
 
+	
+	boolean isRoomNumberAlreadyActive(String meetingRoomNum) {
+
+		Connection conn = null; // connection to the database
+		meetingRoomData roomData = null;
+		boolean isExisists = false;
+
+		try {
+			// connects to the database
+			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
+
+			// queries the database
+			String sql = "SELECT * FROM " + dbTable
+					+ " files_upload WHERE (roomNumber = ?) AND (create_datetime >= ?)";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, meetingRoomNum);
+			statement.setTimestamp(2, new java.sql.Timestamp(System.currentTimeMillis()-24*60*60*1000));
+
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				isExisists = true;
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			// response.getWriter().print("SQL Error: " + ex.getMessage());
+		} finally {
+			if (conn != null) {
+				// closes the database connection
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+
+		return isExisists;
+
+	}	
+	
 }
