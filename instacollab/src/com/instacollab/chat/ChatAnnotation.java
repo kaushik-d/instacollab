@@ -59,7 +59,7 @@ public class ChatAnnotation {
 
 	private final String nickname;
 	private Session session;
-	private meetingRoomData MeetingRoomData;
+	private meetingRoomData MeetingRoomData = null;
 
 	public ChatAnnotation() {
 		nickname = GUEST_PREFIX + connectionIds.getAndIncrement();
@@ -71,13 +71,13 @@ public class ChatAnnotation {
 		this.session = session;
 		this.config = config;
 
-		ServletContext servletContext = (ServletContext) config
-				.getUserProperties().get("servletContext");
-		@SuppressWarnings("unchecked")
-		HashMap<String, meetingRoomData> meetingRooms = (HashMap<String, meetingRoomData>) servletContext
-				.getAttribute("meetingRoomList");
+		//ServletContext servletContext = (ServletContext) config
+		//		.getUserProperties().get("servletContext");
+		//@SuppressWarnings("unchecked")
+		//HashMap<String, meetingRoomData> meetingRooms = (HashMap<String, meetingRoomData>) servletContext
+		//		.getAttribute("meetingRoomList");
 
-		MeetingRoomData = null; 
+		//MeetingRoomData = null; 
 		
 		//if (meetingRooms.containsKey(room)) {
 		//	MeetingRoomData = meetingRooms.get(room);

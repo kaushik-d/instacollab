@@ -21,7 +21,7 @@ import com.google.gson.Gson;
 @MultipartConfig(maxFileSize = 16177215)
 public class login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static HashMap<String, meetingRoomData> meetingRooms;
+	//private static HashMap<String, meetingRoomData> meetingRooms;
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -59,11 +59,16 @@ public class login extends HttpServlet {
 				isPresentation, name, topic, "NotAvailable", null,
 				meetingHostIP,email);
 
-		String roomNumber = createMeetingRoom();
-		MeetingRoomData.setMeetingRoomNumber(roomNumber);
-		meetingRooms.put(roomNumber, MeetingRoomData);
-
 		DBconnection dBconnection = new DBconnection();
+		String roomNumber = null;
+		do {
+			roomNumber = createMeetingRoom();
+		} while (dBconnection.isRoomNumberAlreadyActive(roomNumber));
+		
+		MeetingRoomData.setMeetingRoomNumber(roomNumber);
+		//meetingRooms.put(roomNumber, MeetingRoomData);
+
+		
 		dBconnection.saveToDb(MeetingRoomData, fileContent);
 
 		response.setContentType("application/json");
@@ -78,11 +83,11 @@ public class login extends HttpServlet {
 		//meetingRooms = new HashMap<String, meetingRoomData>();
 		//getServletConfig().getServletContext().setAttribute("meetingRoomList",
 		//		meetingRooms);
-		meetingRooms = (HashMap<String, meetingRoomData>) getServletConfig().getServletContext().getAttribute("meetingRoomList");
-		if(meetingRooms == null){
-			meetingRooms = new HashMap<String,meetingRoomData>();
-			getServletConfig().getServletContext().setAttribute("meetingRoomList", meetingRooms);
-		}
+		//meetingRooms = (HashMap<String, meetingRoomData>) getServletConfig().getServletContext().getAttribute("meetingRoomList");
+		//if(meetingRooms == null){
+		//	meetingRooms = new HashMap<String,meetingRoomData>();
+		//	getServletConfig().getServletContext().setAttribute("meetingRoomList", meetingRooms);
+		//}
 	}
 
 	public String createMeetingRoom() {
