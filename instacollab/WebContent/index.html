@@ -98,29 +98,33 @@
 					});
 				});
 				
-				$("#Share_Button").mouseover(
+				$("#Share_Button").hover(
+						function(){
+						setTimeoutConst = setTimeout(
 						function() {
 							$("#Share_Message_Area").removeClass(
 									"Message_Area_Start_Clear").addClass(
 									"Message_Area_Start_Focus").text(
 									"Share your meeting room");
-						});
-				$("#Share_Button").mouseout(
+						},delay);},
 						function() {
+							clearTimeout(setTimeoutConst );
 							$("#Share_Message_Area").removeClass(
 									"Message_Area_Start_Focus").addClass(
 									"Message_Area_Start_Clear").text("");
 						});
-
-				$("#Join_Button").mouseover(
+				
+				$("#Join_Button").hover(
+						function(){
+						setTimeoutConst = setTimeout(
 						function() {
 							$("#Join_Message_Area").removeClass(
 									"Message_Area_Start_Clear").addClass(
 									"Message_Area_Start_Focus").text(
 									"Join a meeting room");
-						});
-				$("#Join_Button").mouseout(
+						},delay);},
 						function() {
+							clearTimeout(setTimeoutConst );
 							$("#Join_Message_Area").removeClass(
 									"Message_Area_Start_Focus").addClass(
 									"Message_Area_Start_Clear").text("");

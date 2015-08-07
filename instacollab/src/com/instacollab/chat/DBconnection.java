@@ -129,7 +129,7 @@ public class DBconnection {
 
 			// queries the database
 			String sql = "SELECT * FROM " + dbTable
-					+ " files_upload WHERE roomNumber = ?";
+					+ " WHERE roomNumber = ?";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, meetingRoomNum);
 
@@ -183,7 +183,7 @@ public class DBconnection {
 
 			// queries the database
 			String sql = "SELECT * FROM " + dbTable
-					+ " files_upload WHERE (roomNumber = ?) AND (create_datetime >= ?)";
+					+ " WHERE (roomNumber = ?) AND (create_datetime >= ?)";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, meetingRoomNum);
 			statement.setTimestamp(2, new java.sql.Timestamp(System.currentTimeMillis()-24*60*60*1000));
@@ -221,8 +221,8 @@ public class DBconnection {
 			conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
 
 			// queries the database
-			String sql = "SELECT * FROM " + dbTable
-					+ " files_upload WHERE create_datetime <= ?";
+			String sql = "UPDATE " + dbTable + " SET "
+					+ " files_upload='' WHERE create_datetime <= ?";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			
 			statement.setTimestamp(1, new java.sql.Timestamp(System.currentTimeMillis()-24*60*60*1000));

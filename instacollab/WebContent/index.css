@@ -73,7 +73,7 @@ button {
 	font-size: 14px;
     font-weight: bold;
     background-color: #ffcc66;
-	color: #666666;
+	color: #333333;
 	border: 0;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
@@ -85,7 +85,7 @@ button {
 
 button:hover {
 	background-color: #ff9900;
-	color: #000000;
+	color: #ffffff;
 }
 
 input {
@@ -122,6 +122,8 @@ input[type="text"], input[type="email"]{
 	-ms-transform: translate(-10px,0px); /* IE 9 */
    	-webkit-transform: translate(-10px,0px); /* Safari */
     transform: translate(-10px,0px);
+    
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
 }
 
 #BoardInputArea {
