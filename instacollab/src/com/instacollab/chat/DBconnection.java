@@ -91,7 +91,7 @@ public class DBconnection {
 
 			// queries the database
 			String sql = "SELECT * FROM " + dbTable
-					+ " files_upload WHERE roomNumber = ?";
+					+ " WHERE roomNumber = ?";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setString(1, meetingRoomNum);
 
@@ -222,7 +222,7 @@ public class DBconnection {
 
 			// queries the database
 			String sql = "UPDATE " + dbTable + " SET "
-					+ " files_upload='' WHERE create_datetime <= ?";
+					+ " fileContent ='' WHERE create_datetime <= ?";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			
 			statement.setTimestamp(1, new java.sql.Timestamp(System.currentTimeMillis()-24*60*60*1000));
