@@ -4,7 +4,8 @@ public class DBCleanup implements Runnable {
 
 	@Override
 	public void run() {
-		// Do your job here.
+		DBconnection dBconnection = new DBconnection();
+		dBconnection.doDBCleanup();
 	}
 
 }

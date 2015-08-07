@@ -43,15 +43,18 @@
 						$("#Start_Action_Area").slideUp("slow");
 					}
 				});
-				$("#Start_Button").mouseover(
+				var delay=1000, setTimeoutConst;
+				$("#Start_Button").hover(
+						function(){
+						setTimeoutConst = setTimeout(
 						function() {
 							$("#Start_Message_Area").removeClass(
 									"Message_Area_Start_Clear").addClass(
 									"Message_Area_Start_Focus").text(
 									"Start a meeting");
-						});
-				$("#Start_Button").mouseout(
+						},delay);},
 						function() {
+							clearTimeout(setTimeoutConst );
 							$("#Start_Message_Area").removeClass(
 									"Message_Area_Start_Focus").addClass(
 									"Message_Area_Start_Clear").text("");

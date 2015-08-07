@@ -207,7 +207,48 @@ public class DBconnection {
 		}
 
 		return isExisists;
+	}
+	
+	boolean doDBCleanup() {
 
-	}	
+		Connection conn = null; // connection to the database
+		meetingRoomData roomData = null;
+		boolean done = false;
+
+		try {
+			// connects to the database
+			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
+
+			// queries the database
+			String sql = "SELECT * FROM " + dbTable
+					+ " files_upload WHERE create_datetime <= ?";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			
+			statement.setTimestamp(1, new java.sql.Timestamp(System.currentTimeMillis()-24*60*60*1000));
+
+			int result = statement.executeUpdate();
+			
+			if (result >0 ) {
+				done = true;
+			}
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			// response.getWriter().print("SQL Error: " + ex.getMessage());
+		} finally {
+			if (conn != null) {
+				// closes the database connection
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+
+		return done;
+
+	}
 	
 }
