@@ -18,7 +18,7 @@ function initCanvasPresentation() {
 	PDFJS.getDocument(presentationURI).then(function(pdf) {
 
 		setUpPresentationFirst(pdf);
-		window.currentPage = 0;
+		//window.currentPage = 0;
 		renderPresentationPage(pdf);
 
 	});
@@ -64,7 +64,7 @@ goPreviousPage = function() {
 		redrawCurrentPageContents();
 		var mes = {
 				command : "changePage",
-				pageNum : currentPage
+				currentPage : currentPage
 			};
 		Chat.socket.send(JSON.stringify(mes));
 	}
@@ -76,7 +76,8 @@ goNextPage = function() {
 		redrawCurrentPageContents();
 		var mes = {
 				command : "changePage",
-				pageNum : currentPage
+				currentPage : currentPage,
+				room : myMeeringRoomNum
 			};
 		Chat.socket.send(JSON.stringify(mes));
 	}

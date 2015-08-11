@@ -84,7 +84,7 @@ processCommands = function(message) {
 	} else if (mes.command === "textMessage") {
 		Console.log(mes.text);
 	} else if (mes.command === "changePage") {
-		changePage(mes.pageNum);
+		changePage(mes.currentPage);
 	}
 }
 
@@ -93,6 +93,7 @@ setMySlaveID = function(mes){
 	mySlaveID = parseInt(canvasName.substring(1, canvasName.length));
 	isPresentation = mes.isPresentation;
 	presentationURI = mes.presentationURI;
+	currentPage = mes.currentPage;
 	
 	if(isPresentation == true){
 		getPresentationFile(mes);
@@ -120,7 +121,7 @@ getPresentationFile = function(mes) {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			blob = xmlhttp.response;
 			presentationURI = URL.createObjectURL(blob);
-			currentPage = 0;
+			//currentPage = 0;
 			initCanvasPresentation();
 		}
 	}

@@ -14,10 +14,10 @@ import javax.servlet.ServletContext;
 
 public class DBconnection {
 
-	private static String dbName = "rooms";
-	private static String dbURL = "jdbc:mysql://localhost:3306/" + dbName;
-	private static String dbUser = "root";
-	private static String dbPass = "1234";
+	private static String dbName  = "rooms";
+	private static String dbURL   = "jdbc:mysql://localhost:3306/" + dbName;
+	private static String dbUser  = "root";
+	private static String dbPass  = "1234";
 	private static String dbTable = "roomdata";
 
 	public DBconnection() {
@@ -117,10 +117,11 @@ public class DBconnection {
 
 	}
 
-	meetingRoomData getRoomData(String meetingRoomNum) {
+	boolean getRoomData(String meetingRoomNum, meetingRoomData MeetingRoomData) {
 
 		Connection conn = null; // connection to the database
 		meetingRoomData roomData = null;
+		boolean roomFound = false;
 
 		try {
 			// connects to the database
@@ -145,10 +146,11 @@ public class DBconnection {
 				String meetingHostIP = result.getString("IPaddress");
 				String email = result.getString("email");
 
-				roomData = new meetingRoomData(functName, isPresentation, name,
+				MeetingRoomData.fillUp(functName, isPresentation, name,
 						topic, presentationURI, roomNumber, meetingHostIP,
 						email);
 				
+				roomFound = true;
 
 			}
 		} catch (SQLException ex) {
@@ -165,7 +167,7 @@ public class DBconnection {
 			}
 		}
 
-		return roomData;
+		return roomFound;
 
 	}
 

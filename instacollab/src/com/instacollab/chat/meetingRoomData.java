@@ -12,6 +12,7 @@ public class meetingRoomData {
 	private String roomNumber;
 	private String meetingHostIP;
 	private String email;
+	private int currentPage;
 
 	public meetingRoomData(String functName, boolean isPresentation,
 			String name, String topic, String presentationURI,
@@ -38,6 +39,21 @@ public class meetingRoomData {
 		presentationURI = logindata.getPresentationURI();
 		isPresentation = logindata.getisPresentation();
 		this.roomNumber = roomNumber;
+	}
+	
+	public void fillUp(String functName, boolean isPresentation,
+			String name, String topic, String presentationURI,
+			String roomNumber, String meetingHostIP, String email) {
+
+		this.functName = functName;
+		this.isPresentation = isPresentation;
+		this.name = name;
+		this.topic = topic;
+		this.presentationURI = presentationURI;
+		this.roomNumber = roomNumber;
+		this.meetingHostIP = meetingHostIP;
+		this.email = email;
+
 	}
 
 	public void setMeetingRoomNumber(String roomNumber) {
@@ -80,5 +96,13 @@ public class meetingRoomData {
 	
 	public String getEmail() {
 		return this.email;
+	}
+	
+	public int getCurrentPage() {
+		return this.currentPage;
+	}
+	
+	public void setCurrentPage(int page) {
+		this.currentPage = page;
 	}
 }

@@ -113,7 +113,7 @@ input[type="text"], input[type="email"]{
 
 .Start_Action {
 	display: none;
-	width: 400px;
+	width: 409px;
 	height: 85px;
 	/*position: fixed;*/
 	margin-left: auto;
@@ -123,7 +123,7 @@ input[type="text"], input[type="email"]{
    	-webkit-transform: translate(-10px,0px); /* Safari */
     transform: translate(-10px,0px);
     
-    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+   /* box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75); */
 }
 
 #BoardInputArea {
@@ -136,7 +136,7 @@ input[type="text"], input[type="email"]{
 
 .holder{
 	float: left;
-	padding: 5px;
+	padding: 0px;
 	text-align: left;
 	vertical-align: top;
 	margin-top:0px;
@@ -145,6 +145,8 @@ input[type="text"], input[type="email"]{
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
 	font-size: 14px;
+	/*transform: translate(-50px,0px);*/
+	box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75); 
 }
 
 .holder_ajax_load{

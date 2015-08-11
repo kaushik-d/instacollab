@@ -19,6 +19,7 @@ package com.instacollab.chat;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -40,6 +41,8 @@ import javax.websocket.server.ServerEndpoint;
 
 
 
+
+
 import com.google.gson.Gson;
 
 import java.util.logging.Level;
@@ -53,7 +56,8 @@ public class ChatAnnotation {
 	private EndpointConfig config;
 	private static final String GUEST_PREFIX = "S";
 	private static final AtomicInteger connectionIds = new AtomicInteger(0);
-	private static final HashMap<String, CopyOnWriteArraySet<ChatAnnotation>> roomToConnections = new HashMap<String, CopyOnWriteArraySet<ChatAnnotation>>();
+	private static final ConcurrentHashMap<String, CopyOnWriteArraySet<ChatAnnotation>> roomToConnections = new ConcurrentHashMap<String, CopyOnWriteArraySet<ChatAnnotation>>();
+	private static final ConcurrentHashMap<String, Integer> roomToCurrentPage = new ConcurrentHashMap<String, Integer>();
 
 	private Set<String> receivedDrawMessages = new CopyOnWriteArraySet<String>();
 
@@ -63,6 +67,7 @@ public class ChatAnnotation {
 
 	public ChatAnnotation() {
 		nickname = GUEST_PREFIX + connectionIds.getAndIncrement();
+		MeetingRoomData = new meetingRoomData();
 	}
 
 	@OnOpen
@@ -82,10 +87,8 @@ public class ChatAnnotation {
 		//if (meetingRooms.containsKey(room)) {
 		//	MeetingRoomData = meetingRooms.get(room);
 		DBconnection dBconnection = new DBconnection();
-		MeetingRoomData = dBconnection.getRoomData(room);
-		if(MeetingRoomData!=null){
-		
-		} else {
+		boolean roomFound = dBconnection.getRoomData(room, MeetingRoomData);
+		if(!roomFound) {
 			try {
 				session.close();
 			} catch (IOException e) {
@@ -111,7 +114,8 @@ public class ChatAnnotation {
 				MeetingRoomData.getPresentationURI(),
 				MeetingRoomData.getEmail(),
 				MeetingRoomData.getTopic(),
-				MeetingRoomData.getName());
+				MeetingRoomData.getName(),
+				MeetingRoomData.getCurrentPage());
 		
 		Gson gson = new Gson();
 		String message = gson.toJson(CommandToClient, commandToClient.class);
@@ -132,7 +136,8 @@ public class ChatAnnotation {
 				MeetingRoomData.getPresentationURI(),
 				MeetingRoomData.getEmail(),
 				MeetingRoomData.getTopic(),
-				MeetingRoomData.getName());
+				MeetingRoomData.getName(),
+				MeetingRoomData.getCurrentPage());
 		
 		Gson gson = new Gson();
 		String message = gson.toJson(CommandToClient, commandToClient.class);
@@ -151,9 +156,13 @@ public class ChatAnnotation {
 		boolean toAllButMe = true;
 		if (filteredMessage.contains("drawLinesSlave")) {
 			receivedDrawMessages.add(filteredMessage);
-		}
-		if (filteredMessage.contains("textMessage")) {
+		} else if (filteredMessage.contains("textMessage")) {
 			toAllButMe = false;
+		} else if (filteredMessage.contains("changePage")) {
+			Gson gson = new Gson();
+			commandToClient receivedMsg = gson.fromJson(message, commandToClient.class);
+			MeetingRoomData.setCurrentPage(receivedMsg.getCurrentPage());
+			roomToCurrentPage.put(MeetingRoomData.getMeetingRoomNumber(), receivedMsg.getCurrentPage());
 		}
 		broadcast(session, filteredMessage, nickname, toAllButMe, MeetingRoomData);
 	}
@@ -203,7 +212,8 @@ public class ChatAnnotation {
 					MeetingRoomData.getPresentationURI(),
 					MeetingRoomData.getEmail(),
 					MeetingRoomData.getTopic(),
-					MeetingRoomData.getName());
+					MeetingRoomData.getName(),
+					MeetingRoomData.getCurrentPage());
 			
 			Gson gson = new Gson();
 			String message = gson.toJson(CommandToClient, commandToClient.class);
@@ -219,13 +229,23 @@ public class ChatAnnotation {
 		CopyOnWriteArraySet<ChatAnnotation> connections = roomToConnections
 				.get(room);
 		
+		int currentPage = 0;
+		if(roomToCurrentPage.containsKey(room.trim())){
+			currentPage = roomToCurrentPage.get(room.trim());
+			MeetingRoomData.setCurrentPage(currentPage);
+		
+		} else {
+			MeetingRoomData.setCurrentPage(currentPage);
+		}
+		
 		commandToClient CommandToClient = new commandToClient(
 				"setMySlaveID", room.trim(), client.nickname,
 				MeetingRoomData.getisPresentation(),
 				MeetingRoomData.getPresentationURI(),
 				MeetingRoomData.getEmail(),
 				MeetingRoomData.getTopic(),
-				MeetingRoomData.getName());
+				MeetingRoomData.getName(),
+				currentPage);
 		
 		Gson gson = new Gson();
 		String message = gson.toJson(CommandToClient, commandToClient.class);
@@ -242,7 +262,8 @@ public class ChatAnnotation {
 						MeetingRoomData.getPresentationURI(),
 						MeetingRoomData.getEmail(),
 						MeetingRoomData.getTopic(),
-						MeetingRoomData.getName());
+						MeetingRoomData.getName(),
+						MeetingRoomData.getCurrentPage());
 				
 				//Gson gson = new Gson();
 				String messageOther = gson.toJson(CommandToClient1, commandToClient.class);

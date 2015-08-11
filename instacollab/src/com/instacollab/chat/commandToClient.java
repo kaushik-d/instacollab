@@ -10,6 +10,7 @@ public class commandToClient {
 	private String email;
 	private String topic;
 	private String name;
+	private int currentPage;
 	
 	public commandToClient(){
 		
@@ -17,7 +18,7 @@ public class commandToClient {
 	}
 
 	public commandToClient(String command, String room, String nickname,
-			boolean isPresentation, String presentationURI, String email, String topic, String name){
+			boolean isPresentation, String presentationURI, String email, String topic, String name, int currentPage){
 		this.command = command;
 		this.room = room;
 		this.canvasID = nickname;
@@ -26,9 +27,14 @@ public class commandToClient {
 		this.email = email;
 		this.topic = topic;
 		this.name = name;
+		this.currentPage = currentPage;
 	}
 	
 	String getRoomNumber(){
 		return room;
+	}
+	
+	int getCurrentPage(){
+		return currentPage;
 	}
 }
