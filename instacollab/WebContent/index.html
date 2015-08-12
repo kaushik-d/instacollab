@@ -73,7 +73,7 @@
 						$("#Start_Presentation").slideDown("slow");
 					});
 				});
-				
+				/*
 				$("Whiteboard_Cancel").click(function() {
 					whiteboardClicked = false;
 					$(this).closest('form').find("input[type=text], textarea, input[type=email]").val("");
@@ -89,7 +89,7 @@
 						$("#Start_Action_Area").slideDown("slow");
 					});
 				});
-
+				*/
 				$("#PresentationForm").submit(StartPresentation);
 				$("#WhiteboardForm").submit(StartWhiteboard);
 
@@ -331,13 +331,12 @@
 									<td></td>
 									<td><input type="submit" value="Submit" />
 									<input type="reset" value="Reset" />
-									<input type="reset" id="Whiteboard_Cancel" value="Cancel" />
 								</tr>
 							</table>
 						</div>
 					</form>
 				</div>
-				<div id="Start_Presentation" class="Start_Action" style="height:157px">
+				<div id="Start_Presentation" class="Start_Action" style="height:172px">
 					<form action="login" method="post" enctype="multipart/form-data"
 						id="PresentationForm">
 						<div id="PresentationFormHolder" class="holder">
@@ -361,11 +360,16 @@
 									<td><label for="presentationFile">Presentation
 											slides:</label></td>
 									<td><input type="file" name="presentationFile" accept="application/vnd.openxmlformats-officedocument.presentationml.presentation,application/pdf"/></td>
+								</tr>
+								<tr>
+									<td><label for="presentationFile">Meeting time:</label></td>
+									<td><input type="date" id="datepicker" name=meetingStartDate 
+										placeholder="Meeting date" style="width:115px" required/></td>
+								</tr>
 								<tr>
 									<td></td>
 									<td><input type="submit" value="Submit" />
 									<input type="reset" value="Reset" />
-									<input type="reset" id="Presentation_Cancel" value="Cancel" />
 								</tr>
 							</table>
 						</div>
