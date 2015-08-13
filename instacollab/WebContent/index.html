@@ -11,6 +11,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src='http://connect.facebook.net/en_US/all.js'></script>
+<script src="htmlDatePicker.js" type="text/javascript"></script>
+<link href="htmlDatePicker.css" rel="stylesheet">
 <script>
 	var startClicked = false;
 	var whiteboardClicked = false;
@@ -73,6 +75,46 @@
 						$("#Start_Presentation").slideDown("slow");
 					});
 				});
+				
+				//var d = new Date();
+				//var startTime = d.getHours();
+				//var endTime = d.getHours() + 1;
+					
+				var startOptions = {};
+				var endOptions = {};
+				for(var i = 1; i <= 23; i++) {
+					if(i< 11) {
+						startOptions["Option " + i] = i + " AM";
+						endOptions["Option " + i] = (i+1) + " AM";
+					} 
+					else if(i==11) {
+						startOptions["Option " + i] = i + " AM";
+						endOptions["Option " + i] = "Noon";
+					}
+					else if(i==12) {
+						startOptions["Option " + i] = " Noon";
+						endOptions["Option " + i] = (i+1) + " AM";
+					}
+					else {
+						startOptions["Option " + i] = (i-12) + " PM";
+						endOptions["Option " + i] = (i-11) + " PM";
+					}
+				}
+
+				var $el = $("#startTime");
+				$el.empty(); // remove old options
+				$.each(startOptions, function(value,key) {
+					$el.append($("<option></option>")
+					.attr("value", value).text(key));
+				});
+				
+				var $el = $("#endTime");
+				$el.empty(); // remove old options
+				$.each(endOptions, function(value,key) {
+					$el.append($("<option></option>")
+					.attr("value", value).text(key));
+				});
+
 				/*
 				$("Whiteboard_Cancel").click(function() {
 					whiteboardClicked = false;
@@ -89,7 +131,7 @@
 						$("#Start_Action_Area").slideDown("slow");
 					});
 				});
-				*/
+				 */
 				$("#PresentationForm").submit(StartPresentation);
 				$("#WhiteboardForm").submit(StartWhiteboard);
 
@@ -98,53 +140,61 @@
 					$("#Share_Action_Area").slideToggle("slow", function() {
 					});
 				});
-				
+
 				$("#Share_Button").hover(
-						function(){
-						setTimeoutConst = setTimeout(
 						function() {
-							$("#Share_Message_Area").removeClass(
-									"Message_Area_Start_Clear").addClass(
-									"Message_Area_Start_Focus").text(
-									"Share your meeting room");
-						},delay);},
+							setTimeoutConst = setTimeout(function() {
+								$("#Share_Message_Area").removeClass(
+										"Message_Area_Start_Clear").addClass(
+										"Message_Area_Start_Focus").text(
+										"Share your meeting room");
+							}, delay);
+						},
 						function() {
-							clearTimeout(setTimeoutConst );
+							clearTimeout(setTimeoutConst);
 							$("#Share_Message_Area").removeClass(
 									"Message_Area_Start_Focus").addClass(
 									"Message_Area_Start_Clear").text("");
 						});
-				
+
 				$("#Join_Button").hover(
-						function(){
-						setTimeoutConst = setTimeout(
 						function() {
-							$("#Join_Message_Area").removeClass(
-									"Message_Area_Start_Clear").addClass(
-									"Message_Area_Start_Focus").text(
-									"Join a meeting room");
-						},delay);},
+							setTimeoutConst = setTimeout(function() {
+								$("#Join_Message_Area").removeClass(
+										"Message_Area_Start_Clear").addClass(
+										"Message_Area_Start_Focus").text(
+										"Join a meeting room");
+							}, delay);
+						},
 						function() {
-							clearTimeout(setTimeoutConst );
+							clearTimeout(setTimeoutConst);
 							$("#Join_Message_Area").removeClass(
 									"Message_Area_Start_Focus").addClass(
 									"Message_Area_Start_Clear").text("");
 						});
-				
+
 				$("#Join_Button").click(function() {
 					//presentationClicked = true;
 					$("#Join_Action_Area").slideToggle("slow");
 				});
-				
-				$(document).ajaxStart(function(){ 
-						$("#Start_Action_Area_holder").addClass("holder_ajax_load");
-						$("#Share_Action_Area_holder").addClass("holder_ajax_load");
-						$("#Join_Action_Area_holder").addClass("holder_ajax_load");
-					}).ajaxStop(function(){ 
-						$("#Start_Action_Area_holder").removeClass("holder_ajax_load");
-						$("#Share_Action_Area_holder").removeClass("holder_ajax_load");
-						$("#Join_Action_Area_holder").removeClass("holder_ajax_load");
-					});
+
+				$(document).ajaxStart(
+						function() {
+							$("#Start_Action_Area_holder").addClass(
+									"holder_ajax_load");
+							$("#Share_Action_Area_holder").addClass(
+									"holder_ajax_load");
+							$("#Join_Action_Area_holder").addClass(
+									"holder_ajax_load");
+						}).ajaxStop(
+						function() {
+							$("#Start_Action_Area_holder").removeClass(
+									"holder_ajax_load");
+							$("#Share_Action_Area_holder").removeClass(
+									"holder_ajax_load");
+							$("#Join_Action_Area_holder").removeClass(
+									"holder_ajax_load");
+						});
 
 			});
 
@@ -172,28 +222,27 @@
 
 	StartSubmit = function(evt, data) {
 		var url = "login";
-		$
-				.ajax({
-					type : "POST",
-					url : url,
-					data : data,
-					cache : false,
-					contentType : false,
-					processData : false,
-					success : function(data) {
-						meetingRoomData = data;
-						isRoomCreated = true;
-						//$("#Start_Action_Area_holder").removeClass("holder_ajax_load");
-						//document.getElementById("Start_Action_Area").innerHTML = '';
-						$("#ShareMeetingRoomNumInput").val(meetingRoomData.roomNumber);
-						$("#Share_Action_Area").slideDown("slow");
-						$("#JoinMeetingRoomNumInput").val(meetingRoomData.roomNumber);
-						$("#Join_Action_Area").slideDown("slow");
-						startClicked = false;
-					}
-				});
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : data,
+			cache : false,
+			contentType : false,
+			processData : false,
+			success : function(data) {
+				meetingRoomData = data;
+				isRoomCreated = true;
+				//$("#Start_Action_Area_holder").removeClass("holder_ajax_load");
+				//document.getElementById("Start_Action_Area").innerHTML = '';
+				$("#ShareMeetingRoomNumInput").val(meetingRoomData.roomNumber);
+				$("#Share_Action_Area").slideDown("slow");
+				$("#JoinMeetingRoomNumInput").val(meetingRoomData.roomNumber);
+				$("#Join_Action_Area").slideDown("slow");
+				startClicked = false;
+			}
+		});
 
-		evt.preventDefault();		
+		evt.preventDefault();
 		return false; // avoid to execute the actual submit of the form.
 	}
 
@@ -362,9 +411,16 @@
 									<td><input type="file" name="presentationFile" accept="application/vnd.openxmlformats-officedocument.presentationml.presentation,application/pdf"/></td>
 								</tr>
 								<tr>
-									<td><label for="presentationFile">Meeting time:</label></td>
-									<td><input type="date" id="datepicker" name=meetingStartDate 
-										placeholder="Meeting date" style="width:115px" required/></td>
+									<td><label for="meetingStartDate">Meeting time:</label></td>
+									<td>
+									<input type="text" name="meetingStartDate" required
+										 id="datepicker" readonly onClick="GetDate(this);" style="width:54px"/>
+									<label for="startTime">Start:</label>
+									<select id="startTime" name=startTime required
+										 style="width:57px" required></select>
+									<label for="endTime">End:</label>
+									<select id="endTime" name=endTime required
+										 style="width:57px" required></select></td>
 								</tr>
 								<tr>
 									<td></td>
