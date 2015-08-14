@@ -48,6 +48,12 @@ public class DBconnection {
 					new java.sql.Timestamp(System.currentTimeMillis()));
 			statement.setNull(8, Types.TIMESTAMP);
 			statement.setNull(9, Types.TIMESTAMP);
+			
+			
+			
+			//statement.setTimestamp(7,
+			//		new java.sql.Timestamp(year, month, date, hour, minute, second, nano));
+			
 			statement.setString(10, roomData.getMeetingHostIP());
 			statement.setString(11, roomData.getEmail());
 

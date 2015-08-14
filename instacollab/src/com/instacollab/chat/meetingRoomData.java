@@ -13,10 +13,14 @@ public class meetingRoomData {
 	private String meetingHostIP;
 	private String email;
 	private int currentPage;
+	String meetingStartDate;
+	String startTime;
+	String endTime;
 
 	public meetingRoomData(String functName, boolean isPresentation,
 			String name, String topic, String presentationURI,
-			String roomNumber, String meetingHostIP, String email) {
+			String roomNumber, String meetingHostIP, String email,
+			String meetingStartDate, String startTime, String endTime) {
 
 		this.functName = functName;
 		this.isPresentation = isPresentation;
@@ -26,6 +30,9 @@ public class meetingRoomData {
 		this.roomNumber = roomNumber;
 		this.meetingHostIP = meetingHostIP;
 		this.email = email;
+		this.meetingStartDate = meetingStartDate;
+		this.startTime = startTime;
+		this.endTime = endTime;
 
 	}
 

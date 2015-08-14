@@ -18,6 +18,7 @@ package com.instacollab.chat;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -35,6 +36,7 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
 //import util.HTMLFilter;
+
 
 
 
@@ -76,6 +78,8 @@ public class ChatAnnotation {
 		this.session = session;
 		this.config = config;
 
+		String roomUpper = room.toUpperCase(Locale.ROOT);
+		
 		//ServletContext servletContext = (ServletContext) config
 		//		.getUserProperties().get("servletContext");
 		//@SuppressWarnings("unchecked")
@@ -87,7 +91,7 @@ public class ChatAnnotation {
 		//if (meetingRooms.containsKey(room)) {
 		//	MeetingRoomData = meetingRooms.get(room);
 		DBconnection dBconnection = new DBconnection();
-		boolean roomFound = dBconnection.getRoomData(room, MeetingRoomData);
+		boolean roomFound = dBconnection.getRoomData(roomUpper, MeetingRoomData);
 		if(!roomFound) {
 			try {
 				session.close();
@@ -98,18 +102,18 @@ public class ChatAnnotation {
 			return; // Meeting room not found
 		}
 
-		session.getUserProperties().put("room", room);
+		session.getUserProperties().put("room", roomUpper);
 
-		if (!roomToConnections.containsKey(room)) {
+		if (!roomToConnections.containsKey(roomUpper)) {
 			CopyOnWriteArraySet<ChatAnnotation> connections = new CopyOnWriteArraySet<ChatAnnotation>();
 			connections.add(this);
-			roomToConnections.put(room, connections);
+			roomToConnections.put(roomUpper, connections);
 		} else {
-			roomToConnections.get(room).add(this);
+			roomToConnections.get(roomUpper).add(this);
 		}
 
 		commandToClient CommandToClient = new commandToClient(
-				"initCanvasSlave", room.trim(), nickname,
+				"initCanvasSlave", roomUpper.trim(), nickname,
 				MeetingRoomData.getisPresentation(),
 				MeetingRoomData.getPresentationURI(),
 				MeetingRoomData.getEmail(),

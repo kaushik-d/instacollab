@@ -36,6 +36,8 @@ public class login extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		varifyCaptcha(request, response);
+		
 		String topic = request.getParameter("topic");
 		Part filePart = null;
 		String fileName = null;
@@ -52,12 +54,15 @@ public class login extends HttpServlet {
 		String meetingHostIP = request.getRemoteAddr();
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
+		String meetingStartDate = request.getParameter("meetingStartDate");
+		String startTime = request.getParameter("startTime");
+		String endTime = request.getParameter("endTime");
 
 		Gson gson = new Gson();
 
 		meetingRoomData MeetingRoomData = new meetingRoomData(functName,
 				isPresentation, name, topic, "NotAvailable", null,
-				meetingHostIP,email);
+				meetingHostIP,email,meetingStartDate,startTime,endTime);
 
 		DBconnection dBconnection = new DBconnection();
 		String roomNumber = null;
@@ -107,6 +112,24 @@ public class login extends HttpServlet {
 			}
 		}
 		return null;
+	}
+	
+	private boolean varifyCaptcha(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		String captcha = (String) request.getSession().getAttribute("captcha");
+		String code = request.getParameter("code");
+
+		if (captcha != null && code != null) {
+
+			if (captcha.equals(code)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 
 }

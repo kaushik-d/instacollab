@@ -76,8 +76,10 @@
 					});
 				});
 				
-				//var d = new Date();
-				//var startTime = d.getHours();
+				var d = new Date();
+				var today = d.getMonth() +"/"+ d.getDay() + "/" + d.getFullYear();
+				//$("#Wdatepicker").placeholder=today;
+				//$("#Pdatepicker").placeholder=today;
 				//var endTime = d.getHours() + 1;
 					
 				var startOptions = {};
@@ -100,15 +102,29 @@
 						endOptions["Option " + i] = (i-11) + " PM";
 					}
 				}
-
-				var $el = $("#startTime");
+				/*
+				var $el = $("#WstartTime");
 				$el.empty(); // remove old options
 				$.each(startOptions, function(value,key) {
 					$el.append($("<option></option>")
 					.attr("value", value).text(key));
 				});
-				
-				var $el = $("#endTime");
+				*/
+				var $el = $("#WendTime");
+				$el.empty(); // remove old options
+				$.each(endOptions, function(value,key) {
+					$el.append($("<option></option>")
+					.attr("value", value).text(key));
+				});
+				/*
+				var $el = $("#PstartTime");
+				$el.empty(); // remove old options
+				$.each(startOptions, function(value,key) {
+					$el.append($("<option></option>")
+					.attr("value", value).text(key));
+				});
+				*/
+				var $el = $("#PendTime");
 				$el.empty(); // remove old options
 				$.each(endOptions, function(value,key) {
 					$el.append($("<option></option>")
@@ -362,23 +378,37 @@
 						<div id="WhiteboardFormHolder" class="holder">
 							<table>
 								<tr>
-									<td><label for="topic">Topic:</label></td>
+									<td><label for="topic">Meeting topic:</label></td>
 									<td><input type="text" name="topic"
-										placeholder="Meeting topic" required /></td>
+										placeholder="Meeting topic" required maxlength="100"/></td>
 								</tr>
 								<tr>
-									<td><label for="name">Name:</label></td>
+									<td><label for="name">Your name:</label></td>
 									<td><input type="text" name="name"
-										placeholder="First name and last name" required /></td>
+										placeholder="First name and last name" required maxlength="32"/></td>
 								</tr>
 								<tr>
-									<td><label for="email">E-mail:</label></td>
+									<td><label for="email">Email address:</label></td>
 									<td><input type="email" name="email"
-										placeholder="e-mail@domain.com" required /></td>
+										placeholder="e-mail@domain.com" required maxlength="100"/></td>
 								</tr>
 								<tr>
-									<td></td>
-									<td><input type="submit" value="Submit" />
+									<td><label for="meetingStartDate">Meeting time:</label></td>
+									<td>
+									<input type="text" name="meetingStartDate" required
+										 id="Wdatepicker" readonly onClick="GetDate(this);" style="width:60px"/>
+									<!-- <label for="WstartTime">Start:</label>
+									<select id="WstartTime" name=startTime required
+										 style="width:57px" required></select> -->
+									<label for="WendTime">Meeting ends:</label>
+									<select id="WendTime" name=endTime required
+										 style="width:57px" required></select></td>
+								</tr>
+								<tr>
+									<td><img src="http://localhost:8080/instacollab/CaptchaServlet"></td>
+									<td>
+									<input type="text" name="code" style="width:60px" maxlength="5" required placeholder="Code">
+									<input type="submit" value="Submit" />
 									<input type="reset" value="Reset" />
 								</tr>
 							</table>
@@ -391,19 +421,19 @@
 						<div id="PresentationFormHolder" class="holder">
 							<table>
 								<tr>
-									<td><label for="topic">Topic:</label></td>
+									<td><label for="topic">Meeting topic:</label></td>
 									<td><input type="text" name="topic"
-										placeholder="Meeting topic" required /></td>
+										placeholder="Meeting topic" required maxlength="100"/></td>
 								</tr>
 								<tr>
-									<td><label for="name">Name:</label></td>
+									<td><label for="name">Your name:</label></td>
 									<td><input type="text" name="name"
-										placeholder="First name and last name" required /></td>
+										placeholder="First name and last name" required maxlength="32"/></td>
 								</tr>
 								<tr>
-									<td><label for="email">E-mail:</label></td>
+									<td><label for="email">Email address:</label></td>
 									<td><input type="email" name="email"
-										placeholder="e-mail@domain.com" required /></td>
+										placeholder="e-mail@domain.com" required maxlength="100"/></td>
 								</tr>
 								<tr>
 									<td><label for="presentationFile">Presentation
@@ -414,17 +444,19 @@
 									<td><label for="meetingStartDate">Meeting time:</label></td>
 									<td>
 									<input type="text" name="meetingStartDate" required
-										 id="datepicker" readonly onClick="GetDate(this);" style="width:54px"/>
-									<label for="startTime">Start:</label>
-									<select id="startTime" name=startTime required
-										 style="width:57px" required></select>
-									<label for="endTime">End:</label>
-									<select id="endTime" name=endTime required
+										 id="Pdatepicker" readonly onClick="GetDate(this);" style="width:60px"/>
+									<!-- <label for="PstartTime">Start:</label>
+									<select id="PstartTime" name=startTime required
+										 style="width:57px" required></select>  -->
+									<label for="PendTime">Meeting ends:</label>
+									<select id="PendTime" name=endTime required
 										 style="width:57px" required></select></td>
 								</tr>
 								<tr>
-									<td></td>
-									<td><input type="submit" value="Submit" />
+									<td><img src="http://localhost:8080/instacollab/CaptchaServlet"></td>
+									<td>
+									<input type="text" name="code" style="width:60px" maxlength="5" required placeholder="Code">
+									<input type="submit" value="Submit" />
 									<input type="reset" value="Reset" />
 								</tr>
 							</table>
