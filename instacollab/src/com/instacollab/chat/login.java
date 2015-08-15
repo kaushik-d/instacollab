@@ -36,18 +36,27 @@ public class login extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		varifyCaptcha(request, response);
+		if(varifyCaptcha(request, response)){
+		
+			createRoom(request, response);
+		
+		}
+
+	}
+	
+	boolean createRoom(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		
 		String topic = request.getParameter("topic");
 		Part filePart = null;
-		String fileName = null;
+		//String fileName = null;
 		InputStream fileContent = null;
 		String isPresentationTest = request.getParameter("isPresentation");
 		boolean isPresentation = false;
 		if (isPresentationTest.contains("true")) {
 			isPresentation = true;
 			filePart = request.getPart("presentationFile");
-			fileName = getFileName(filePart);
+			//fileName = getFileName(filePart);
 			fileContent = filePart.getInputStream();
 		}
 		String functName = request.getParameter("functName");
@@ -75,14 +84,17 @@ public class login extends HttpServlet {
 
 		
 		dBconnection.saveToDb(MeetingRoomData, fileContent);
+		
+		MeetingRoomData.setFunction("RoomCreateSuccess");
 
 		response.setContentType("application/json");
 		response.getWriter().write(
 				gson.toJson(MeetingRoomData, meetingRoomData.class));
-
+		
+		return true;
 	}
 
-	@SuppressWarnings("unchecked")
+	//@SuppressWarnings("unchecked")
 	@Override
 	public void init() {
 		//meetingRooms = new HashMap<String, meetingRoomData>();
@@ -125,6 +137,14 @@ public class login extends HttpServlet {
 			if (captcha.equals(code)) {
 				return true;
 			} else {
+				
+				Gson gson = new Gson();
+				meetingRoomData MeetingRoomData = new meetingRoomData();
+				MeetingRoomData.setFunction("CodeVarificationFail");
+				response.setContentType("application/json");
+				response.getWriter().write(
+						gson.toJson(MeetingRoomData, meetingRoomData.class));
+				
 				return false;
 			}
 		} else {

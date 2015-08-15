@@ -80,7 +80,7 @@ public class CaptchaServlet extends HttpServlet {
 		char[] catchaArray = captcha.toCharArray();
 		
 		for (int i = 0; i < captcha.length(); i++) {
-			y = 10 + Math.abs(r.nextInt()) % 20;
+			y = 15 + Math.abs(r.nextInt()) % 15;
 			char[] catchaArray1 = {'a'};
 			catchaArray1[0] = catchaArray[i];
 			g2d.drawChars(catchaArray1, 0, 1, x, y);
