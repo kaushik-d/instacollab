@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.google.gson.Gson;
+import com.instacollab.mail.sendMail;
 
 /**
  * Servlet implementation class login
@@ -40,6 +42,14 @@ public class login extends HttpServlet {
 		
 			createRoom(request, response);
 		
+		}
+		
+		sendMail SendMail = new sendMail();
+		try {
+			SendMail.SendingEmail("kaushikdass@hotmail.com", "first test");
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
