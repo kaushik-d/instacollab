@@ -21,7 +21,7 @@ public class sendMail {
 
 		String host = "smtp.gmail.com";
 		String from = "instacollabdotcom@gmail.com"; // Your mail id
-		String pass = "serampore"; // Your Password
+		String pass = "Serampore1"; // Your Password
 		Properties props = System.getProperties();
 		props.put("mail.smtp.starttls.enable", "true"); // added this line
 		props.put("mail.smtp.host", host);
@@ -29,7 +29,7 @@ public class sendMail {
 		props.put("mail.smtp.password", pass);
 		props.put("mail.smtp.port", "587");
 		props.put("mail.smtp.auth", "true");
-		String[] to = { Email }; // To Email address
+		String[] to = { Email }; // To Email addressR
 		
 		//Session session = Session.getDefaultInstance(props, null);
 		
@@ -42,19 +42,22 @@ public class sendMail {
 		
 		MimeMessage message = new MimeMessage(session);
 		message.setFrom(new InternetAddress(from));
+		
 		InternetAddress[] toAddress = new InternetAddress[to.length];
 		// To get the array of addresses
 		for (int i = 0; i < to.length; i++) { // changed from a while loop
 			toAddress[i] = new InternetAddress(to[i]);
 		}
-		System.out.println(Message.RecipientType.TO);
+		//System.out.println(Message.RecipientType.TO);
 		for (int j = 0; j < toAddress.length; j++) { // changed from a while
 														// loop
 			message.addRecipient(Message.RecipientType.TO, toAddress[j]);
 		}
+		
 		message.setSubject("Email from InstaCollab");
 
 		message.setContent(Body, "text/html");
+		
 		Transport transport = session.getTransport("smtp");
 		transport.connect(host, from, pass);
 		transport.sendMessage(message, message.getAllRecipients());

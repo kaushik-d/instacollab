@@ -14,6 +14,7 @@
 <meta name="distribution" content="global" /> 
 <meta name="robots" content="index" />
 
+<link href="base.css?v=1.0" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="index.css?v=1.0">
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
@@ -426,10 +427,11 @@
 <body>
 
 	<div id="background">
-		<div id="HeaderDiv">
+		<div id="HeaderDiv" class="header">
+			<a href="index.html">Home</a> |
 			<a>Demo</a> |
 			<a>Help</a> |
-    		<a  href="feedback.html">Feedback</a> |
+    		<a href="feedback.html">Feedback</a> |
     		<a>Terms and conditions</a>
     	</div>
 		<div id=button_holder>
@@ -462,18 +464,20 @@
 									<td><input type="email" name="email"
 										placeholder="e-mail@domain.com" required maxlength="100"/></td>
 								</tr>
+								<!--  
 								<tr>
 									<td><label for="meetingStartDate">Meeting time:</label></td>
 									<td>
 									<input type="text" name="meetingStartDate" required
 										 id="Wdatepicker" readonly onClick="GetDate(this);" style="width:60px"/>
-									<!-- <label for="WstartTime">Start:</label>
+									 <label for="WstartTime">Start:</label>
 									<select id="WstartTime" name=startTime required
-										 style="width:57px" required></select> -->
+										 style="width:57px" required></select> 
 									<label for="WendTime">Meeting ends:</label>
 									<select id="WendTime" name=endTime required
 										 style="width:57px" required></select></td>
 								</tr>
+								-->
 								<tr>
 									<td><img src="CaptchaServlet"></td>
 									<td>
@@ -510,6 +514,7 @@
 											slides:</label></td>
 									<td><input type="file" name="presentationFile" accept="application/vnd.openxmlformats-officedocument.presentationml.presentation,application/pdf"/></td>
 								</tr>
+								<!-- 
 								<tr>
 									<td><label for="meetingStartDate">Meeting time:</label></td>
 									<td>
@@ -517,11 +522,12 @@
 										 id="Pdatepicker" readonly onClick="GetDate(this);" style="width:60px"/>
 									<!-- <label for="PstartTime">Start:</label>
 									<select id="PstartTime" name=startTime required
-										 style="width:57px" required></select>  -->
+										 style="width:57px" required></select>  
 									<label for="PendTime">Meeting ends:</label>
 									<select id="PendTime" name=endTime required
 										 style="width:57px" required></select></td>
 								</tr>
+								-->
 								<tr>
 									<td><img src="http://localhost:8080/instacollab/CaptchaServlet"></td>
 									<td>

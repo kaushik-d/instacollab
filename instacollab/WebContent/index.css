@@ -5,7 +5,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
-
+/*
 div {
 	text-align: center; 
 	vertical-align: bottom;
@@ -17,6 +17,7 @@ div {
 	position: relative;
 	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
 }
+*/
 
 .timeClass {
 	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
@@ -51,7 +52,7 @@ div {
 	background:rgba(255,255,255,0.5);
 	border-radius: 25px;
 }
-
+/*
 #HeaderDiv {
 	width: 350px;
 	height: 20px;
@@ -65,7 +66,7 @@ div {
 	background:rgba(255,255,255,0.75);
 	border-radius: 5px;
 }
-
+*/
 #Start_div {
 	height: 20px;
 }
@@ -132,7 +133,7 @@ input[type="date"] {
 .Start_Action {
 	display: none;
 	width: 409px;
-	height: 85px;
+	height: 115px;
 	/*position: fixed;*/
 	margin-left: auto;
 	margin-right: auto;

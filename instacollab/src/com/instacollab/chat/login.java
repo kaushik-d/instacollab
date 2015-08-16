@@ -44,13 +44,7 @@ public class login extends HttpServlet {
 		
 		}
 		
-		sendMail SendMail = new sendMail();
-		try {
-			SendMail.SendingEmail("kaushikdass@hotmail.com", "first test");
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 
 	}
 	
@@ -95,6 +89,8 @@ public class login extends HttpServlet {
 		
 		dBconnection.saveToDb(MeetingRoomData, fileContent);
 		
+		sendEmailConfirmation(MeetingRoomData);
+		
 		MeetingRoomData.setFunction("RoomCreateSuccess");
 
 		response.setContentType("application/json");
@@ -102,6 +98,30 @@ public class login extends HttpServlet {
 				gson.toJson(MeetingRoomData, meetingRoomData.class));
 		
 		return true;
+	}
+
+	private void sendEmailConfirmation(meetingRoomData meetingRoomData) {
+
+		
+		String messageBody = "<html><body><br><p>"
+				+ "Dear Customer!" + "</p><br><p>"
+				+ "Thank you for using insacollaboration.com." + "\n"
+				+ "Your meeting room is ready. \n"
+				+ "Your meeting room number is "
+				+ meetingRoomData.getMeetingRoomNumber()
+				+ "<br> Please join the meeting by clicking <br>"
+				+ "http://localhost:8080/instacollab/canvas.jsp?room=" 
+				+ meetingRoomData.getMeetingRoomNumber() +"\n"
+				+ "<p><br>-www.instacollaboration.com</body><html>";
+		
+		sendMail SendMail = new sendMail();
+		try {
+			SendMail.SendingEmail(meetingRoomData.getEmail(), messageBody);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	//@SuppressWarnings("unchecked")

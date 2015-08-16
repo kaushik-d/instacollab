@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+
+body {
+	position: relative;
+	/* background-image: url("images/officeBkG_1.jpg"); */
+    background-color: #ffff99;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div {
+	text-align: center; 
+	vertical-align: bottom;
+	height: 100%;
+	padding: 5px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+}
+
+.header {
+	width: 400px;
+	height: 20px;
+	background:rgba(255,255,255,0.5);
+	border-radius: 5px;
+}
+
+.footer {
+	width: 350px;
+	height: 20px;
+	background:rgba(255,255,255,0.75);
+	border-radius: 5px;
+}
