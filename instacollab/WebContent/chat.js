@@ -75,7 +75,9 @@ processCommands = function(message) {
 	if (mes.command === "initCanvasSlave") {
 		initCanvasSlave(mes.canvasID.trim());
 	} else if (mes.command === "drawLinesSlave") {
-		drawLinesSlave(mes.slaveID, mes.type, mes.x, mes.y);
+		if(mes.pageNum === currentPage) {
+			drawLinesSlave(mes.slaveID, mes.type, mes.x, mes.y);
+		}
 		saveDrawLinesSlave(mes);
 	} else if (mes.command === "setMySlaveID") {
 		setMySlaveID(mes);
@@ -133,8 +135,12 @@ getPresentationFile = function(mes) {
 }
 
 saveDrawLinesSlave = function(mes){
-	if( typeof savedDrawCommands[currentPage.toString()] == 'undefined' ){
-		savedDrawCommands[currentPage.toString()] = new Array();
+	//if( typeof savedDrawCommands[currentPage.toString()] == 'undefined' ){
+	//	savedDrawCommands[currentPage.toString()] = new Array();
+	//}
+	//savedDrawCommands[currentPage.toString()].push(mes);
+	if( typeof savedDrawCommands[mes.pageNum.toString()] == 'undefined' ){
+		savedDrawCommands[mes.pageNum.toString()] = new Array();
 	}
-	savedDrawCommands[currentPage.toString()].push(mes);
+	savedDrawCommands[mes.pageNum.toString()].push(mes);
 }
