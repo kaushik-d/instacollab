@@ -13,6 +13,7 @@ import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.geom.GeneralPath;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Random;
@@ -55,19 +56,17 @@ public class CaptchaServlet extends HttpServlet {
 
 		g2d.setRenderingHints(rh);
 
-		GradientPaint gp = new GradientPaint(0, 0, Color.red, 0, height / 2,
-				Color.black, true);
+		GradientPaint gp = new GradientPaint(0, 0, Color.white, 0, height / 2,
+				Color.white, true);
 
 		g2d.setPaint(gp);
 		g2d.fillRect(0, 0, width, height);
 
-		g2d.setColor(new Color(255, 153, 0));
+		//g2d.setColor(new Color(255, 153, 0));
+		
+		g2d.setColor(Color.darkGray);
 
 		Random r = new Random();
-		int index = Math.abs(r.nextInt()) % 5;
-
-		//String captcha = String.copyValueOf(data[index]);
-		
 		
 		int meetingRoomNumberlength = 5;
 		RandomString randomString = new RandomString(meetingRoomNumberlength);
@@ -86,6 +85,33 @@ public class CaptchaServlet extends HttpServlet {
 			g2d.drawChars(catchaArray1, 0, 1, x, y);
 			x += 10 + (Math.abs(r.nextInt()) % 15);
 		}
+		
+		GeneralPath p = new GeneralPath();
+		x = 0;
+		y = 0;
+		for (int i = 1; i < captcha.length(); ++i) {
+			y = 0 + Math.abs(r.nextInt()) % 15;
+			x += 0 + (Math.abs(r.nextInt()) % 15);
+			p.moveTo(x, y);
+			y = 15 + Math.abs(r.nextInt()) % 15;
+			x += 10 + (Math.abs(r.nextInt()) % 15);
+			p.lineTo(x, y);
+		}
+		
+		x = 0;
+		y = 0;
+		for (int i = 1; i < captcha.length(); ++i) {
+			y = 0 + Math.abs(r.nextInt()) % 15;
+			x += 0 + (Math.abs(r.nextInt()) % 15);
+			p.moveTo(x, y);
+			y = 15 + Math.abs(r.nextInt()) % 15;
+			x += 10 + (Math.abs(r.nextInt()) % 15);
+			p.lineTo(x, y);
+		}
+		
+		p.closePath();
+
+		g2d.draw(p);
 
 		g2d.dispose();
 

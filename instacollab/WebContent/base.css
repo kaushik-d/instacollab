@@ -2,7 +2,7 @@
 
 body {
 	position: relative;
-	/* background-image: url("images/officeBkG_1.jpg"); */
+	background-image: url("images/officeBkG_1.jpg");
     background-color: #ffff99;
     background-repeat: no-repeat;
     background-size: cover;

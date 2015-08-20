@@ -5,7 +5,7 @@
 <head>
 <!-- <meta charset="UTF-8">  -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Start Collaboration Now from JSP</title>
+<title>Start Collaboration Now</title>
 
 <meta name="description" content="Collabote during meetings online from any device from anywhere." />
 <meta name="keywords" content="Web Conferencing, Online Meetings, Sharing" />
@@ -15,6 +15,7 @@
 <meta name="expires" content="never"> 
 <meta name="distribution" content="global" /> 
 <meta name="robots" content="index" />
+<meta name="author" content="Kaushik Das" />
 
 <link href="base.css?v=1.0" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="index.css?v=1.0">
@@ -81,12 +82,18 @@
 				$("#whiteboard").click(function() {
 					whiteboardClicked = true;
 					$("#Start_Action_Area").slideUp("slow", function() {
+						var ImgAdd = window.location.protocol + "//"
+							+ window.location.host + "/instacollab/CaptchaServlet?img=" + new Date().getTime();
+						$("#WCaptchaImg").attr("src", ImgAdd);
 						$("#Start_WhiteBoard").slideDown("slow");
 					});
 				});
 				$("#presentation").click(function() {
 					presentationClicked = true;
 					$("#Start_Action_Area").slideUp("slow", function() {
+						var ImgAdd = window.location.protocol + "//"
+							+ window.location.host + "/instacollab/CaptchaServlet?img=" + new Date().getTime();
+						$("#PCaptchaImg").attr("src", ImgAdd);
 						$("#Start_Presentation").slideDown("slow");
 					});
 				});
@@ -334,7 +341,7 @@
 			
 			$("#Start_ReturnMessage").html("Your meeting room #<strong>" +
 					meetingRoomData.roomNumber +
-					"</strong>is ready.<br>" + 
+					"</strong> is ready.<br>" + 
 					"You can share and join the meeting room.<br>" +
 					"A confirmation e-mail has been sent to<br>" +
 					meetingRoomData.email);
@@ -489,7 +496,7 @@
 								</tr>
 								-->
 								<tr>
-									<td><img src="CaptchaServlet"></td>
+									<td><img  id="WCaptchaImg" src="CaptchaServlet"></td>
 									<td>
 									<input type="text" name="code" style="width:60px" maxlength="5" required placeholder="Code">
 									<input type="submit" value="Submit" />
@@ -539,7 +546,7 @@
 								</tr>
 								-->
 								<tr>
-									<td><img src="http://localhost:8080/instacollab/CaptchaServlet"></td>
+									<td><img id="PCaptchaImg" src="CaptchaServlet"></td>
 									<td>
 									<input type="text" name="code" style="width:60px" maxlength="5" required placeholder="Code">
 									<input type="submit" value="Submit" />
