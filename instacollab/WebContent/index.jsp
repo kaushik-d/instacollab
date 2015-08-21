@@ -436,16 +436,12 @@
 					}, false);
 </script>
 
-<script type="text/javascript">var switchTo5x=true;</script>
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">Light.options({publisher: "ee885eac-7825-4801-81df-b3101626baa0", doNotHash: true, doNotCopy: true, hashAddressBar: true});</script>
-
 </head>
 <body>
 
 	<div id="background">
 		<div id="HeaderDiv" class="header">
-			<a href="index.html">Home</a> |
+			<a href="index.jsp">Home</a> |
 			<a>Demo</a> |
 			<a>Help</a> |
     		<a href="feedback.html">Feedback</a> |
@@ -636,16 +632,31 @@
 			</div>
 		</div>
 		<div id="FooterDiv" class="footer">
-			<span class='st_sharethis' displayText='ShareThis'></span>
-			<span class='st_facebook' displayText='Facebook'></span>
-			<span class='st_twitter' displayText='Tweet'></span>
-			<span class='st_blogger' displayText='Blogger'></span>
-    	</div>
-    	<div id="FooterDiv1" class="footer">
-			<span class='st_linkedin' displayText='LinkedIn'></span>
-			<span class='st_baidu' displayText='Baidu'></span>
-			<span class='st_email' displayText='Email'></span>
-			<span class='st_citeulike' displayText='CiteULike'></span>
+			<ul class="social-icons">
+				<!-- Facebook Button-->
+				<li class="social-icon facebook"><a
+					onclick="javascript:popupCenter('https://www.facebook.com/sharer/sharer.php?u=www.instacollabotation.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID','Facebook Share', '540', '400');return false;"
+					href="https://www.facebook.com/sharer/sharer.php?u=www.instacollabotation.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID"
+					target="blank"><i class="fa fa-facebook"></i> Share </a></li>
+				<!-- Twitter Button -->
+				<li class="social-icon twitter"><a
+					onclick="javascript:popupCenter('https://twitter.com/share?&amp;url=www.instacollabotation.com&amp;text=Start Collaboration Now','Tweet', '540', '400');return false;"
+					href="https://twitter.com/share?&amp;url=www.instacollabotation.com&amp;text=Start Collaboration Now"
+					target="blank"><i class="fa fa-twitter"></i> Tweet </a></li>
+				<!-- Google + Button-->
+				<li class="social-icon google-plus"><a
+					onclick="javascript:popupCenter('https://plus.google.com/share?url=www.instacollabotation.com','Share on Google+', '600', '600');return false;"
+					href="https://plus.google.com/share?url=www.instacollabotation.com"
+					target="blank"><i class="fa fa-google-plus"></i> Google+</a></li>
+				<!-- LinkedIn Button -->
+				<li class="social-icon linkedin"><a
+					onclick="javascript:popupCenter('http://www.linkedin.com/shareArticle?mini=true&amp;url=www.instacollabotation.com&amp;title=Start Collaboration Now&amp;source=StieURl','Share on LinkedIn', '520', '570');return false;"
+					href="http://www.linkedin.com/shareArticle?mini=true&amp;url=www.instacollabotation.com&amp;title=Start Collaboration Now&amp;source=UrlSource"
+					target="blank"><i class="fa fa-linkedin"></i> LinkedIn </a></li>
+			</ul>
+		</div>
+		<div id="FooterDiv1" class="footer">
+			<span class="footer2">Copyright: all rights reserved</span>
     	</div>
 		<!-- <video autoplay loop poster="polina.jpg" id="bgvid"> -->
 		<!--  

@@ -1,5 +1,5 @@
 @CHARSET "UTF-8";
-
+/*
 body {
 	position: relative;
 	background-image: url("images/officeBkG_1.jpg");
@@ -19,17 +19,133 @@ div {
 	position: relative;
 	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
 }
-
+*/
 .header {
+	padding: 5px;
+	text-align: center;
 	width: 400px;
 	height: 20px;
 	background:rgba(255,255,255,0.5);
 	border-radius: 5px;
+	font-size: 16px;
 }
 
 .footer {
+	padding: 5px;
+	text-align: center;
 	width: 350px;
 	height: 20px;
 	background:rgba(255,255,255,0.75);
 	border-radius: 5px;
 }
+
+.footer2 {
+	padding: 5px;
+	text-align: center;
+	width: 350px;
+	height: 20px;
+	font-size: 10px;
+	background:rgba(255,255,255,0.75);
+	border-radius: 5px;
+}
+
+/************Social media style****************************/
+/* General Social Button Styling */
+.social-icons {
+	height: 25px;
+	padding: 3px;
+	margin-top: auto;
+	margin-left: auto;
+}
+
+.social-icons ul {
+	text-align:center
+}
+
+.social-icons li {
+	list-style-type: none !important;
+	/*float: left;*/
+	display:inline;
+	margin-top: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.social-icons a {
+	padding: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+/* Facebook Button Styling */
+li.social-icon.facebook a {
+	border-top: 1px solid #3b5998;
+	border-left: 1px solid #3b5998;
+	border-bottom: 1px solid #3b5998;
+	border-right: 1px solid #3b5998;
+	color: #3b5998;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+	text-decoration: none;
+}
+
+li.social-icon.facebook a:hover {
+	background-color: #3b5998;
+	color: white;
+}
+
+/* Twitter Button Styling */
+li.social-icon.twitter a {
+	border-top: 1px solid #55acee;
+	border-left: 1px solid #55acee;
+	border-bottom: 1px solid #55acee;
+	border-right: 1px solid #55acee;
+	color: #55acee;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+	text-decoration: none;
+}
+
+li.social-icon.twitter a:hover {
+	background-color: #55acee;
+	color: white;
+}
+
+/* Google+ Button Styling */
+li.social-icon.google-plus a {
+	border-top: 1px solid #dd4b39;
+	border-left: 1px solid #dd4b39;
+	border-bottom: 1px solid #dd4b39;
+	border-right: 1px solid #dd4b39;
+	color: #dd4b39;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+	text-decoration: none;
+}
+
+li.social-icon.google-plus a:hover {
+	background-color: #dd4b39;
+	color: white;
+}
+
+/* LinkedIn Button Styling */
+
+li.social-icon.linkedin a {
+	border-top: 1px solid #0976b4;
+	border-left: 1px solid #0976b4;
+	border-bottom: 1px solid #0976b4;
+	border-right: 1px solid #0976b4;
+	color: #0976b4;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+	text-decoration: none;
+}
+
+li.social-icon.linkedin a:hover {
+	background-color: #0976b4;
+	color: white;
+}
+
+/****************************************/

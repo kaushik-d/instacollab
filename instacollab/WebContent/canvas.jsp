@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="canvas.css">
+<link href="base.css?v=1.0" rel="stylesheet">
 <title>Start collaboration now</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -76,12 +77,13 @@ window.onbeforeunload = function (e) {
 </script>
 </head>
 <body>
-    <div id="HeaderDiv">
+   <div id="HeaderDiv" class="header">
+			<a href="index.jsp">Home</a> |
 			<a>Demo</a> |
 			<a>Help</a> |
-    		<a>Feedback</a> |
+    		<a href="feedback.html">Feedback</a> |
     		<a>Terms and conditions</a>
-    	</div>
+    </div>
 	<div id="canvasDiv"></div>
 	<div id="messageDiv_holder">
 	<div id="messageDiv">
@@ -100,5 +102,32 @@ window.onbeforeunload = function (e) {
 			<div id="console"></div>
 		</div>
 	</div>
+	<div id="FooterDiv" class="footer">
+			<ul class="social-icons">
+				<!-- Facebook Button-->
+				<li class="social-icon facebook"><a
+					onclick="javascript:popupCenter('https://www.facebook.com/sharer/sharer.php?u=www.instacollabotation.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID','Facebook Share', '540', '400');return false;"
+					href="https://www.facebook.com/sharer/sharer.php?u=www.instacollabotation.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID"
+					target="blank"><i class="fa fa-facebook"></i> Share </a></li>
+				<!-- Twitter Button -->
+				<li class="social-icon twitter"><a
+					onclick="javascript:popupCenter('https://twitter.com/share?&amp;url=www.instacollabotation.com&amp;text=Start Collaboration Now','Tweet', '540', '400');return false;"
+					href="https://twitter.com/share?&amp;url=www.instacollabotation.com&amp;text=Start Collaboration Now"
+					target="blank"><i class="fa fa-twitter"></i> Tweet </a></li>
+				<!-- Google + Button-->
+				<li class="social-icon google-plus"><a
+					onclick="javascript:popupCenter('https://plus.google.com/share?url=www.instacollabotation.com','Share on Google+', '600', '600');return false;"
+					href="https://plus.google.com/share?url=www.instacollabotation.com"
+					target="blank"><i class="fa fa-google-plus"></i> Google+</a></li>
+				<!-- LinkedIn Button -->
+				<li class="social-icon linkedin"><a
+					onclick="javascript:popupCenter('http://www.linkedin.com/shareArticle?mini=true&amp;url=www.instacollabotation.com&amp;title=Start Collaboration Now&amp;source=StieURl','Share on LinkedIn', '520', '570');return false;"
+					href="http://www.linkedin.com/shareArticle?mini=true&amp;url=www.instacollabotation.com&amp;title=Start Collaboration Now&amp;source=UrlSource"
+					target="blank"><i class="fa fa-linkedin"></i> LinkedIn </a></li>
+			</ul>
+		</div>
+		<div id="FooterDiv1" class="footer">
+			<span class="footer2">Copyright: all rights reserved</span>
+    	</div>
 </body>
 </html>

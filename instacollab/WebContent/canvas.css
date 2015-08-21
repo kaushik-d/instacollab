@@ -20,14 +20,6 @@ div {
 	
 }
 
-
-#HeaderDiv {
-	width: 350px;
-	height: 20px;
-	background:rgba(255,255,255,0.5);
-	border-radius: 5px;
-}
-
 *:fullscreen, *:-webkit-full-screen, *:-moz-full-screen {
 	background-color: rgba(255, 255, 0, 1);
 }
