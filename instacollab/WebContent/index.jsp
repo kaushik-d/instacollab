@@ -656,7 +656,7 @@
 			</ul>
 		</div>
 		<div id="FooterDiv1" class="footer">
-			<span class="footer2">Copyright: all rights reserved</span>
+			<span class="footer2">© Kaushik Das, all rights reserved</span>
     	</div>
 		<!-- <video autoplay loop poster="polina.jpg" id="bgvid"> -->
 		<!--  
