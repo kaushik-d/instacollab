@@ -19,15 +19,27 @@ public class sendMail {
 	public void SendingEmail(String Email, String Body)
 			throws AddressException, MessagingException {
 
-		String host = "smtp.gmail.com";
-		String from = "instacollabdotcom@gmail.com"; // Your mail id
-		String pass = "Serampore1"; // Your Password
+		//String host = "smtp.gmail.com";
+		//String from = "instacollabdotcom@gmail.com"; // Your mail id
+		//String pass = "Serampore1"; // Your Password
+		
+		String host = "mail.instacollaboration.com";
+		//String host = "mocha6005.mochahost.com";
+		
+		String from = "webmaster@instacollaboration.com"; // Your mail id
+		String pass = "serampore"; // Your Password
+		
 		Properties props = System.getProperties();
-		props.put("mail.smtp.starttls.enable", "true"); // added this line
+		//props.put("mail.smtp.starttls.enable", "true"); // added this line
+		props.put("mail.smtp.starttls.enable", "false");
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.user", from);
 		props.put("mail.smtp.password", pass);
-		props.put("mail.smtp.port", "587");
+		
+		//props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.port", "2525");
+		//props.put("mail.smtp.port", "465");
+		
 		props.put("mail.smtp.auth", "true");
 		String[] to = { Email }; // To Email addressR
 		

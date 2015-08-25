@@ -82,7 +82,7 @@ window.onbeforeunload = function (e) {
 			<a>Demo</a> |
 			<a>Help</a> |
     		<a href="feedback.html">Feedback</a> |
-    		<a>Terms and conditions</a>
+    		<a href="termsandconditions.html">Terms and conditions</a>
     </div>
 	<div id="canvasDiv"></div>
 	<div id="messageDiv_holder">

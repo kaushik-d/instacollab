@@ -445,7 +445,7 @@
 			<a>Demo</a> |
 			<a>Help</a> |
     		<a href="feedback.html">Feedback</a> |
-    		<a>Terms and conditions</a>
+    		<a href="termsandconditions.html">Terms and conditions</a>
     	</div>
 		<div id=button_holder>
 			<div id="Start_Message_Area" class="Message_Area_Start_Clear"></div>
@@ -656,7 +656,7 @@
 			</ul>
 		</div>
 		<div id="FooterDiv1" class="footer">
-			<span class="footer2">© Kaushik Das, all rights reserved</span>
+			<span class="footer2">© InstaCollaboration, all rights reserved</span>
     	</div>
 		<!-- <video autoplay loop poster="polina.jpg" id="bgvid"> -->
 		<!--  
