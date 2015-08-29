@@ -1,31 +1,146 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>Send your comments</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <link href="base.css?v=1.0" rel="stylesheet">
 <link href="feedback.css?v=1.0" rel="stylesheet">
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
 	rel="stylesheet">
+<script>
+	$(document)
+			.ready(
+					function() {
+
+						$("#FeedbackForm").submit(StartFeedback);
+
+						$(".messageBox").hide();
+
+						$("#commentText").keyup(
+										function() {
+											var charsSoFar = $(this).val().length;
+											$('#commentLevel').text("Comments: ("+charsSoFar+"/5000 characters)");
+										});
+						
+						$(document).ajaxStart(
+								function() {
+									$("#button_ok").hide();
+									$(".messageBox").addClass("messageBoxBG");
+								}).ajaxStop(
+								function() {
+									$(".messageBox").removeClass("messageBoxBG");
+									$("#button_ok").show();
+								});
+						
+						$("#button_ok").click(function(){
+							$(".messageBox").hide();
+							$('#FeedbackForm')[0].reset();
+						})
+						
+					});
+
+	var StartFeedback = function(evt) {
+		//var formElement = document.getElementById("FeedbackForm");
+		//var data = new FormData(formElement);
+		
+		var form = $("#FeedbackForm");
+		//var data = JSON.stringify(frm.serializeArray());
+
+		$(".messageBox").show();
+
+		var url = "saveFeedback";
+		
+		$.ajax({
+			type: "POST",
+			url: url,
+			data: form.serialize(),
+			success: function(data) {
+				displaymessage(data);
+			},
+			error: function(data) {
+				displaymessage(data);
+			}
+		});
+		
+		//cache: false,
+		//contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		//processData: false,
+		
+		evt.preventDefault();
+		return false;
+
+	};
+
+	var displaymessage = function(data) {
+		if(data.responseText == "CommentsSaved") {
+			$("#ReturnMessage").html("Your comments have been sent.<br>Thank you!");
+		}
+
+	};
+</script>
 </head>
+
 <body>
 	<div id="background">
 		<div id="HeaderDiv" class="header">
 			<a href="index.jsp">Home</a> | <a>Demo</a> | <a>Help</a> | <a
-				href="feedback.html">Feedback</a> | <a href="termsandconditions.html">Terms and conditions</a>
+				href="feedback.html">Feedback</a> | <a
+				href="termsandconditions.html">Terms and conditions</a>
 		</div>
-		<!-- Do not change the code! -->
-		<div>
-			<a id="foxyform_embed_link_695519" href="http://www.foxyform.com/">foxyform</a>
-			<script type="text/javascript">
-			(function(d, t) {
-				var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-				g.src = "http://www.foxyform.com/js.php?id=695519&sec_hash=bbec4c4056f&width=350px";
-				s.parentNode.insertBefore(g, s);
-			}(document, "script"));
-		</script>
-			<!-- Do not change the code! -->
+		<div class="holder">
+			<div class="feebbackform">
+				<form action="saveFeedback" method="post" id="FeedbackForm">
+					<table>
+						<tr>
+							<td><label for="name">Your name:</label></td>
+						</tr>
+						<tr>
+							<td><input type="text" name="name"
+								placeholder="First name and last name" required maxlength="32"
+								style="width: 400px" /></td>
+						</tr>
+						<tr>
+							<td><label for="email">Email address:</label></td>
+						</tr>
+						<tr>
+							<td><input type="email" name="email"
+								placeholder="e-mail@domain.com" required maxlength="100"
+								style="width: 400px" /></td>
+						</tr>
+						<tr>
+							<td><label for="comments" id="commentLevel">Comments: (0/5000
+									characters)</label></td>
+						</tr>
+						<tr>
+							<td><textarea name="comments" placeholder="Your comments..."
+									required maxlength="5000" row="20" column="100"
+									style="width: 400px; height: 200px" id="commentText"></textarea></td>
+						</tr>
+						<tr>
+							<td><img id="WCaptchaImg" src="CaptchaServlet"> <label for="code">Code
+									from left:</label>
+							 <input type="text" name="code" style="width: 60px"
+								maxlength="5" required placeholder="Code"> <input
+								type="submit" value="Submit" /> <input type="reset"
+								value="Reset" /></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div class="messageBox" style="z-index: 1;">
+				<table style="text-align: center; width:100%">
+						<tr><td>
+							<p id="ReturnMessage"></p>
+						</td></tr>
+						<tr><td>
+							<button id="button_ok">OK</button>
+						</td></tr>
+				</table>
+			</div>
 		</div>
 		<div id="FooterDiv" class="footer">
 			<ul class="social-icons">
@@ -56,4 +171,5 @@
 		</div>
 	</div>
 </body>
+
 </html>

@@ -19,3 +19,49 @@ div {
 	position: relative;
 	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
 }
+
+.feebbackform {
+	text-align: left; 
+	vertical-align: top;
+	height:400px;
+	width:450px;
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	background:rgba(255,255,255,0.75);
+	border: 1px solid #ff9900;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.messageBox {
+	position:absolute;
+	height:400px;
+	width:450px;
+	margin-left: auto;
+	margin-right: auto;
+	background:rgba(255,255,255,0.5);
+	border: 1px solid #ff9900;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.messageBoxBG {
+	background-image: url("images/ajax-loader.gif");
+	background-repeat: no-repeat;
+    background-position: center; 
+}
+
+.holder {
+	position:relative;
+	height:415px;
+	width:450px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5px;
+	padding: 0px;
+}
+
+textarea {
+   resize: none;
+}
