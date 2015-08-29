@@ -18,7 +18,7 @@
 
 						$("#FeedbackForm").submit(StartFeedback);
 
-						$(".messageBox").hide();
+						$("#messageDiv").hide();
 
 						$("#commentText").keyup(
 										function() {
@@ -29,16 +29,19 @@
 						$(document).ajaxStart(
 								function() {
 									$("#button_ok").hide();
-									$(".messageBox").addClass("messageBoxBG");
+									$("#messageDiv").addClass("messageBoxBG");
 								}).ajaxStop(
 								function() {
-									$(".messageBox").removeClass("messageBoxBG");
+									$("#messageDiv").removeClass("messageBoxBG");
 									$("#button_ok").show();
 								});
 						
 						$("#button_ok").click(function(){
-							$(".messageBox").hide();
-							$('#FeedbackForm')[0].reset();
+							$("#messageDiv").removeClass("messageBoxActive").addClass("messageBox");;
+							$("#messageDiv").hide();
+							var ImgAdd = window.location.protocol + "//"
+							+ window.location.host + "/instacollab/CaptchaServlet?img=" + new Date().getTime();
+							$("#CaptchaImg").attr("src", ImgAdd);
 						})
 						
 					});
@@ -50,7 +53,7 @@
 		var form = $("#FeedbackForm");
 		//var data = JSON.stringify(frm.serializeArray());
 
-		$(".messageBox").show();
+		$("#messageDiv").show();
 
 		var url = "saveFeedback";
 		
@@ -76,10 +79,15 @@
 	};
 
 	var displaymessage = function(data) {
+		$("#messageDiv").removeClass("messageBox").addClass("messageBoxActive");
 		if(data.responseText == "CommentsSaved") {
+			$('#FeedbackForm')[0].reset();
 			$("#ReturnMessage").html("Your comments have been sent.<br>Thank you!");
+		} else if (data.responseText == "CaptchaError") {
+			$("#ReturnMessage").html("Wrong captcha code.<br>Please try again.");
+		} else {
+			$("#ReturnMessage").html("We were not able to sent your comments.<br>Please try again.");
 		}
-
 	};
 </script>
 </head>
@@ -121,7 +129,7 @@
 									style="width: 400px; height: 200px" id="commentText"></textarea></td>
 						</tr>
 						<tr>
-							<td><img id="WCaptchaImg" src="CaptchaServlet"> <label for="code">Code
+							<td><img id="CaptchaImg" src="CaptchaServlet"> <label for="code">Code
 									from left:</label>
 							 <input type="text" name="code" style="width: 60px"
 								maxlength="5" required placeholder="Code"> <input
@@ -131,7 +139,7 @@
 					</table>
 				</form>
 			</div>
-			<div class="messageBox" style="z-index: 1;">
+			<div id="messageDiv" class="messageBox" style="z-index: 1;">
 				<table style="text-align: center; width:100%">
 						<tr><td>
 							<p id="ReturnMessage"></p>

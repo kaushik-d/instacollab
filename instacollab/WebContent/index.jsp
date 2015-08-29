@@ -525,7 +525,11 @@
 								<tr>
 									<td><label for="presentationFile">Presentation
 											slides:</label></td>
-									<td><input type="file" name="presentationFile" accept="application/vnd.openxmlformats-officedocument.presentationml.presentation,application/pdf"/></td>
+									<td>
+									<!-- <input type="file" name="presentationFile" accept="application/vnd.openxmlformats-officedocument.presentationml.presentation,application/pdf"/> -->
+									<span style="font-size:12px">(PDFs only)</span>
+									<input type="file" name="presentationFile" accept="application/pdf"/>
+									</td>
 								</tr>
 								<!-- 
 								<tr>

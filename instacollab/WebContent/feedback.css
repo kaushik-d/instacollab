@@ -29,9 +29,9 @@ div {
 	margin-left: auto;
 	margin-right: auto;
 	background:rgba(255,255,255,0.75);
-	border: 1px solid #ff9900;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
+	/* border: 1px solid #ff9900; */
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
 }
 
 .messageBox {
@@ -50,6 +50,22 @@ div {
 	background-image: url("images/ajax-loader.gif");
 	background-repeat: no-repeat;
     background-position: center; 
+}
+
+.messageBoxActive {
+	position:absolute;
+	height:150px;
+	width:250px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid #ff9900;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	
+	background-color: #ffcc66;
+	color: black;
+	left: 100px;
+	top: 150px;
 }
 
 .holder {

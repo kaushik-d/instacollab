@@ -1,7 +1,7 @@
 package com.instacollab.chat;
 
 import java.sql.Connection;
-import java.io.IOException;
+//import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.DriverManager;
@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import javax.servlet.ServletContext;
+//import javax.servlet.ServletContext;
 
 public class DBconnection {
 
@@ -22,9 +22,56 @@ public class DBconnection {
 	//private static String dbPass  = "1234";
 	private static String dbPass  = "serampore";
 	private static String dbTable = "roomdata";
+	
+	private static String feedbackDbName  = "instacol_feedbacks";
+	private static String feedbackDbURL   = "jdbc:mysql://mysql3000.mochahost.com/" + feedbackDbName;
+	private static String feedbackDbTable = "feedbacks";
 
 	public DBconnection() {
 
+	}
+	
+	public boolean saveFeedbackToDb(String name, String email, String comments, String IP) {
+		
+		Connection conn = null;
+		boolean isSaveSuccess = true;
+		try {
+			
+			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			conn = DriverManager.getConnection(feedbackDbURL, dbUser, dbPass);
+
+			String sql = "INSERT INTO "
+					+ feedbackDbTable
+					+ " (name, email, comments,"
+					+ " create_datetime, IPaddress) values (?, ?, ?, ?, ?)";
+			PreparedStatement statement = conn.prepareStatement(sql);
+
+			statement.setString(1, name);
+			statement.setString(2, email);
+			statement.setString(3, comments);
+			statement.setTimestamp(4,
+					new java.sql.Timestamp(System.currentTimeMillis()));
+			statement.setString(5, IP);
+
+			int row = statement.executeUpdate();
+			if (row > 0) {
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			isSaveSuccess = false;
+		} finally {
+			if (conn != null) {
+				// closes the database connection
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+
+		}
+		
+		return isSaveSuccess;
 	}
 
 	public void saveToDb(meetingRoomData roomData, InputStream fileContent) {
@@ -131,7 +178,6 @@ public class DBconnection {
 	boolean getRoomData(String meetingRoomNum, meetingRoomData MeetingRoomData) {
 
 		Connection conn = null; // connection to the database
-		meetingRoomData roomData = null;
 		boolean roomFound = false;
 
 		try {
@@ -186,7 +232,6 @@ public class DBconnection {
 	boolean isRoomNumberAlreadyActive(String meetingRoomNum) {
 
 		Connection conn = null; // connection to the database
-		meetingRoomData roomData = null;
 		boolean isExisists = false;
 
 		try {
@@ -225,7 +270,6 @@ public class DBconnection {
 	boolean doDBCleanup() {
 
 		Connection conn = null; // connection to the database
-		meetingRoomData roomData = null;
 		boolean done = false;
 
 		try {
