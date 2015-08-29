@@ -103,6 +103,7 @@ setMySlaveID = function(mes){
 	
 	if(!isPresentation) {
 		currentPage = 0;
+		initBlankCanvasPresentation();
 	}
 	
 	email = mes.email;

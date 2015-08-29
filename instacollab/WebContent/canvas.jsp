@@ -4,6 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="description" content="Collabote during meetings online from any device from anywhere." />
+<meta name="keywords" content="Instant Collaboration, Web Conferencing, Online Meetings, Sharing" />
+<meta name="rating" content="general" />
+<meta name="copyright" content="2015, Instacollaboration.com " />
+<meta name="revisit-after" content="31 Days" />
+<meta name="expires" content="never"> 
+<meta name="distribution" content="global" /> 
+<meta name="robots" content="index" />
+
 <link rel="stylesheet" type="text/css" href="canvas.css">
 <link href="base.css?v=1.0" rel="stylesheet">
 <title>Start collaboration now</title>
@@ -127,7 +137,7 @@ window.onbeforeunload = function (e) {
 			</ul>
 		</div>
 		<div id="FooterDiv1" class="footer">
-			<span class="footer2">Copyright: all rights reserved</span>
+			<span class="footer2">© InstaCollaboration: all rights reserved</span>
     	</div>
 </body>
 </html>

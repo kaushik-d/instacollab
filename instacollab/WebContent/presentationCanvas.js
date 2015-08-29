@@ -25,6 +25,21 @@ function initCanvasPresentation() {
 
 }
 
+function initBlankCanvasPresentation() {
+
+	var canvasDiv = window.document.getElementById('canvasDiv');
+	canvasPresentation = document.createElement('canvas');
+	canvasPresentation.id = "presentationCanvas";
+	canvasPresentation.width = INITICANVASWIDTH;
+	canvasPresentation.height = INITICANVASHEIGHT;
+	canvasPresentation.left = 0;
+	canvasPresentation.right = 0;
+	canvasPresentation.style.zIndex = -10000;
+	canvasDiv.appendChild(canvasPresentation);
+	contextPresentation = canvasPresentation.getContext('2d');
+
+}
+
 setUpPresentationFirst = function(pdf) { 
 	window.numPresentationPages = pdf.numPages;
 	window.presentationPdf = pdf;

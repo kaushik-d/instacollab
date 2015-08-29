@@ -105,12 +105,12 @@ public class login extends HttpServlet {
 		
 		String messageBody = "<html><body><br><p>"
 				+ "Dear Customer!" + "</p><br><p>"
-				+ "Thank you for using insacollaboration.com." + "\n"
+				+ "Thank you for using instacollaboration.com." + "\n"
 				+ "Your meeting room is ready. \n"
 				+ "Your meeting room number is "
 				+ meetingRoomData.getMeetingRoomNumber()
 				+ "<br> Please join the meeting by clicking <br>"
-				+ "http://localhost:8080/instacollab/canvas.jsp?room=" 
+				+ "http://www.instacollaboration.com/canvas.jsp?room=" 
 				+ meetingRoomData.getMeetingRoomNumber() +"\n"
 				+ "<p><br>-www.instacollaboration.com</body><html>";
 		

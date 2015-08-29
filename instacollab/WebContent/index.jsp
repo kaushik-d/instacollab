@@ -5,18 +5,17 @@
 <head>
 <!-- <meta charset="UTF-8">  -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Start Collaboration Now</title>
 
 <meta name="description" content="Collabote during meetings online from any device from anywhere." />
-<meta name="keywords" content="Web Conferencing, Online Meetings, Sharing" />
+<meta name="keywords" content="Instant Collaboration, Web Conferencing, Online Meetings, Sharing" />
 <meta name="rating" content="general" />
-<meta name="copyright" content="2015, Kaushik Das " />
+<meta name="copyright" content="2015, Instacollaboration.com " />
 <meta name="revisit-after" content="31 Days" />
 <meta name="expires" content="never"> 
 <meta name="distribution" content="global" /> 
 <meta name="robots" content="index" />
-<meta name="author" content="Kaushik Das" />
 
+<title>Start Collaboration Now</title>
 <link href="base.css?v=1.0" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="index.css?v=1.0">
 <link
