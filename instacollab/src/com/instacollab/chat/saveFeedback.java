@@ -28,8 +28,16 @@ public class saveFeedback extends HttpServlet {
 			String email = request.getParameter("email");
 			String comments = request.getParameter("comments");
 			
+			DBconnection dBconnection = new DBconnection();
+			boolean success = dBconnection.saveFeedbackToDb(name, email, comments, request.getRemoteAddr());
+			
 			response.setContentType("application/json");
-			response.getWriter().write("CommentsSaved");
+			
+			if(success) {
+				response.getWriter().write("CommentsSaved");
+			} else {
+				response.getWriter().write("Error");
+			}
 		
 		}
 	}

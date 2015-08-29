@@ -23,8 +23,8 @@ public class DBconnection {
 	private static String dbPass  = "serampore";
 	private static String dbTable = "roomdata";
 	
-	private static String feedbackDbName  = "instacol_feedbacks";
-	private static String feedbackDbURL   = "jdbc:mysql://mysql3000.mochahost.com/" + feedbackDbName;
+	//private static String feedbackDbName  = "instacol_feedbacks";
+	//private static String feedbackDbURL   = "jdbc:mysql://mysql3000.mochahost.com/" + feedbackDbName;
 	private static String feedbackDbTable = "feedbacks";
 
 	public DBconnection() {
@@ -38,7 +38,7 @@ public class DBconnection {
 		try {
 			
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-			conn = DriverManager.getConnection(feedbackDbURL, dbUser, dbPass);
+			conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
 
 			String sql = "INSERT INTO "
 					+ feedbackDbTable
