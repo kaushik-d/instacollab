@@ -15,13 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 //import com.google.inject.Singleton;
  
 //@Singleton
-@WebFilter(filterName="filter1", urlPatterns="/login")
+@WebFilter(filterName="filter1", urlPatterns={"/index.jsp","/canvas.jsp","/login"})
 public class BrowserFilter implements Filter
 {
-    // Be default, support all GWT-capable browsers
-    // Assume any version recent enough except IE
     private static final String[] DEFAULT_BROWSERS =
-    { "Chrome", "Firefox", "Safari", "Opera", "MSIE 8", "MSIE 7", "MSIE 6" };
+    	 { "Firefox" };
+  //  { "Chrome", "Firefox", "Safari", "Opera", "MSIE 8", "MSIE 7", "MSIE 6" };
  
     // Filter param keys
     //public static final String KEY_BROWSER_IDS = "browserIds";
