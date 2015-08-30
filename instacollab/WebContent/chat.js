@@ -42,7 +42,7 @@ Chat.initialize = function() {
 		url = window.location.host
 		+ '/instacollab/websocket/chat/';
 	} else {
-		url = window.location.host
+		url = 'www.' + window.location.host
 		+ '/websocket/chat/';
 	}
 	
