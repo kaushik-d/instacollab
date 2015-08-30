@@ -51,8 +51,9 @@
 						$("#button_ok").click(function(){
 							$("#messageDiv").removeClass("messageBoxActive").addClass("messageBox");;
 							$("#messageDiv").hide();
-							var ImgAdd = window.location.protocol + "//"
-							+ window.location.host + "/instacollab/CaptchaServlet?img=" + new Date().getTime();
+							//var ImgAdd = window.location.protocol + "//"
+							//+ window.location.host + "/instacollab/CaptchaServlet?img=" + new Date().getTime();
+							var ImgAdd =  "CaptchaServlet?img=" + new Date().getTime();
 							$("#CaptchaImg").attr("src", ImgAdd);
 						})
 						

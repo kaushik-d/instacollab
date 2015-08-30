@@ -37,6 +37,8 @@ function initBlankCanvasPresentation() {
 	canvasPresentation.style.zIndex = -10000;
 	canvasDiv.appendChild(canvasPresentation);
 	contextPresentation = canvasPresentation.getContext('2d');
+	contextPresentation.fillStyle="#FFFFFF";
+	contextPresentation.fillRect(0,0,INITICANVASWIDTH,INITICANVASHEIGHT); 
 
 }
 
@@ -70,7 +72,11 @@ renderPresentationPage = function(pdf) {
 			};
 			page.render(renderContext);
 		});
+	} else {
+		contextPresentation.fillStyle="#FFFFFF";
+		contextPresentation.fillRect(0,0,CURRENTCANVASWIDTH,CURRENTCANVASHEIGHT); 
 	}
+	
 }
 
 goPreviousPage = function() {

@@ -36,12 +36,20 @@ Chat.connect = (function(host) {
 });
 
 Chat.initialize = function() {
-	if (window.location.protocol == 'http:') {
-		Chat.connect('ws://' + window.location.host
-				+ '/instacollab/websocket/chat/'+myMeeringRoomNum);
+	var url = 'ws://';
+	
+	if(window.location.host.indexOf("localhost") > -1) {
+		url = window.location.host
+		+ '/instacollab/websocket/chat/';
 	} else {
-		Chat.connect('wss://' + window.location.host
-				+ '/instacollab/websocket/chat/'+myMeeringRoomNum);
+		url = window.location.host
+		+ '/websocket/chat/';
+	}
+	
+	if (window.location.protocol == 'http:') {
+		Chat.connect('ws://' + url + myMeeringRoomNum);
+	} else {
+		Chat.connect('wss://' + url + myMeeringRoomNum);
 	}
 };
 

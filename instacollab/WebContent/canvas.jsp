@@ -50,6 +50,7 @@
 	var name = null;
 	var email = null;
 	var topic = null;
+	var isCurrentlyFullscreen = false;
 </script>
 <script>
 	$(document).ready(function() {

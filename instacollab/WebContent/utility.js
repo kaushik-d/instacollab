@@ -107,7 +107,8 @@ function goFullScreen() {
 
 function restore() {
 
-	if (!window.screenTop && !window.screenY) {
+	//if (!window.screenTop && !window.screenY) {
+	if(!isCurrentlyFullscreen){
 		console.log('not fullscreen');
 		
 		if(screen.width > screen.height) {
@@ -140,6 +141,8 @@ function restore() {
 		writeMessage(message);
 
 		redrawCurrentPageContents();
+		
+		isCurrentlyFullscreen = true;
 
 	} else {
 		CURRENTCANVASWIDTH = INITICANVASWIDTH;
@@ -165,6 +168,7 @@ function restore() {
 		var message = 'CURRENTCANVASWIDTH: ' + CURRENTCANVASWIDTH + '\nCURRENTCANVASHEIGHT:' + CURRENTCANVASHEIGHT;
 		writeMessage(message);
 		console.log('fullscreen');
+		isCurrentlyFullscreen = false;
 	}
 }
 

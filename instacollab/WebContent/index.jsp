@@ -81,8 +81,9 @@
 				$("#whiteboard").click(function() {
 					whiteboardClicked = true;
 					$("#Start_Action_Area").slideUp("slow", function() {
-						var ImgAdd = window.location.protocol + "//"
-							+ window.location.host + "/instacollab/CaptchaServlet?img=" + new Date().getTime();
+					//	var ImgAdd = window.location.protocol + "//"
+					//		+ window.location.host + "/instacollab/CaptchaServlet?img=" + new Date().getTime();
+						var ImgAdd = "CaptchaServlet?img=" + new Date().getTime();
 						$("#WCaptchaImg").attr("src", ImgAdd);
 						$("#Start_WhiteBoard").slideDown("slow");
 					});
@@ -90,8 +91,9 @@
 				$("#presentation").click(function() {
 					presentationClicked = true;
 					$("#Start_Action_Area").slideUp("slow", function() {
-						var ImgAdd = window.location.protocol + "//"
-							+ window.location.host + "/instacollab/CaptchaServlet?img=" + new Date().getTime();
+					//	var ImgAdd = window.location.protocol + "//"
+					//		+ window.location.host + "/instacollab/CaptchaServlet?img=" + new Date().getTime();
+						var ImgAdd = "CaptchaServlet?img=" + new Date().getTime();
 						$("#PCaptchaImg").attr("src", ImgAdd);
 						$("#Start_Presentation").slideDown("slow");
 					});
