@@ -14,11 +14,11 @@ import java.sql.Types;
 
 public class DBconnection {
 
-	private static String dbName  = "instacol_rooms";
+	private static String dbName  = "rooms";
 	//private static String dbURL   = "jdbc:mysql://localhost:3306/" + dbName;
-	private static String dbURL   = "jdbc:mysql://mysql3000.mochahost.com/" + dbName;
+	private static String dbURL   = "jdbc:mysql://my-db-instance.cqkmpcckfpyh.us-east-1.rds.amazonaws.com:3306/" + dbName;
 	//private static String dbUser  = "root";
-	private static String dbUser  = "instacol_root";
+	private static String dbUser  = "db_user";
 	//private static String dbPass  = "1234";
 	private static String dbPass  = "serampore";
 	private static String dbTable = "roomdata";

@@ -360,7 +360,7 @@
 
 	}
 
-	function Join(joinButton) {
+	function Join(joinButton) { // Not in use
 		if (isRoomCreated) {
 			xmlhttp = new XMLHttpRequest();
 			xmlhttp.onreadystatechange = function() {
