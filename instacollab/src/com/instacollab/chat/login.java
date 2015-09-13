@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.HashMap;
 
 import javax.mail.MessagingException;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -77,7 +78,8 @@ public class login extends HttpServlet {
 				isPresentation, name, topic, "NotAvailable", null,
 				meetingHostIP,email,meetingStartDate,startTime,endTime);
 
-		DBconnection dBconnection = new DBconnection();
+		ServletContext context = getServletContext();
+		DBconnection dBconnection = new DBconnection(context);
 		String roomNumber = null;
 		do {
 			roomNumber = createMeetingRoom();
@@ -112,9 +114,11 @@ public class login extends HttpServlet {
 				+ "<br> Please join the meeting by clicking <br>"
 				+ "http://www.instacollaboration.com/canvas.jsp?room=" 
 				+ meetingRoomData.getMeetingRoomNumber() +"\n"
+				+ "You may forward this e-mail to other meeting attendees." + "\n"
 				+ "<p><br>-www.instacollaboration.com</body><html>";
 		
-		sendMail SendMail = new sendMail();
+		ServletContext context = getServletContext();
+		sendMail SendMail = new sendMail(context);
 		try {
 			SendMail.SendingEmail(meetingRoomData.getEmail(), messageBody);
 		} catch (MessagingException e) {
@@ -125,8 +129,8 @@ public class login extends HttpServlet {
 	}
 
 	//@SuppressWarnings("unchecked")
-	@Override
-	public void init() {
+	//@Override
+	//public void init() {
 		//meetingRooms = new HashMap<String, meetingRoomData>();
 		//getServletConfig().getServletContext().setAttribute("meetingRoomList",
 		//		meetingRooms);
@@ -135,7 +139,7 @@ public class login extends HttpServlet {
 		//	meetingRooms = new HashMap<String,meetingRoomData>();
 		//	getServletConfig().getServletContext().setAttribute("meetingRoomList", meetingRooms);
 		//}
-	}
+	//}
 
 	public String createMeetingRoom() {
 

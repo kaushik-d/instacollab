@@ -33,7 +33,7 @@ public class downloadFile extends HttpServlet {
 		
 		ServletContext context = getServletContext();
 
-		DBconnection dBconnection = new DBconnection();
+		DBconnection dBconnection = new DBconnection(context);
 		Blob blob = dBconnection.getFileFromDb(MeetingRoomData);
 		
 		

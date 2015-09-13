@@ -10,24 +10,32 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import javax.servlet.ServletContext;
+
 //import javax.servlet.ServletContext;
 
 public class DBconnection {
 
-	private static String dbName  = "rooms";
-	//private static String dbURL   = "jdbc:mysql://localhost:3306/" + dbName;
-	private static String dbURL   = "jdbc:mysql://my-db-instance.cqkmpcckfpyh.us-east-1.rds.amazonaws.com:3306/" + dbName;
-	//private static String dbUser  = "root";
-	private static String dbUser  = "db_user";
-	//private static String dbPass  = "1234";
-	private static String dbPass  = "serampore";
-	private static String dbTable = "roomdata";
+	private String dbName  = "rooms";
+	private String dbTable = "roomdata";
+	private String feedbackDbTable = "feedbacks";
 	
-	//private static String feedbackDbName  = "instacol_feedbacks";
-	//private static String feedbackDbURL   = "jdbc:mysql://mysql3000.mochahost.com/" + feedbackDbName;
-	private static String feedbackDbTable = "feedbacks";
-
-	public DBconnection() {
+	private String dbURL   = null;
+	private String dbUser  = null;
+	private String dbPass  = null;
+	
+	//private static String dbURL   = "jdbc:mysql://localhost:3306/" + dbName;
+	//private static String dbURL   = "jdbc:mysql://my-db-instance.cqkmpcckfpyh.us-east-1.rds.amazonaws.com:3306/" + dbName;
+	//private static String dbUser  = "root";
+	//private static String dbUser  = "db_user";
+	//private static String dbPass  = "1234";
+	//private static String dbPass  = "serampore";
+	
+	public DBconnection(ServletContext context) {
+		
+		dbURL  = "jdbc:mysql://" + context.getInitParameter("dbURL") + "/" + dbName;
+		dbUser = context.getInitParameter("dbUser");
+		dbPass = context.getInitParameter("dbPasswd");
 
 	}
 	

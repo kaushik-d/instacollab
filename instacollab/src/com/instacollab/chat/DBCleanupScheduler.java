@@ -4,6 +4,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -16,7 +17,8 @@ public class DBCleanupScheduler implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent event) {
         scheduler = Executors.newSingleThreadScheduledExecutor();
-        scheduler.scheduleAtFixedRate(new DBCleanup(), 0, 1, TimeUnit.DAYS);
+        ServletContext context = event.getServletContext();
+        scheduler.scheduleAtFixedRate(new DBCleanup(context), 0, 1, TimeUnit.DAYS);
     }
 
     @Override

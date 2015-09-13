@@ -10,33 +10,39 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletContext;
 
 public class sendMail {
+	
+	private String host = null;
+	private String from = null;
+	private String pass = null;
+	private String port = null;
+	
+	public sendMail(ServletContext context){
 
-	public sendMail(){
+		host = context.getInitParameter("emailhost");
+		from = context.getInitParameter("emailfrom");
+		pass = context.getInitParameter("emailpasswd");
+		port = context.getInitParameter("emailport");
 		
 	}
 	public void SendingEmail(String Email, String Body)
 			throws AddressException, MessagingException {
 
-		String host = "smtp.gmail.com";
-		final String from = "instacollabdotcom@gmail.com"; // Your mail id
-		final String pass = "Serampore1"; // Your Password
-		
-		//String host = "mail.instacollaboration.com";
-		//String host = "mocha6005.mochahost.com";
-		
-		//String from = "webmaster@instacollaboration.com"; // Your mail id
-		//String pass = "serampore"; // Your Password
+		//String host = "smtp.gmail.com";
+		//final String from = "instacollabdotcom@gmail.com";
+		//final String pass = "serampore1";
 		
 		Properties props = System.getProperties();
-		props.put("mail.smtp.starttls.enable", "true"); // added this line
+		props.put("mail.smtp.starttls.enable", "true");
 		//props.put("mail.smtp.starttls.enable", "false");
+		
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.user", from);
 		props.put("mail.smtp.password", pass);
 		
-		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.port", port);
 		//props.put("mail.smtp.port", "2525");
 		//props.put("mail.smtp.port", "465");
 		
@@ -66,7 +72,7 @@ public class sendMail {
 			message.addRecipient(Message.RecipientType.TO, toAddress[j]);
 		}
 		
-		message.setSubject("Email from InstaCollab");
+		message.setSubject("Email from www.InstaCollaboration.com");
 
 		message.setContent(Body, "text/html");
 		

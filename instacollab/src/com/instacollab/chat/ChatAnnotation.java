@@ -78,10 +78,11 @@ public class ChatAnnotation {
 		this.session = session;
 		this.config = config;
 
+		session.setMaxIdleTimeout(0);
 		String roomUpper = room.toUpperCase(Locale.ROOT);
 		
-		//ServletContext servletContext = (ServletContext) config
-		//		.getUserProperties().get("servletContext");
+		ServletContext servletContext = (ServletContext) config
+				.getUserProperties().get("servletContext");
 		//@SuppressWarnings("unchecked")
 		//HashMap<String, meetingRoomData> meetingRooms = (HashMap<String, meetingRoomData>) servletContext
 		//		.getAttribute("meetingRoomList");
@@ -90,7 +91,7 @@ public class ChatAnnotation {
 		
 		//if (meetingRooms.containsKey(room)) {
 		//	MeetingRoomData = meetingRooms.get(room);
-		DBconnection dBconnection = new DBconnection();
+		DBconnection dBconnection = new DBconnection(servletContext);
 		boolean roomFound = dBconnection.getRoomData(roomUpper, MeetingRoomData);
 		if(!roomFound) {
 			try {
