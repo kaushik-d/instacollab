@@ -6,7 +6,7 @@
 <!-- <meta charset="UTF-8">  -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="description" content="Collabote during meetings online from any device from anywhere." />
+<meta name="description" content="Collaborate during meetings online from any device from anywhere." />
 <meta name="keywords" content="Instant Collaboration, Web Conferencing, Online Meetings, Sharing" />
 <meta name="rating" content="general" />
 <meta name="copyright" content="2015, Instacollaboration.com " />
@@ -247,8 +247,9 @@
 				if(roomNum==""){
 					return false;
 				}
-				var canvasurl = window.location.protocol + '//'+ window.location.host + "/instacollab/canvas.jsp?room=" + roomNum;
-				var url = "https://www.facebook.com/sharer/sharer.php?u=" + canvasurl + "&amp;appId=XXX_YOUR_FACEBOOK_APP_ID";
+				//var canvasurl = window.location.protocol + '//'+ window.location.host + "/instacollab/canvas.jsp?room=" + roomNum;
+				var canvasurl = "http://www.instacollaboration.com/canvas.jsp?room=" + roomNum;
+				var url = "https://www.facebook.com/sharer/sharer.php?url=" + canvasurl + "&amp;appId=XXX_YOUR_FACEBOOK_APP_ID";
 				$("#facebook_a").attr("href",url);
 				popupCenter(url,'Facebook Share', '540', '400');
 				return false;
@@ -259,7 +260,8 @@
 				if(roomNum==""){
 					return false;
 				}
-				var canvasurl = window.location.protocol + '//'+ window.location.host + "/instacollab/canvas.jsp?room=" + roomNum;
+				//var canvasurl = window.location.protocol + '//'+ window.location.host + "/instacollab/canvas.jsp?room=" + roomNum;
+				var canvasurl = "http://www.instacollaboration.com/canvas.jsp?room=" + roomNum;
 				var url = "https://twitter.com/share?&amp;url=" + canvasurl + "&amp;text=Join%20my%20meeting%20room";
 				$("twitter_a").attr("href",url);
 				popupCenter(url,'Tweet', '540', '400');
@@ -271,7 +273,8 @@
 				if(roomNum==""){
 					return false;
 				}
-				var canvasurl = window.location.protocol + '//'+ window.location.host + "/instacollab/canvas.jsp?room=" + roomNum;
+				//var canvasurl = window.location.protocol + '//'+ window.location.host + "/instacollab/canvas.jsp?room=" + roomNum;
+				var canvasurl = "http://www.instacollaboration.com/canvas.jsp?room=" + roomNum;
 				var url = "https://plus.google.com/share?url=" + canvasurl;
 				$("google_a").attr("href",url);
 				popupCenter(url,'Share on Google+', '600', '600');
@@ -283,7 +286,8 @@
 				if(roomNum==""){
 					return false;
 				}
-				var canvasurl = window.location.protocol + '//'+ window.location.host + "/instacollab/canvas.jsp?room=" + roomNum;
+				//var canvasurl = window.location.protocol + '//'+ window.location.host + "/instacollab/canvas.jsp?room=" + roomNum;
+				var canvasurl = "http://www.instacollaboration.com/canvas.jsp?room=" + roomNum;
 				var url = "http://www.linkedin.com/shareArticle?mini=true&amp;url=" + canvasurl + "&amp;title=Join%20my%20meeting%20room&amp;source=UrlSource";
 				$("linkedin_a").attr("href",url);
 				popupCenter(url,'Share on Google+', '600', '600');
@@ -340,7 +344,7 @@
 			start_MessageActive = true;
 			$("#Start_ReturnBoard").slideDown("slow");
 			
-			$("#Start_ReturnMessage").html("Your meeting room #<strong>" +
+			$("#Start_ReturnMessage").html("Your meeting room# <strong>" +
 					meetingRoomData.roomNumber +
 					"</strong> is ready.<br>" + 
 					"You can share and join the meeting room.<br>" +
@@ -624,7 +628,7 @@
 								<tr>
 									<td><label for="JoinMeetingRoomNumInput">Meeting
 											room#:</label> <input type="text" name="room"
-										id="JoinMeetingRoomNumInput" required/></td>
+										id="JoinMeetingRoomNumInput" required maxlength="5"/></td>
 								</tr>
 								<tr style="float: left">
 									<td><input type="submit" value="Submit" /></td>
@@ -645,8 +649,8 @@
 					target="blank"><i class="fa fa-facebook"></i> Share </a></li>
 				<!-- Twitter Button -->
 				<li class="social-icon twitter"><a
-					onclick="javascript:popupCenter('https://twitter.com/share?&amp;url=www.instacollabotation.com&amp;text=Start Collaboration Now','Tweet', '540', '400');return false;"
-					href="https://twitter.com/share?&amp;url=www.instacollabotation.com&amp;text=Start Collaboration Now"
+					onclick="javascript:popupCenter('https://twitter.com/share?&amp;url=www.instacollabotation.com&amp;text=Start Collaboration Now. http://www.instacollaboration.com','Tweet', '540', '400');return false;"
+					href="https://twitter.com/share?&amp;url=www.instacollabotation.com&amp;text=Start Collaboration Now. http://www.instacollaboration.com"
 					target="blank"><i class="fa fa-twitter"></i> Tweet </a></li>
 				<!-- Google + Button-->
 				<li class="social-icon google-plus"><a
