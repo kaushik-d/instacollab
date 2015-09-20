@@ -106,7 +106,7 @@ function goFullScreen() {
 }
 
 function restore() {
-
+	var message = null;
 	//if (!window.screenTop && !window.screenY) {
 	if(!isCurrentlyFullscreen){
 		console.log('not fullscreen');
@@ -137,7 +137,7 @@ function restore() {
 		 "buttom":CURRENTCANVASHEIGHT-MENUBARHEIGHT
 		});
 		
-		var message = 'CURRENTCANVASWIDTH: ' + CURRENTCANVASWIDTH + '\nCURRENTCANVASHEIGHT:' + CURRENTCANVASHEIGHT;
+		message = 'CURRENTCANVASWIDTH: ' + CURRENTCANVASWIDTH + '\nCURRENTCANVASHEIGHT:' + CURRENTCANVASHEIGHT;
 		writeMessage(message);
 
 		redrawCurrentPageContents();
@@ -165,7 +165,7 @@ function restore() {
 		});
 
 		redrawCurrentPageContents();
-		var message = 'CURRENTCANVASWIDTH: ' + CURRENTCANVASWIDTH + '\nCURRENTCANVASHEIGHT:' + CURRENTCANVASHEIGHT;
+		message = 'CURRENTCANVASWIDTH: ' + CURRENTCANVASWIDTH + '\nCURRENTCANVASHEIGHT:' + CURRENTCANVASHEIGHT;
 		writeMessage(message);
 		console.log('fullscreen');
 		isCurrentlyFullscreen = false;
@@ -175,20 +175,22 @@ function restore() {
 redrawCurrentPageContents = function() {
 	var arrayLength = contextListMaster.length;
 	for (var i = 0; i < arrayLength; i++) {
-		if (contextListMaster[i] != null && contextListMaster[i] != undefined
-				&& typeof contextListMaster[i] != 'undefined') {
+		if (contextListMaster[i] !== null && contextListMaster[i] !== undefined &&
+				typeof contextListMaster[i] != 'undefined') {
 			contextListMaster[i].clearRect(0, 0, CURRENTCANVASWIDTH,
 					CURRENTCANVASHEIGHT);
 		}
 	}
 	arrayLength = contextListSlave.length;
-	for (var i = 0; i < arrayLength; i++) {
-		if (contextListSlave[i] != null && contextListSlave[i] != undefined
-				&& typeof contextListSlave[i] != 'undefined') {
+	for (i = 0; i < arrayLength; i++) {
+		if (contextListSlave[i] !== null && contextListSlave[i] !== undefined && 
+				typeof contextListSlave[i] != 'undefined') {
 			contextListSlave[i].clearRect(0, 0, CURRENTCANVASWIDTH,
 					CURRENTCANVASHEIGHT);
 		}
 	}
+	
+	var drawCommand = null;
 	
 	if (typeof savedDrawCommands[currentPage.toString()] != 'undefined') {
 
@@ -197,7 +199,7 @@ redrawCurrentPageContents = function() {
 
 		for (i = 0; i < saveDrawCommandsForCurrentPage.length; i++) {
 			
-			var drawCommand = saveDrawCommandsForCurrentPage[i];
+			drawCommand = saveDrawCommandsForCurrentPage[i];
 			drawLinesSlave(drawCommand.slaveID, drawCommand.type,
 					drawCommand.x, drawCommand.y);
 		}
@@ -211,7 +213,7 @@ redrawCurrentPageContents = function() {
 
 		for (i = 0; i < saveDrawCommandsForCurrentPage.length; i++) {
 			
-			var drawCommand = saveDrawCommandsForCurrentPage[i];
+			drawCommand = saveDrawCommandsForCurrentPage[i];
 			drawLinesMaster(0, drawCommand.type,
 					drawCommand.x, drawCommand.y);
 		}

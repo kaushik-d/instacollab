@@ -52,7 +52,8 @@ function updateLine(evt) {
 
 	saveDrawLinesMaster(mes);
 
-	Chat.socket.send(JSON.stringify(mes));
+	//Chat.socket.send(JSON.stringify(mes));
+	Chat.sendMessage(JSON.stringify(mes));
 
 	drawLinesMaster(ID, "lineUpdate", mousePos.x, mousePos.y);
 }
@@ -73,7 +74,8 @@ function startLine(evt) {
 
 	saveDrawLinesMaster(mes);
 
-	Chat.socket.send(JSON.stringify(mes));
+	//Chat.socket.send(JSON.stringify(mes));
+	Chat.sendMessage(JSON.stringify(mes));
 
 	drawLinesMaster(ID, "lineStart", mousePos.x, mousePos.y);
 	canvasListMaster[ID].addEventListener('mousemove', updateLine, false);
@@ -100,7 +102,8 @@ function endLine(evt) {
 
 	saveDrawLinesMaster(mes);
 
-	Chat.socket.send(JSON.stringify(mes));
+	//Chat.socket.send(JSON.stringify(mes));
+	Chat.sendMessage(JSON.stringify(mes));
 
 	drawLinesMaster(ID, "lineEnd", mousePos.x, mousePos.y);
 	canvasListMaster[ID].removeEventListener('mousemove', updateLine, false);

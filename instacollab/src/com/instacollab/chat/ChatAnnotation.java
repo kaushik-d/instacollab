@@ -17,7 +17,6 @@
 package com.instacollab.chat;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -25,7 +24,6 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 import javax.websocket.EndpointConfig;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -78,7 +76,7 @@ public class ChatAnnotation {
 		this.session = session;
 		this.config = config;
 
-		session.setMaxIdleTimeout(0);
+		session.setMaxIdleTimeout(1*60*60*1000);
 		String roomUpper = room.toUpperCase(Locale.ROOT);
 		
 		ServletContext servletContext = (ServletContext) config

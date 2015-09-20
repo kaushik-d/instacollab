@@ -2,8 +2,6 @@ package com.instacollab.chat;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-
 import javax.mail.MessagingException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

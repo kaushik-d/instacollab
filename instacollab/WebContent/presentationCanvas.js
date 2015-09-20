@@ -87,7 +87,8 @@ goPreviousPage = function() {
 				command : "changePage",
 				currentPage : currentPage
 			};
-		Chat.socket.send(JSON.stringify(mes));
+		//Chat.socket.send(JSON.stringify(mes));
+		Chat.sendMessage(JSON.stringify(mes));
 	}
 }
 
@@ -100,7 +101,8 @@ goNextPage = function() {
 				currentPage : currentPage,
 				room : myMeeringRoomNum
 			};
-		Chat.socket.send(JSON.stringify(mes));
+		//Chat.socket.send(JSON.stringify(mes));
+		Chat.sendMessage(JSON.stringify(mes));
 	}
 }
 

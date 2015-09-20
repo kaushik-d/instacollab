@@ -28,7 +28,7 @@ public class saveFeedback extends HttpServlet {
 			String email = request.getParameter("email");
 			String comments = request.getParameter("comments");
 			
-			DBconnection dBconnection = new DBconnection();
+			DBconnection dBconnection = new DBconnection(request.getServletContext());
 			boolean success = dBconnection.saveFeedbackToDb(name, email, comments, request.getRemoteAddr());
 			
 			response.setContentType("application/json");

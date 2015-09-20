@@ -1,7 +1,5 @@
 package com.instacollab.chat;
 
-import java.io.InputStream;
-
 public class meetingRoomData {
 
 	private String functName;

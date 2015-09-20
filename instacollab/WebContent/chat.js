@@ -19,7 +19,7 @@ Chat.connect = (function(host) {
 		Console.log('Info: WebSocket connection opened. Meeting Room#' + myMeeringRoomNum);
 		document.getElementById('chat').onkeydown = function(event) {
 			if (event.keyCode == 13) {
-				Chat.sendMessage();
+				Chat.sendChatMessage();
 			}
 		};
 	};
@@ -53,14 +53,24 @@ Chat.initialize = function() {
 	}
 };
 
-Chat.sendMessage = (function() {
+Chat.sendChatMessage = (function() {
 	var message = document.getElementById('chat').value;
-	if (message != '') {
+	if (message !== '') {
 		Chat.socket.send(JSON.stringify({
 			command : "textMessage",
 			text : message
 		}));
 		document.getElementById('chat').value = '';
+	}
+});
+
+Chat.sendMessage = (function(message) {
+	if (Chat.socket.readyState != WebSocket.OPEN) {
+		console.log('Cant send: ' + message);
+		return;
+	}
+	if (message !== '') {
+		Chat.socket.send(message);
 	}
 });
 
