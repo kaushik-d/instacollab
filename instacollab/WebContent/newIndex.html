@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="newIndex.css">
+<link rel="stylesheet" type="text/css" href="view.css" media="all">
+<script type="text/javascript" src="view.js"></script>
+<script type="text/javascript" src="calendar.js"></script>
+</head>
+<body>
+
+	<div class="ct" id="t1">
+		<div class="ct" id="t2">
+			<div class="ct" id="t3">
+				<div class="ct" id="t4">
+					<section>
+						<ul>
+							<a href="#t1"><li class="icon fa fa-home" id="uno"></li></a>
+							<a href="#t2"><li class="icon fa fa-play-circle" id="dos"></li></a>
+							<a href="#t3"><li class="icon fa fa-pencil-square-o"
+								id="tres"></li></a>
+							<a href="#t4"><li class="icon fa fa-comments" id="cuatro"></li></a>
+						</ul>
+						<div class="page" id="p1">
+							<li class="icon fa fa-home"><span class="title">Home</span><span
+								class="hint">Like this pen to see the magic!...<br />
+									Just kidding, it won't happen anything but I'll be really happy
+									If you do so.
+							</span></li>
+						</div>
+						<div class="page" id="p2">
+
+
+								<form id="form_1055583" 
+									enctype="multipart/form-data" method="post" action="">
+									<ul>
+										<li id="li_1"><label for="element_1">Name
+										</label> <span> <input id="element_1_1" name="element_1_1"
+												class="element text" maxlength="255" size="8" value="" /> <label>First</label>
+										</span> <span> <input id="element_1_2" name="element_1_2"
+												class="element text" maxlength="255" size="14" value="" /> <label>Last</label>
+										</span></li>
+										<li id="li_2"><label class="description" for="element_2">Text
+										</label>
+											<div>
+												<input id="element_2" name="element_2"
+													class="element text medium" type="text" maxlength="255"
+													value="" />
+											</div></li>
+										<li id="li_3"><label class="description" for="element_3">Email
+										</label>
+											<div>
+												<input id="element_3" name="element_3"
+													class="element text medium" type="text" maxlength="255"
+													value="" />
+											</div></li>
+										<li id="li_10"><label class="description"
+											for="element_10">Checkboxes </label> <span> <input
+												id="element_10_1" name="element_10_1"
+												class="element checkbox" type="checkbox" value="1" /> <label
+												class="choice" for="element_10_1">First option</label>
+
+										</span></li>
+										<li id="li_4"><label class="description" for="element_4">Upload
+												a File </label>
+											<div>
+												<input id="element_4" name="element_4" class="element file"
+													type="file" />
+											</div></li>
+										<li id="li_5"><label class="description" for="element_5">Text
+										</label>
+											<div>
+												<input id="element_5" name="element_5"
+													class="element text medium" type="text" maxlength="255"
+													value="" />
+											</div></li>
+										<li id="li_6"><label class="description" for="element_6">Date
+										</label> <span> <input id="element_6_1" name="element_6_1"
+												class="element text" size="2" maxlength="2" value=""
+												type="text"> / <label for="element_6_1">MM</label>
+										</span> <span> <input id="element_6_2" name="element_6_2"
+												class="element text" size="2" maxlength="2" value=""
+												type="text"> / <label for="element_6_2">DD</label>
+										</span> <span> <input id="element_6_3" name="element_6_3"
+												class="element text" size="4" maxlength="4" value=""
+												type="text"> <label for="element_6_3">YYYY</label>
+										</span> <span id="calendar_6"> <img id="cal_img_6"
+												class="datepicker" src="images\calendar.gif" alt="Pick a date.">
+										</span> <script type="text/javascript">
+											Calendar.setup({
+												inputField : "element_6_3",
+												baseField : "element_6",
+												displayArea : "calendar_6",
+												button : "cal_img_6",
+												ifFormat : "%B %e, %Y",
+												onSelect : selectDate
+											});
+										</script></li>
+										<li id="li_7"><label class="description" for="element_7">Time
+										</label> <span> <input id="element_7_1" name="element_7_1"
+												class="element text " size="2" type="text" maxlength="2"
+												value="" /> : <label>HH</label>
+										</span> <span> <input id="element_7_2" name="element_7_2"
+												class="element text " size="2" type="text" maxlength="2"
+												value="" /> : <label>MM</label>
+										</span> <span> <input id="element_7_3" name="element_7_3"
+												class="element text " size="2" type="text" maxlength="2"
+												value="" /> <label>SS</label>
+										</span> <span> <select class="element select"
+												style="width: 4em" id="element_7_4" name="element_7_4">
+													<option value="AM">AM</option>
+													<option value="PM">PM</option>
+											</select> <label>AM/PM</label>
+										</span></li>
+										<li id="li_8"><label class="description" for="element_8">Time
+										</label> <span> <input id="element_8_1" name="element_8_1"
+												class="element text " size="2" type="text" maxlength="2"
+												value="" /> : <label>HH</label>
+										</span> <span> <input id="element_8_2" name="element_8_2"
+												class="element text " size="2" type="text" maxlength="2"
+												value="" /> : <label>MM</label>
+										</span> <span> <input id="element_8_3" name="element_8_3"
+												class="element text " size="2" type="text" maxlength="2"
+												value="" /> <label>SS</label>
+										</span> <span> <select class="element select"
+												style="width: 4em" id="element_8_4" name="element_8_4">
+													<option value="AM">AM</option>
+													<option value="PM">PM</option>
+											</select> <label>AM/PM</label>
+										</span></li>
+										<li id="li_9"><label class="description" for="element_9">Text
+										</label>
+											<div>
+												<input id="element_9" name="element_9"
+													class="element text medium" type="text" maxlength="255"
+													value="" />
+											</div></li>
+
+										<li class="buttons"><input type="hidden" name="form_id"
+											value="1055583" /> <input id="saveForm" class="button_text"
+											type="submit" name="submit" value="Submit" /></li>
+									</ul>
+								</form>
+
+						</div>
+						<div class="page" id="p3">
+							<li class="icon fa fa-coffee"><span class="title">Coffee</span></li>
+						</div>
+						<div class="page" id="p4">
+							<div class="holder">
+								<div class="feebbackform">
+									<form action="saveFeedback" method="post" id="FeedbackForm">
+										<table>
+											<tr>
+												<td><label for="name">Your name:</label></td>
+											</tr>
+											<tr>
+												<td><input type="text" name="name"
+													placeholder="First name and last name" required
+													maxlength="32" style="width: 400px" /></td>
+											</tr>
+											<tr>
+												<td><label for="email">Email address:</label></td>
+											</tr>
+											<tr>
+												<td><input type="email" name="email"
+													placeholder="e-mail@domain.com" required maxlength="100"
+													style="width: 400px" /></td>
+											</tr>
+											<tr>
+												<td><label for="comments" id="commentLevel">Comments:
+														(0/5000 characters)</label></td>
+											</tr>
+											<tr>
+												<td><textarea name="comments"
+														placeholder="Your comments..." required maxlength="5000"
+														row="20" column="100" style="width: 400px; height: 200px"
+														id="commentText"></textarea></td>
+											</tr>
+											<tr>
+												<td><img id="CaptchaImg" src="CaptchaServlet"> <label
+													for="code">Code from left:</label> <input type="text"
+													name="code" style="width: 60px" maxlength="5" required
+													placeholder="Code"> <input type="submit"
+													value="Submit" /> <input type="reset" value="Reset" /></td>
+											</tr>
+										</table>
+									</form>
+								</div>
+							</div>
+							<p class="credit">
+								Original Pen by <a href="http://codepen.io/hrtzt/">Alberto
+									Hartzet</a>
+							</p>
+					</section>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
