@@ -16,10 +16,14 @@
 <meta name="robots" content="index" />
 
 <title>Send your comments</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="view.js"></script>
+<script type="text/javascript" src="calendar.js"></script>
+
+<link rel="stylesheet" type="text/css" href="jscal2.css" media="all">
 <link href="base.css?v=1.0" rel="stylesheet">
-<link href="feedback.css?v=1.0" rel="stylesheet">
+<link href="displayfeedback.css?v=1.0" rel="stylesheet">
+
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
 	rel="stylesheet">
@@ -51,20 +55,13 @@
 						$("#button_ok").click(function(){
 							$("#messageDiv").removeClass("messageBoxActive").addClass("messageBox");;
 							$("#messageDiv").hide();
-							//var ImgAdd = window.location.protocol + "//"
-							//+ window.location.host + "/instacollab/CaptchaServlet?img=" + new Date().getTime();
-							var ImgAdd =  "CaptchaServlet?img=" + new Date().getTime();
-							$("#CaptchaImg").attr("src", ImgAdd);
 						})
 						
 					});
 
 	var StartFeedback = function(evt) {
-		//var formElement = document.getElementById("FeedbackForm");
-		//var data = new FormData(formElement);
 		
 		var form = $("#FeedbackForm");
-		//var data = JSON.stringify(frm.serializeArray());
 
 		$("#messageDiv").show();
 
@@ -81,10 +78,6 @@
 				displaymessage(data);
 			}
 		});
-		
-		//cache: false,
-		//contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-		//processData: false,
 		
 		evt.preventDefault();
 		return false;
@@ -114,41 +107,41 @@
 		</div>
 		<div class="holder">
 			<div class="feebbackform">
-				<form action="saveFeedback" method="post" id="FeedbackForm">
+				<form action="displayFeedback" method="post" id="FeedbackForm">
 					<table>
 						<tr>
-							<td><label for="name">Your name:</label></td>
+							<td><label for="Start_Date">Start Date</label></td>
 						</tr>
 						<tr>
-							<td><input type="text" name="name"
-								placeholder="First name and last name" required maxlength="32"
-								style="width: 400px" /></td>
+							<td>
+							<input type="text" name="Start_Date" id="Start_Date"
+								placeholder="" required maxlength="10"
+								style="width: 10em" />
+							<span id="Start_Date_Cal" class="fa fa-calendar"></span>
 						</tr>
 						<tr>
-							<td><label for="email">Email address:</label></td>
+							<td><label for="End_Date">End Date</label></td>
 						</tr>
 						<tr>
-							<td><input type="email" name="email"
-								placeholder="e-mail@domain.com" required maxlength="100"
-								style="width: 400px" /></td>
+							<td>
+							<input type="text" name="End_Date" id="End_Date"
+								placeholder="" required maxlength="10"
+								style="width: 10em" />
+							<span id=End_Date_Cal class="fa fa-calendar"></span></td>
 						</tr>
 						<tr>
-							<td><label for="comments" id="commentLevel">Comments: (0/5000
-									characters)</label></td>
-						</tr>
-						<tr>
-							<td><textarea name="comments" placeholder="Your comments..."
-									required maxlength="5000" row="20" column="100"
-									style="width: 400px; height: 200px" id="commentText"></textarea></td>
-						</tr>
-						<tr>
-							<td><img id="CaptchaImg" src="CaptchaServlet"> <label for="code">Code
-									from left:</label>
-							 <input type="text" name="code" style="width: 60px"
-								maxlength="5" required placeholder="Code"> <input
+							<td><input
 								type="submit" value="Submit" /> <input type="reset"
 								value="Reset" /></td>
 						</tr>
+						<script type="text/javascript">
+							var cal = Calendar.setup({
+						          onSelect: function(cal) { cal.hide() },
+						          showTime: true
+						      });
+						      cal.manageFields("Start_Date_Cal", "Start_Date", "%m-%d-%Y");
+						      cal.manageFields("End_Date_Cal", "End_Date", "%m-%d-%Y");
+							</script>
 					</table>
 				</form>
 			</div>

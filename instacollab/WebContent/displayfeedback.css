@@ -1,0 +1,85 @@
+@CHARSET "UTF-8";
+
+body {
+	position: relative;
+	background-image: url("images/officeBkG_1.jpg");
+    background-color: #ffff99;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div {
+	text-align: center; 
+	vertical-align: bottom;
+	height: 100%;
+	padding: 5px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+}
+
+.feebbackform {
+	text-align: left; 
+	vertical-align: top;
+	height:200px;
+	width:450px;
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	background:rgba(255,255,255,0.75);
+	/* border: 1px solid #ff9900; */
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+	display: block;
+}
+
+.messageBox {
+	position:absolute;
+	height:400px;
+	width:450px;
+	margin-left: auto;
+	margin-right: auto;
+	background:rgba(255,255,255,0.5);
+	border: 1px solid #ff9900;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.messageBoxBG {
+	background-image: url("images/ajax-loader.gif");
+	background-repeat: no-repeat;
+    background-position: center; 
+}
+
+.messageBoxActive {
+	position:absolute;
+	height:150px;
+	width:250px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid #ff9900;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	
+	background-color: #ffcc66;
+	color: black;
+	left: 100px;
+	top: 150px;
+}
+
+.holder {
+	position:relative;
+	height:400px;
+	width:450px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5px;
+	padding: 0px;
+	display: block;
+}
+
+textarea {
+   resize: none;
+}

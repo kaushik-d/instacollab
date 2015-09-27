@@ -6,7 +6,7 @@
 <!-- <meta charset="UTF-8">  -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="description" content="Collaborate during meetings online from any device from anywhere." />
+<meta name="description" content="Collaborate instantly from any device from anywhere." />
 <meta name="keywords" content="Instant Collaboration, Web Conferencing, Online Meetings, Sharing" />
 <meta name="rating" content="general" />
 <meta name="copyright" content="2015, Instacollaboration.com " />

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 //import com.google.inject.Singleton;
  
 //@Singleton
-@WebFilter(filterName="filter1", urlPatterns={"/index.jsp","/canvas.jsp","/login"})
+@WebFilter(filterName="filter1", urlPatterns={"/index.jsp","/canvas.jsp","/login","/badbrowser.html"})
 public class BrowserFilter implements Filter
 {
     private static final String[] DEFAULT_BROWSERS =
@@ -40,10 +40,10 @@ public class BrowserFilter implements Filter
  
         //badBrowserUrl = cfg.getInitParameter(KEY_BAD_BROWSER_URL);
         badBrowserUrl = "badbrowser.html";
-        if (badBrowserUrl == null)
-        {
-            throw new IllegalArgumentException("BrowserFilter requires param badBrowserUrl");
-        }
+        //if (badBrowserUrl == null)
+        //{
+         //   throw new IllegalArgumentException("BrowserFilter requires param badBrowserUrl");
+        //}
     }
     
  
@@ -52,6 +52,23 @@ public class BrowserFilter implements Filter
         throws IOException, ServletException
     {
         String userAgent = ((HttpServletRequest) req).getHeader("User-Agent");
+        String url = ((HttpServletRequest)req).getRequestURL().toString();
+        boolean redirect = true;
+        
+        if(url.contains(this.badBrowserUrl)) {
+        	for (String browser_id : browserIds)
+            {
+                if (userAgent.contains(browser_id))
+                {
+                	((HttpServletResponse) resp).sendRedirect("index.jsp");
+                    return;
+                } else {
+                	redirect = false;
+                }
+            }
+        	
+        }
+        
         for (String browser_id : browserIds)
         {
             if (userAgent.contains(browser_id))
@@ -61,7 +78,12 @@ public class BrowserFilter implements Filter
             }
         }
         // Unsupported browser
-        ((HttpServletResponse) resp).sendRedirect(this.badBrowserUrl);
+        if(redirect) {
+        	((HttpServletResponse) resp).sendRedirect(this.badBrowserUrl);
+        } else {
+        	chain.doFilter(req, resp);
+            return;
+        }
     }
  
     @Override
