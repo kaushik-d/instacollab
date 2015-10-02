@@ -111,6 +111,13 @@ function restore() {
 	if(!isCurrentlyFullscreen){
 		console.log('not fullscreen');
 		
+		//Console.log('Info mozOrientation before: ' + screen.mozOrientation);
+		if(screen.mozOrientation != 'landscape-primary' && 
+				screen.mozOrientation != 'landscape-secondary') {
+			screen.mozLockOrientation('landscape-primary');
+		}
+		//Console.log('Info mozOrientation after: ' + screen.mozOrientation);
+		
 		if(screen.width > screen.height) {
 			CURRENTCANVASWIDTH = screen.width;
 			CURRENTCANVASHEIGHT = screen.height;

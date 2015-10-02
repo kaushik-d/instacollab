@@ -38,13 +38,15 @@ Chat.connect = (function(host) {
 Chat.initialize = function() {
 	var url = 'ws://';
 	
-	if(window.location.host.indexOf("localhost") > -1) {
+	if(!(window.location.host.indexOf("com") > -1 )) {
 		url = window.location.host
 		+ '/instacollab/websocket/chat/';
 	} else {
 		url = window.location.host
 		+ '/websocket/chat/';
 	}
+	
+	Console.log('Info url: ' + url);
 	
 	if (window.location.protocol == 'http:') {
 		Chat.connect('ws://' + url + myMeeringRoomNum);

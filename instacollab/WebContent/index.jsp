@@ -455,13 +455,16 @@
 <body>
 
 	<div id="background">
+	
 		<div id="HeaderDiv" class="header">
-			<a href="index.jsp">Home</a> |
-			<a>Demo</a> |
-			<a>Help</a> |
-    		<a href="feedback.html">Feedback</a> |
-    		<a href="termsandconditions.html">Terms and conditions</a>
+		 <ul class="header-icons">
+			<li><a href="index.jsp" class="fa fa-home" title="Home"></a></li>
+			<li><a  class="fa fa-medkit" title="Help"></a> </li>
+    		<li><a href="feedback.html" class="fa fa-comment" title="Comments and feedback" ></a></li> 
+    		<li><a href="termsandconditions.html" class="fa fa-info"  title="Terms and conditions"></a></li>
+    	 </ul>
     	</div>
+    	
 		<div id=button_holder>
 			<div id="Start_Message_Area" class="Message_Area_Start_Clear"></div>
 			<div id="Start_div">
