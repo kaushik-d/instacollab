@@ -1,90 +1,30 @@
 @CHARSET "UTF-8";
-/*
-body {
-	position: relative;
-	background-image: url("images/officeBkG_1.jpg");
-    background-color: #ffff99;
-    background-repeat: no-repeat;
-    background-size: cover;
+
+.color {
+
 }
 
-div {
-	text-align: center; 
-	vertical-align: bottom;
-	height: 100%;
-	padding: 5px;
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-	position: relative;
-	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
-}
-*/
-
-.header-icons {
-	height: 25px;
-	padding: 3px;
-	margin-top: auto;
-	margin-left: auto;
-}
-
-.header-icons ul {
-	text-align:center;
-	text-decoration: none;
-}
-
-.header-icons li {
-	list-style-type: none !important;
-	/*float: left;*/
-	display:inline-block;
-	width: 44px;
-	text-align:center;
-	margin-top: 3px;
-	margin-right: 3px;
-	margin-bottom: auto;
-	margin-left: auto;
-	font-size: 2em;
-	/*font-weight: bold;*/
-	color: #333333;
-	padding: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	background:rgba(255,255,255,0.75);
-	text-decoration: none;
-}
-
-.header-icons li:hover {
+.color:hover {
 	background-color: #ff9900;
 	color: #ffffff;
 }
 
-.header-icons a {
-	padding: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	text-decoration: none;
+.color a {
 	color: #333333;
 }
 
-.header-icons a:visited {
+.color a:visited {
 	color: #333333;
 }
 
-.header-icons a:hover {
+.color a:hover {
 	color: #ffffff;
 }
 
-.header {
-	padding: 5px;
-	text-align: center;
-	/* width: 400px; */
-	/* height: 20px; */
-	display: inline-block;
-	/*background:rgba(255,255,255,0.5);*/
-	border-radius: 5px;
-	/*font-size: 16px;*/
-	margin-bottom: 2px;
-	text-decoration: none;
+.btn-wt {
+	width: 275px;
+	font-size: 1.5em;
+	text-align:left;
 }
 
 .footer {

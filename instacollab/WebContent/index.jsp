@@ -1,26 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <!-- <meta charset="UTF-8">  -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="description" content="Collaborate instantly from any device from anywhere." />
-<meta name="keywords" content="Instant Collaboration, Web Conferencing, Online Meetings, Sharing" />
+<meta name="description"
+	content="Collaborate instantly from any device from anywhere." />
+<meta name="keywords"
+	content="Instant Collaboration, Web Conferencing, Online Meetings, Sharing" />
 <meta name="rating" content="general" />
 <meta name="copyright" content="2015, Instacollaboration.com " />
 <meta name="revisit-after" content="31 Days" />
-<meta name="expires" content="never"> 
-<meta name="distribution" content="global" /> 
+<meta name="expires" content="never">
+<meta name="distribution" content="global" />
 <meta name="robots" content="index" />
 
 <title>Start Collaboration Now</title>
-<link href="base.css?v=1.0" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="index.css?v=1.0">
+
+
+<!-- 
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
 	rel="stylesheet">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+ -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link href="base.css?v=1.0" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="index.css?v=1.0">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="htmlDatePicker.js" type="text/javascript"></script>
@@ -54,24 +70,15 @@
 						$("#Share_Action_Area").slideUp("slow");
 						$("#JoinMeetingRoomNumInput").val("");
 						$("#Join_Action_Area").slideUp("slow");
-						$("#Start_Action_Area").slideDown("slow");
-					} else if (whiteboardClicked) {
-						whiteboardClicked = false;
-						$("#Start_WhiteBoard").slideUp("slow", function() {
-							$("#Start_Action_Area").slideDown("slow");
-						});
-					} else if (presentationClicked) {
-						presentationClicked = false;
-						$("#Start_Presentation").slideUp("slow", function() {
-							$("#Start_Action_Area").slideDown("slow");
-						});
+						$("#Start_Presentation").slideDown("slow");
 					} else {
 						startClicked = false;
-						$("#Start_Action_Area").slideUp("slow");
+						$("#Start_Presentation").slideUp("slow");
 					}
 					}
 				});
 				var delay=1000, setTimeoutConst;
+				/*
 				$("#Start_Button").hover(
 						function(){
 						setTimeoutConst = setTimeout(
@@ -87,6 +94,7 @@
 									"Message_Area_Start_Focus").addClass(
 									"Message_Area_Start_Clear").text("");
 						});
+				*/
 
 				$("#whiteboard").click(function() {
 					whiteboardClicked = true;
@@ -455,231 +463,154 @@
 <body>
 
 	<div id="background">
-	
-		<div id="HeaderDiv" class="header">
-		 <ul class="header-icons">
-			<li><a href="index.jsp" class="fa fa-home" title="Home"></a></li>
-			<li><a  class="fa fa-medkit" title="Help"></a> </li>
-    		<li><a href="feedback.html" class="fa fa-comment" title="Comments and feedback" ></a></li> 
-    		<li><a href="termsandconditions.html" class="fa fa-info"  title="Terms and conditions"></a></li>
-    	 </ul>
-    	</div>
-    	
+
+		<div class="btn-group-lg">
+			<a class="btn btn-default color" href="index.jsp"><i class="fa fa-home fa-2x"></i></a>
+			<a class="btn btn-default color" href="feedback.html"><i class="fa fa-medkit fa-2x"></i></a> 
+			<a class="btn btn-default color" href="feedback.html"><i class="fa fa-comment fa-2x"></i></a> 
+			<a class="btn btn-default color" href="termsandconditions.html"><i class="fa fa-info fa-2x"></i></a> 
+		</div>
+ 
 		<div id=button_holder>
-			<div id="Start_Message_Area" class="Message_Area_Start_Clear"></div>
-			<div id="Start_div">
-				<button id="Start_Button">Start</button>
+
+			<div class="botton_div">
+				<a id="Start_Button" class="btn btn-default color btn-wt" href="#"><i
+					class="fa fa-play"></i> Start a meeting</a>
 			</div>
-			<div id="Start_Action_Area_holder" class="Action_Area_holder">
-				<div id="Start_Action_Area" class="Start_Action">
-					<button id="whiteboard" style="width : 100px" >Whiteboard</button>
-					<button id="presentation" style="width : 100px">Presentation</button>
-				</div>
-				<div id="Start_WhiteBoard" class="Start_Action">
-					<form action="login" method="post" enctype="multipart/form-data"
-						id="WhiteboardForm">
-						<div id="WhiteboardFormHolder" class="holder">
-							<table>
-								<tr>
-									<td><label for="topic">Meeting topic:</label></td>
-									<td><input type="text" name="topic"
-										placeholder="Meeting topic" required maxlength="100"/></td>
-								</tr>
-								<tr>
-									<td><label for="name">Your name:</label></td>
-									<td><input type="text" name="name"
-										placeholder="First name and last name" required maxlength="32"/></td>
-								</tr>
-								<tr>
-									<td><label for="email">Email address:</label></td>
-									<td><input type="email" name="email"
-										placeholder="e-mail@domain.com" required maxlength="100"/></td>
-								</tr>
-								<!--  
-								<tr>
-									<td><label for="meetingStartDate">Meeting time:</label></td>
-									<td>
-									<input type="text" name="meetingStartDate" required
-										 id="Wdatepicker" readonly onClick="GetDate(this);" style="width:60px"/>
-									 <label for="WstartTime">Start:</label>
-									<select id="WstartTime" name=startTime required
-										 style="width:57px" required></select> 
-									<label for="WendTime">Meeting ends:</label>
-									<select id="WendTime" name=endTime required
-										 style="width:57px" required></select></td>
-								</tr>
-								-->
-								<tr>
-									<td><img  id="WCaptchaImg" src="CaptchaServlet"></td>
-									<td>
-									<input type="text" name="code" style="width:60px" maxlength="5" required placeholder="Code">
-									<input type="submit" value="Submit" />
-									<input type="reset" value="Reset" />
-								</tr>
-							</table>
-						</div>
-					</form>
-				</div>
-				<div id="Start_Presentation" class="Start_Action" style="height:172px">
-					<form action="login" method="post" enctype="multipart/form-data"
-						id="PresentationForm">
-						<div id="PresentationFormHolder" class="holder">
-							<table>
-								<tr>
-									<td><label for="topic">Meeting topic:</label></td>
-									<td><input type="text" name="topic"
-										placeholder="Meeting topic" required maxlength="100"/></td>
-								</tr>
-								<tr>
-									<td><label for="name">Your name:</label></td>
-									<td><input type="text" name="name"
-										placeholder="First name and last name" required maxlength="32"/></td>
-								</tr>
-								<tr>
-									<td><label for="email">Email address:</label></td>
-									<td><input type="email" name="email"
-										placeholder="e-mail@domain.com" required maxlength="100"/></td>
-								</tr>
-								<tr>
-									<td><label for="presentationFile">Presentation
-											slides:</label></td>
-									<td>
-									<!-- <input type="file" name="presentationFile" accept="application/vnd.openxmlformats-officedocument.presentationml.presentation,application/pdf"/> -->
-									<span style="font-size:12px">(PDFs only)</span>
-									<input type="file" name="presentationFile" accept="application/pdf"/>
-									</td>
-								</tr>
-								<!-- 
-								<tr>
-									<td><label for="meetingStartDate">Meeting time:</label></td>
-									<td>
-									<input type="text" name="meetingStartDate" required
-										 id="Pdatepicker" readonly onClick="GetDate(this);" style="width:60px"/>
-									<!-- <label for="PstartTime">Start:</label>
-									<select id="PstartTime" name=startTime required
-										 style="width:57px" required></select>  
-									<label for="PendTime">Meeting ends:</label>
-									<select id="PendTime" name=endTime required
-										 style="width:57px" required></select></td>
-								</tr>
-								-->
-								<tr>
-									<td><img id="PCaptchaImg" src="CaptchaServlet"></td>
-									<td>
-									<input type="text" name="code" style="width:60px" maxlength="5" required placeholder="Code">
-									<input type="submit" value="Submit" />
-									<input type="reset" value="Reset" />
-								</tr>
-							</table>
-						</div>
-					</form>
-				</div>
-				<div id="Start_ReturnBoard" class="Start_Action" style="height:172px">
-					<div id="PresentationFormHolder" class="holder">
-						<table style="text-align: center; width:100%">
-						<tr><td>
-							<p id="Start_ReturnMessage"></p>
-						</td></tr>
-						<tr><td>
-							<button id="Start_ReturnBoard_ok">OK</button>
-						</td></tr>
-						</table>
+			<div id="Start_Presentation" class="Start_Action">
+				<form action="login" method="post" enctype="multipart/form-data"
+					id="PresentationForm">
+
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-th-list"></i></span>
+						<input type="text" name="topic" class="form-control"
+							placeholder="Meeting topic" required maxlength="100" />
 					</div>
+
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-user"></i></span>
+					<input type="text" name="name" class="form-control"
+						placeholder="First name and last name" required maxlength="32" />
+					</div>
+					
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+					<input type="email" class="form-control"
+						name="email" placeholder="e-mail@domain.com" required
+						maxlength="100" /> 
+					</div>	
+						
+					<!-- <input type="file" name="presentationFile" accept="application/vnd.openxmlformats-officedocument.presentationml.presentation,application/pdf"/> -->
+					
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-upload"></i></span>
+    					<input type="text" class="form-control" placeholder="Upload presentation" readonly style="width:200px"/>
+						<span class="btn btn-default btn-file">
+        					Browse <input type="file" name="presentationFile" accept="application/pdf" /> 
+    					</span>
+					</div>
+					
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-key"></i></span>
+						<input type="text" class="form-control" name="code"  maxlength="5" required
+						placeholder="Code from right" style="width:200px">
+						<img style="vertical-align: bottom" alt="Image Code" id="PCaptchaImg" src="CaptchaServlet">
+					</div>
+					<div class="btn-group">
+						<input type="submit" class="form-control" value="Submit" />
+						<input type="reset" class="form-control" value="Reset" />
+					</div>
+				</form>
+			</div>
+			<div id="Start_ReturnBoard" class="Start_Action"
+				style="height: 172px">
+				<div id="PresentationFormHolder" class="holder">
+					<table style="text-align: center; width: 100%">
+						<tr>
+							<td>
+								<p id="Start_ReturnMessage"></p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button id="Start_ReturnBoard_ok">OK</button>
+							</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 
-			<div id="Share_Message_Area" class="Message_Area_Start_Clear"></div>
-			<div id="Share_div">
-				<button id="Share_Button">Share</button>
+			<div class="botton_div">
+				<a id="Share_Button" class="btn btn-default color btn-wt" href="#"><i
+					class="fa fa-share-alt"></i> Share a meeting room</a>
 			</div>
 
-			<div id="Share_Action_Area_holder" class="Action_Area_holder"  style="height:70px">
-				<div id="Share_Action_Area" class="Start_Action" style="height:70px">
-					<div id="Join_Holder" style="text-align: center;" class="holder">
-						<table>
-							<tr>
-								<td><label for="ShareMeetingRoomNumInput">Meeting room#:</label>
-									<input type="text" name="MeetingRoom" id="ShareMeetingRoomNumInput" maxlength="5"/></td>
-							</tr>
-							<tr>
-								<td>
-									<ul class="social-icons">
-										<!-- Facebook Button-->
-										<li class="social-icon facebook"><a id="facebook_a" onclick="javascript:facebook_a(); return false;"
-											href=""
-											target="blank"><i class="fa fa-facebook"></i> Share </a></li>
-										<!-- Twitter Button -->
-										<li class="social-icon twitter"><a id="twitter_a" onclick="javascript:twitter_a(); return false;"
-											href=""
-											target="blank"><i class="fa fa-twitter"></i> Tweet </a></li>
-										<!-- Google + Button-->
-										<li class="social-icon google-plus"><a id="google_a" onclick="javascript:google_a(); return false;"
-											href=""
-											target="blank"><i class="fa fa-google-plus"></i> Google+</a></li>
-										<!-- LinkedIn Button -->
-										<li class="social-icon linkedin"><a id="linkedin_a" onclick="javascript:linkedin_a(); return false;"
-											href=""
-											target="blank"><i class="fa fa-linkedin"></i> LinkedIn </a></li>
-									</ul>
-								<td>
-							</tr>
-						</table>
-					</div>
+			<div id="Share_Action_Area" class="Start_Action">
+
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-desktop"></i></span>
+					<input id="ShareMeetingRoomNumInput" class="form-control"
+						type="text" placeholder="Meeting Room Number" maxlength="5">
+				</div>
+				<div>
+					<ul class="social-icons">
+						<!-- Facebook Button-->
+						<li class="social-icon facebook"><a id="facebook_a"
+							onclick="javascript:facebook_a(); return false;" href=""
+							target="blank"><i class="fa fa-facebook"></i> Share </a></li>
+						<!-- Twitter Button -->
+						<li class="social-icon twitter"><a id="twitter_a"
+							onclick="javascript:twitter_a(); return false;" href=""
+							target="blank"><i class="fa fa-twitter"></i> Tweet </a></li>
+						<!-- Google + Button-->
+						<li class="social-icon google-plus"><a id="google_a"
+							onclick="javascript:google_a(); return false;" href=""
+							target="blank"><i class="fa fa-google-plus"></i> Google+</a></li>
+						<!-- LinkedIn Button -->
+						<li class="social-icon linkedin"><a id="linkedin_a"
+							onclick="javascript:linkedin_a(); return false;" href=""
+							target="blank"><i class="fa fa-linkedin"></i> LinkedIn </a></li>
+					</ul>
 				</div>
 			</div>
 
-
-			<div id="Join_Message_Area" class="Message_Area_Start_Clear"></div>
-			<div id="Join_div">
-				<button id="Join_Button">Join</button>
+			<div class="botton_div">
+				<a id="Join_Button" class="btn btn-default color btn-wt" href="#"><i
+					class="fa fa-sign-in"></i> Join a meeting room</a>
 			</div>
-			<div id="Join_Action_Area_holder" class="Action_Area_holder" style="height:70px">
-				<div id="Join_Action_Area" class="Start_Action" style="height:70px">
-					<div id="Join_Holder" style="text-align: center;" class="holder">
-						<form action="canvas.jsp" method="get" id="JoinForm">
-							<table>
-								<tr>
-									<td><label for="JoinMeetingRoomNumInput">Meeting
-											room#:</label> <input type="text" name="room"
-										id="JoinMeetingRoomNumInput" required maxlength="5"/></td>
-								</tr>
-								<tr style="float: left">
-									<td><input type="submit" value="Submit" /></td>
-									<td><input type="reset" value="Reset" /></td>
-								</tr>
-							</table>
-						</form>
-					</div>
+
+			<div id="Join_Action_Area" class="Start_Action">
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-desktop"></i></span>
+					<input id="JoinMeetingRoomNumInput" class="form-control"
+						type="text" placeholder="Meeting Room Number" maxlength="5">
+				</div>
+				<div>
+					<a id="Join_Submit" class="btn btn-default btn-sm" href="#"><i
+						class="fa"></i>Submit</a>
 				</div>
 			</div>
 		</div>
-		<div id="FooterDiv" class="footer">
-			<ul class="social-icons">
-				<!-- Facebook Button-->
-				<li class="social-icon facebook"><a
-					onclick="javascript:popupCenter('https://www.facebook.com/sharer/sharer.php?u=www.instacollaboration.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID','Facebook Share', '540', '400');return false;"
+		
+		<div class="btn-group-lg">
+			<a class="btn btn-default color" onclick="javascript:popupCenter('https://www.facebook.com/sharer/sharer.php?u=www.instacollaboration.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID','Facebook Share', '540', '400');return false;"
 					href="https://www.facebook.com/sharer/sharer.php?u=www.instacollaboration.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID"
-					target="blank"><i class="fa fa-facebook"></i> Share </a></li>
-				<!-- Twitter Button -->
-				<li class="social-icon twitter"><a
-					onclick="javascript:popupCenter('https://twitter.com/share?&amp;url=www.instacollaboration.com&amp;text=Start Collaboration Now. http://www.instacollaboration.com','Tweet', '540', '400');return false;"
+					target="blank"><i class="fa fa-facebook fa-2x"></i></a>
+			<a class="btn btn-default color" onclick="javascript:popupCenter('https://twitter.com/share?&amp;url=www.instacollaboration.com&amp;text=Start Collaboration Now. http://www.instacollaboration.com','Tweet', '540', '400');return false;"
 					href="https://twitter.com/share?&amp;url=www.instacollaboration.com&amp;text=Start Collaboration Now. http://www.instacollaboration.com"
-					target="blank"><i class="fa fa-twitter"></i> Tweet </a></li>
-				<!-- Google + Button-->
-				<li class="social-icon google-plus"><a
-					onclick="javascript:popupCenter('https://plus.google.com/share?url=www.instacollaboration.com','Share on Google+', '600', '600');return false;"
+					target="blank"><i class="fa fa-twitter fa-2x"></i></a> 
+			<a class="btn btn-default color" onclick="javascript:popupCenter('https://plus.google.com/share?url=www.instacollaboration.com','Share on Google+', '600', '600');return false;"
 					href="https://plus.google.com/share?url=www.instacollaboration.com"
-					target="blank"><i class="fa fa-google-plus"></i> Google+</a></li>
-				<!-- LinkedIn Button -->
-				<li class="social-icon linkedin"><a
-					onclick="javascript:popupCenter('http://www.linkedin.com/shareArticle?mini=true&amp;url=www.instacollaboration.com&amp;title=Start Collaboration Now&amp;source=StieURl','Share on LinkedIn', '520', '570');return false;"
+					target="blank"><i class="fa fa-google-plus fa-2x"></i></a> 
+			<a class="btn btn-default color" onclick="javascript:popupCenter('http://www.linkedin.com/shareArticle?mini=true&amp;url=www.instacollaboration.com&amp;title=Start Collaboration Now&amp;source=StieURl','Share on LinkedIn', '520', '570');return false;"
 					href="http://www.linkedin.com/shareArticle?mini=true&amp;url=www.instacollaboration.com&amp;title=Start Collaboration Now&amp;source=UrlSource"
-					target="blank"><i class="fa fa-linkedin"></i> LinkedIn </a></li>
-			</ul>
+					target="blank"><i class="fa fa-linkedin fa-2x"></i></a> 
 		</div>
+	
 		<div id="FooterDiv1" class="footer">
-			<span class="footer2">© InstaCollaboration, all rights reserved</span>
-    	</div>
+			<span class="footer2">© InstaCollaboration, all rights
+				reserved</span>
+		</div>
 		<!-- <video autoplay loop poster="polina.jpg" id="bgvid"> -->
 		<!--  
 		<video autoplay loop id="bgvid">

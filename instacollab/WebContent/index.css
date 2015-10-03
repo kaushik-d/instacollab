@@ -9,9 +9,9 @@ body {
 div {
 	text-align: center; 
 	vertical-align: bottom;
-	height: 100%;
+/*	height: 100%;*/
 	padding: 5px;
-	width: 100%;
+/*	width: 100%; */
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
@@ -22,6 +22,27 @@ div {
 .timeClass {
 	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
 }
+
+.btn-file {
+	position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
 
 .Message_Area_Start_Clear{
 	height: 22px;
@@ -43,15 +64,21 @@ div {
 #background {
 	width 100%;
 	height 100%;
-	
 }
 
 #button_holder {
+	display: block;
 	width: 430px;
-	height: 550px;
 	background:rgba(255,255,255,0.5);
 	border-radius: 25px;
 }
+
+@media (max-width: 430px) {
+	#button_holder {
+		width: 100%;
+	}
+}
+
 /*
 #HeaderDiv {
 	width: 350px;
@@ -67,8 +94,9 @@ div {
 	border-radius: 5px;
 }
 */
-#Start_div {
-	height: 20px;
+.botton_div {
+	display: inline-block;
+	width: 100%;
 }
 
 #Share_div {
@@ -83,7 +111,9 @@ button {
 	position: relative;
 	padding: 5px;
 	font-size: 14px;
+	display: inline-block;
     font-weight: bold;
+    vertical-align: middle;
     background-color: #ffcc66;
 	color: #333333;
 	border: 0;
@@ -93,6 +123,11 @@ button {
    	-webkit-transform: translate(-10px,0px); /* Safari */
     transform: translate(-10px,0px);
     transition: all 0.5s ease-out 0s;
+}
+
+.buttonspan {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 button:hover {
@@ -132,8 +167,8 @@ input[type="date"] {
 
 .Start_Action {
 	display: none;
-	width: 409px;
-	height: 115px;
+	width: 100%;
+	/*height: 115px;*/
 	/*position: fixed;*/
 	margin-left: auto;
 	margin-right: auto;
@@ -174,6 +209,7 @@ input[type="date"] {
     background-position: center; 
 }
 
+@media (max-width: 430px) {
 video#bgvid {
 	position: fixed;
 	top: 50%;
@@ -187,6 +223,7 @@ video#bgvid {
 	transform: translateX(-50%) translateY(-50%);
 	/*background: url(polina.jpg) no-repeat;*/
 	background-size: cover;
+}
 }
 
 #FBSend {
