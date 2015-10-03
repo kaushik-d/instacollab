@@ -5,11 +5,8 @@
 <head>
 <!-- <meta charset="UTF-8">  -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<meta name="description"
-	content="Collaborate instantly from any device from anywhere." />
-<meta name="keywords"
-	content="Instant Collaboration, Web Conferencing, Online Meetings, Sharing" />
+<meta name="description" content="Collaborate instantly from any device from anywhere." />
+<meta name="keywords" content="Instant Collaboration, Web Conferencing, Online Meetings, Sharing" />
 <meta name="rating" content="general" />
 <meta name="copyright" content="2015, Instacollaboration.com " />
 <meta name="revisit-after" content="31 Days" />
@@ -19,16 +16,6 @@
 
 <title>Start Collaboration Now</title>
 
-
-<!-- 
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-
-<link
-	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
-	rel="stylesheet">
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
- -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -37,10 +24,8 @@
 <link href="base.css?v=1.0" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="index.css?v=1.0">
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="htmlDatePicker.js" type="text/javascript"></script>
-<link href="htmlDatePicker.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -53,8 +38,6 @@
 </script>
 <script>
 	var startClicked = false;
-	var whiteboardClicked = false;
-	var presentationClicked = false;
 
 	var meetingRoomData = {};
 	var isRoomCreated = false;
@@ -66,6 +49,8 @@
 					if(!start_MessageActive){
 					if (!startClicked) {
 						startClicked = true;
+						var ImgAdd = "CaptchaServlet?img=" + new Date().getTime();
+						$("#PCaptchaImg").attr("src", ImgAdd);
 						$("#ShareMeetingRoomNumInput").val("");
 						$("#Share_Action_Area").slideUp("slow");
 						$("#JoinMeetingRoomNumInput").val("");
@@ -77,180 +62,38 @@
 					}
 					}
 				});
-				var delay=1000, setTimeoutConst;
-				/*
-				$("#Start_Button").hover(
-						function(){
-						setTimeoutConst = setTimeout(
-						function() {
-							$("#Start_Message_Area").removeClass(
-									"Message_Area_Start_Clear").addClass(
-									"Message_Area_Start_Focus").text(
-									"Start a meeting");
-						},delay);},
-						function() {
-							clearTimeout(setTimeoutConst );
-							$("#Start_Message_Area").removeClass(
-									"Message_Area_Start_Focus").addClass(
-									"Message_Area_Start_Clear").text("");
-						});
-				*/
-
-				$("#whiteboard").click(function() {
-					whiteboardClicked = true;
-					$("#Start_Action_Area").slideUp("slow", function() {
-					//	var ImgAdd = window.location.protocol + "//"
-					//		+ window.location.host + "/instacollab/CaptchaServlet?img=" + new Date().getTime();
-						var ImgAdd = "CaptchaServlet?img=" + new Date().getTime();
-						$("#WCaptchaImg").attr("src", ImgAdd);
-						$("#Start_WhiteBoard").slideDown("slow");
-					});
-				});
-				$("#presentation").click(function() {
-					presentationClicked = true;
-					$("#Start_Action_Area").slideUp("slow", function() {
-					//	var ImgAdd = window.location.protocol + "//"
-					//		+ window.location.host + "/instacollab/CaptchaServlet?img=" + new Date().getTime();
-						var ImgAdd = "CaptchaServlet?img=" + new Date().getTime();
-						$("#PCaptchaImg").attr("src", ImgAdd);
-						$("#Start_Presentation").slideDown("slow");
-					});
-				});
 				
-				var d = new Date();
-				var today = d.getMonth() +"/"+ d.getDay() + "/" + d.getFullYear();
-				//$("#Wdatepicker").placeholder=today;
-				//$("#Pdatepicker").placeholder=today;
-				//var endTime = d.getHours() + 1;
-					
-				var startOptions = {};
-				var endOptions = {};
-				for(var i = 1; i <= 23; i++) {
-					if(i< 11) {
-						startOptions["Option " + i] = i + " AM";
-						endOptions["Option " + i] = (i+1) + " AM";
-					} 
-					else if(i==11) {
-						startOptions["Option " + i] = i + " AM";
-						endOptions["Option " + i] = "Noon";
-					}
-					else if(i==12) {
-						startOptions["Option " + i] = " Noon";
-						endOptions["Option " + i] = (i+1) + " AM";
-					}
-					else {
-						startOptions["Option " + i] = (i-12) + " PM";
-						endOptions["Option " + i] = (i-11) + " PM";
-					}
-				}
-				/*
-				var $el = $("#WstartTime");
-				$el.empty(); // remove old options
-				$.each(startOptions, function(value,key) {
-					$el.append($("<option></option>")
-					.attr("value", value).text(key));
-				});
-				*/
-				var $el = $("#WendTime");
-				$el.empty(); // remove old options
-				$.each(endOptions, function(value,key) {
-					$el.append($("<option></option>")
-					.attr("value", value).text(key));
-				});
-				/*
-				var $el = $("#PstartTime");
-				$el.empty(); // remove old options
-				$.each(startOptions, function(value,key) {
-					$el.append($("<option></option>")
-					.attr("value", value).text(key));
-				});
-				*/
-				var $el = $("#PendTime");
-				$el.empty(); // remove old options
-				$.each(endOptions, function(value,key) {
-					$el.append($("<option></option>")
-					.attr("value", value).text(key));
-				});
-
-				/*
-				$("Whiteboard_Cancel").click(function() {
-					whiteboardClicked = false;
-					$(this).closest('form').find("input[type=text], textarea, input[type=email]").val("");
-					$("#Start_WhiteBoard").slideUp("slow", function() {
-						$("#Start_Action_Area").slideDown("slow");
-					});
-				});
-				
-				$("Presentation_Cancel").click(function() {
-					whiteboardClicked = false;
-					$(this).closest('form').find("input[type=text], textarea, input[type=email]").val("");
-					$("#Start_WhiteBoard").slideUp("slow", function() {
-						$("#Start_Action_Area").slideDown("slow");
-					});
-				});
-				 */
 				$("#PresentationForm").submit(StartPresentation);
-				$("#WhiteboardForm").submit(StartWhiteboard);
 
 				$("#Share_Button").click(function() {
-					//presentationClicked = true;
-					$("#Share_Action_Area").slideToggle("slow", function() {
-					});
+					$("#Start_Presentation").slideUp("slow");
+					$("#Join_Action_Area").slideUp("slow");
+					$("#Share_Action_Area").slideToggle("slow");
 				});
-
-				$("#Share_Button").hover(
-						function() {
-							setTimeoutConst = setTimeout(function() {
-								$("#Share_Message_Area").removeClass(
-										"Message_Area_Start_Clear").addClass(
-										"Message_Area_Start_Focus").text(
-										"Share your meeting room");
-							}, delay);
-						},
-						function() {
-							clearTimeout(setTimeoutConst);
-							$("#Share_Message_Area").removeClass(
-									"Message_Area_Start_Focus").addClass(
-									"Message_Area_Start_Clear").text("");
-						});
-
-				$("#Join_Button").hover(
-						function() {
-							setTimeoutConst = setTimeout(function() {
-								$("#Join_Message_Area").removeClass(
-										"Message_Area_Start_Clear").addClass(
-										"Message_Area_Start_Focus").text(
-										"Join a meeting room");
-							}, delay);
-						},
-						function() {
-							clearTimeout(setTimeoutConst);
-							$("#Join_Message_Area").removeClass(
-									"Message_Area_Start_Focus").addClass(
-									"Message_Area_Start_Clear").text("");
-						});
 
 				$("#Join_Button").click(function() {
-					//presentationClicked = true;
+					$("#Start_Presentation").slideUp("slow");
+					$("#Share_Action_Area").slideUp("slow");
 					$("#Join_Action_Area").slideToggle("slow");
 				});
+				
+				$("input[name=isPresentation]:radio").change(function () {
+			        if ($("#SelectedPresentation").attr("checked")) {
+			            $('#fileSelector').removeAttr('disabled');
+			            $('#fileSelector').attr('required', 'required');
+			        }
+			        else {
+			            $('#fileSelector').attr('disabled', 'disabled');
+			            $('#fileSelector').removeAttr('required');
+			        }
+			    })
 
 				$(document).ajaxStart(
 						function() {
-							$("#Start_Action_Area_holder").addClass(
-									"holder_ajax_load");
-							$("#Share_Action_Area_holder").addClass(
-									"holder_ajax_load");
-							$("#Join_Action_Area_holder").addClass(
-									"holder_ajax_load");
+							$("#ajax_loadong").slideDown("slow");
 						}).ajaxStop(
 						function() {
-							$("#Start_Action_Area_holder").removeClass(
-									"holder_ajax_load");
-							$("#Share_Action_Area_holder").removeClass(
-									"holder_ajax_load");
-							$("#Join_Action_Area_holder").removeClass(
-									"holder_ajax_load");
+							$("#ajax_loadong").slideUp("slow");
 						});
 				
 				$("#Start_ReturnBoard_ok").click(function(){
@@ -315,22 +158,11 @@
 	StartPresentation = function(evt) {
 		var formElement = document.getElementById("PresentationForm");
 		var data = new FormData(formElement);
-		data.append("isPresentation", "true");
+		//data.append("isPresentation", "true");
 		data.append("presentationURI", "NotAvailable");
 		data.append("functName", "createRoom");
 		presentationClicked = false;
 		$("#Start_Presentation").slideUp("slow");
-		StartSubmit(evt, data);
-	}
-
-	StartWhiteboard = function(evt) {
-		var formElement = document.getElementById("WhiteboardForm");
-		var data = new FormData(formElement);
-		data.append("isPresentation", "false");
-		data.append("presentationURI", "NotAPresentation");
-		data.append("functName", "createRoom");
-		whiteboardClicked = false;
-		$("#Start_WhiteBoard").slideUp("slow");
 		StartSubmit(evt, data);
 	}
 
@@ -380,30 +212,6 @@
 			$("#Start_ReturnMessage").html("Captcha code didn't match. Please try again.");
 		}
 
-	}
-
-	function Join(joinButton) { // Not in use
-		if (isRoomCreated) {
-			xmlhttp = new XMLHttpRequest();
-			xmlhttp.onreadystatechange = function() {
-				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-					window.location = xmlhttp.responseText;
-					isRoomCreated = false;
-					startClicked = true;
-				}
-			}
-			xmlhttp.open("POST", "joinMeeting", true);
-			var params = "data=" + encodeURIComponent(JSON.stringify({
-				functName : "joinMeeting",
-				isPresentation : false,
-				name : meetingRoomData.name,
-				topic : meetingRoomData.topic,
-				roomNumber : meetingRoomData.roomNumber
-			}));
-			xmlhttp.setRequestHeader("Content-type",
-					"application/x-www-form-urlencoded");
-			xmlhttp.send(params);
-		}
 	}
 
 	var popupCenter = function(url, title, w, h) {
@@ -464,7 +272,7 @@
 
 	<div id="background">
 
-		<div class="btn-group-lg">
+		<div class="btn-group-lg top-gap">
 			<a class="btn btn-default color" href="index.jsp"><i class="fa fa-home fa-2x"></i></a>
 			<a class="btn btn-default color" href="feedback.html"><i class="fa fa-medkit fa-2x"></i></a> 
 			<a class="btn btn-default color" href="feedback.html"><i class="fa fa-comment fa-2x"></i></a> 
@@ -474,12 +282,12 @@
 		<div id=button_holder>
 
 			<div class="botton_div">
-				<a id="Start_Button" class="btn btn-default color btn-wt" href="#"><i
-					class="fa fa-play"></i> Start a meeting</a>
+				<a id="Start_Button" class="btn btn-default color btn-wt" href="#">
+				<i class="fa fa-play"></i> Start a meeting</a>
 			</div>
+			
 			<div id="Start_Presentation" class="Start_Action">
-				<form action="login" method="post" enctype="multipart/form-data"
-					id="PresentationForm">
+				<form action="login" method="post" enctype="multipart/form-data" id="PresentationForm">
 
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-th-list"></i></span>
@@ -499,6 +307,11 @@
 						name="email" placeholder="e-mail@domain.com" required
 						maxlength="100" /> 
 					</div>	
+					
+					<input type="radio" name="isPresentation" value="true" id="SelectedPresentation" checked="checked"/>        
+        				Presentation
+        			<input type="radio" name="isPresentation" value="false" id="SelectedWhiteboard" />     
+        				Whiteboard
 						
 					<!-- <input type="file" name="presentationFile" accept="application/vnd.openxmlformats-officedocument.presentationml.presentation,application/pdf"/> -->
 					
@@ -506,43 +319,43 @@
 						<span class="input-group-addon"><i class="fa fa-upload"></i></span>
     					<input type="text" class="form-control" placeholder="Upload presentation" readonly style="width:200px"/>
 						<span class="btn btn-default btn-file">
-        					Browse <input type="file" name="presentationFile" accept="application/pdf" /> 
+        					Browse <input type="file" name="presentationFile" id="fileSelector" accept="application/pdf" /> 
     					</span>
 					</div>
 					
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-key"></i></span>
 						<input type="text" class="form-control" name="code"  maxlength="5" required
-						placeholder="Code from right" style="width:200px">
+						placeholder="Code from right" style="width:150px">
 						<img style="vertical-align: bottom" alt="Image Code" id="PCaptchaImg" src="CaptchaServlet">
 					</div>
-					<div class="btn-group">
-						<input type="submit" class="form-control" value="Submit" />
-						<input type="reset" class="form-control" value="Reset" />
+					<div class="btn-group" role="group">
+						<input type="submit" class="btn btn-default" value="Submit" />
+						<input type="reset" class="btn btn-default" value="Reset" />
 					</div>
 				</form>
 			</div>
-			<div id="Start_ReturnBoard" class="Start_Action"
-				style="height: 172px">
-				<div id="PresentationFormHolder" class="holder">
-					<table style="text-align: center; width: 100%">
-						<tr>
-							<td>
-								<p id="Start_ReturnMessage"></p>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<button id="Start_ReturnBoard_ok">OK</button>
-							</td>
-						</tr>
-					</table>
-				</div>
+			<div id="ajax_loadong" class="Start_Action">
+				<i class="fa fa-spinner fa-pulse fa-2x"></i>
+			</div>
+			<div id="Start_ReturnBoard" class="Start_Action">
+				<table style="text-align: center; width: 100%">
+					<tr>
+						<td>
+							<p id="Start_ReturnMessage"></p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button id="Start_ReturnBoard_ok" class="btn btn-default">OK</button>
+						</td>
+					</tr>
+				</table>
 			</div>
 
 			<div class="botton_div">
-				<a id="Share_Button" class="btn btn-default color btn-wt" href="#"><i
-					class="fa fa-share-alt"></i> Share a meeting room</a>
+				<a id="Share_Button" class="btn btn-default color btn-wt" href="#">
+				<i class="fa fa-share-alt"></i> Share a meeting room</a>
 			</div>
 
 			<div id="Share_Action_Area" class="Start_Action">
@@ -580,15 +393,16 @@
 			</div>
 
 			<div id="Join_Action_Area" class="Start_Action">
+			<form action="canvas.jsp" method="get" id="JoinForm">
 				<div class="input-group">
 					<span class="input-group-addon"><i class="fa fa-desktop"></i></span>
-					<input id="JoinMeetingRoomNumInput" class="form-control"
+					<input id="JoinMeetingRoomNumInput" class="form-control" name=room required="required"
 						type="text" placeholder="Meeting Room Number" maxlength="5">
 				</div>
 				<div>
-					<a id="Join_Submit" class="btn btn-default btn-sm" href="#"><i
-						class="fa"></i>Submit</a>
+					<input type="submit" class="btn btn-default" value="Submit" />
 				</div>
+				</form>
 			</div>
 		</div>
 		
