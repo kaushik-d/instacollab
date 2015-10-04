@@ -1,13 +1,5 @@
 @CHARSET "UTF-8";
 
-body {
-	position: relative;
-	background-image: url("images/officeBkG_1.jpg");
-    background-color: #ffff99;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 div {
 	text-align: center; 
 	vertical-align: bottom;
@@ -23,9 +15,8 @@ div {
 .feebbackform {
 	text-align: left; 
 	vertical-align: top;
-	height:400px;
-	width:450px;
-	position: absolute;
+	display: block;
+	position: relative;
 	margin-left: auto;
 	margin-right: auto;
 	background:rgba(255,255,255,0.75);
@@ -35,15 +26,18 @@ div {
 }
 
 .messageBox {
-	position:absolute;
+	position:relative;
 	height:400px;
-	width:450px;
+	width:100%;
 	margin-left: auto;
 	margin-right: auto;
 	background:rgba(255,255,255,0.5);
 	border: 1px solid #ff9900;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
+	top:0px;
+	display:none;
+	z-index:10;
 }
 
 .messageBoxBG {
@@ -53,9 +47,9 @@ div {
 }
 
 .messageBoxActive {
-	position:absolute;
-	height:150px;
-	width:250px;
+	position:relative;
+	height:400px;
+	width:100%;
 	margin-left: auto;
 	margin-right: auto;
 	border: 1px solid #ff9900;
@@ -64,20 +58,15 @@ div {
 	
 	background-color: #ffcc66;
 	color: black;
-	left: 100px;
-	top: 150px;
-}
-
-.holder {
-	position:relative;
-	height:415px;
-	width:450px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 5px;
-	padding: 0px;
 }
 
 textarea {
    resize: none;
+   width: 100%;
+}
+
+@media (min-width: 430px) {
+	textarea {
+		width: 400px;
+	}
 }

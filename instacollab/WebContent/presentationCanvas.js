@@ -46,13 +46,13 @@ setUpPresentationFirst = function(pdf) {
 	window.numPresentationPages = pdf.numPages;
 	window.presentationPdf = pdf;
 	
-	$("#menuDiv").append("<button id=\"previousPage\">Previous Page</button>");
-	$("#previousPage").css({"height":"100%"});
-	$("#previousPage").click(goPreviousPage);
+	//$("#menuDiv").append("<button id=\"previousPage\">Previous Page</button>");
+	//$("#previousPage").css({"height":"100%"});
+	//$("#previousPage").click(goPreviousPage);
 	
-	$("#menuDiv").append("<button id=\"nextPage\">Next Page</button>");
-	$("#nextPage").css({"height":"100%"});
-	$("#nextPage").click(goNextPage);
+	//$("#menuDiv").append("<button id=\"nextPage\">Next Page</button>");
+	//$("#nextPage").css({"height":"100%"});
+	//$("#nextPage").click(goNextPage);
 }
 
 renderPresentationPage = function(pdf) {

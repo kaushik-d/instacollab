@@ -1,7 +1,20 @@
 @CHARSET "UTF-8";
 
-.color {
+body {
+	position: relative;
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
+@media (min-width: 430px) {
+	body {
+		background-image: url("images/officeBkG_1.jpg");
+	}
+}
+
+.color {
+	background-color: #ccffff;
 }
 
 .color:hover {
@@ -25,6 +38,24 @@
 	width: 275px;
 	font-size: 1.5em;
 	text-align:left;
+}
+
+.button_holder {
+	display: block;
+	width: 430px;
+	background:rgba(255,255,255,0.5);
+	border-radius: 25px;
+}
+
+@media (max-width: 430px) {
+	.button_holder {
+		width: 100%;
+	}
+}
+
+input::-moz-placeholder {
+  color: green;
+  opacity: 0.8;
 }
 
 .footer {

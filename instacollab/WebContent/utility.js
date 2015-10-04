@@ -139,10 +139,12 @@ function restore() {
 			"width" : CURRENTCANVASWIDTH,
 			"height" : CURRENTCANVASHEIGHT
 		});
+		/*
 		$("#menuDiv").css({
 			"top" : CURRENTCANVASHEIGHT - MENUBARHEIGHT,
 		 "buttom":CURRENTCANVASHEIGHT-MENUBARHEIGHT
 		});
+		*/
 		
 		message = 'CURRENTCANVASWIDTH: ' + CURRENTCANVASWIDTH + '\nCURRENTCANVASHEIGHT:' + CURRENTCANVASHEIGHT;
 		writeMessage(message);
@@ -166,11 +168,12 @@ function restore() {
 			"width" : CURRENTCANVASWIDTH,
 			"height" : CURRENTCANVASHEIGHT
 		});
+		/*
 		$("#menuDiv").css({
 			"top" : CURRENTCANVASHEIGHT - MENUBARHEIGHT,
 		 "buttom":CURRENTCANVASHEIGHT-MENUBARHEIGHT
 		});
-
+		*/
 		redrawCurrentPageContents();
 		message = 'CURRENTCANVASWIDTH: ' + CURRENTCANVASWIDTH + '\nCURRENTCANVASHEIGHT:' + CURRENTCANVASHEIGHT;
 		writeMessage(message);

@@ -14,8 +14,15 @@
 <meta name="distribution" content="global" /> 
 <meta name="robots" content="index" />
 
-<link rel="stylesheet" type="text/css" href="canvas.css">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
 <link href="base.css?v=1.0" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="canvas.css">
+
 <title>Start collaboration now</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -61,16 +68,38 @@
 		
 		addFullScreenListners()
 
-		$("#canvasDiv").append("<div id=\"menuDiv\"></div>");
-		$("#menuDiv").css(
+		$("#canvasDiv").append("<div class=\"btn-group menuDiv\" id=\"menuDiv\"></div>");
+		$("#menuDiv").append("<a id=\"fullScreenButton\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-expand\"></i></a>");
+		$("#menuDiv").append("<a id=\"previousPage\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-arrow-left\"></i></a>");
+		$("#menuDiv").append("<a id=\"nextPage\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-arrow-right\"></i></a>");
+		$("#menuDiv").append("<a id=\"hideMenu\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-times\"></i></a>");
+		$("#menuDiv").append("<a id=\"showMenu\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-bars\"></i></a>");
+		
+		$("#showMenu").hide();
+		
+		$("#hideMenu").click(function(){
+			$(".btn.btnc").hide();
+			$("#showMenu").show();
+		});
+		
+		$("#showMenu").click(function(){
+			$(".btn.btnc").show();
+			$("#showMenu").hide();
+		});
+		
+		
+		/*$("#menuDiv").css(
 				{"height":MENUBARHEIGHT,
 					"top":CURRENTCANVASHEIGHT-MENUBARHEIGHT,
 		//			"top": "2px",
 					//"buttom":CURRENTCANVASHEIGHT-MENUBARHEIGHT,
 					"width":"100%"});
+		
 		$("#menuDiv").append("<button id=\"fullScreenButton\">Fullscreen</button>");
-		$("#fullScreenButton").css({"height":"100%"});
-		$("#fullScreenButton").click(goFullScreen);
+		
+		//$("#fullScreenButton")
+		$("#fullScreenButton").css({"height":"100%"});*/
+		$("#fullScreenButton").click(goFullScreen); 
 	});
 </script>
 <script>
@@ -88,13 +117,14 @@ window.onbeforeunload = function (e) {
 </script>
 </head>
 <body>
-   <div id="HeaderDiv" class="header">
-			<a href="index.jsp">Home</a> |
-			<a>Demo</a> |
-			<a>Help</a> |
-    		<a href="feedback.html">Feedback</a> |
-    		<a href="termsandconditions.html">Terms and conditions</a>
-    </div>
+
+    <div class="btn-group-lg top-gap" style="text-align: center;">
+			<a class="btn btn-default color" href="index.jsp"><i class="fa fa-home fa-2x"></i></a>
+			<a class="btn btn-default color" href="feedback.html"><i class="fa fa-medkit fa-2x"></i></a> 
+			<a class="btn btn-default color" href="feedback.html"><i class="fa fa-comment fa-2x"></i></a> 
+			<a class="btn btn-default color" href="termsandconditions.html"><i class="fa fa-info fa-2x"></i></a> 
+	</div>
+    
 	<div id="canvasDiv"></div>
 	<div id="messageDiv_holder">
 	<div id="messageDiv">
@@ -113,30 +143,22 @@ window.onbeforeunload = function (e) {
 			<div id="console"></div>
 		</div>
 	</div>
-	<div id="FooterDiv" class="footer">
-			<ul class="social-icons">
-				<!-- Facebook Button-->
-				<li class="social-icon facebook"><a
-					onclick="javascript:popupCenter('https://www.facebook.com/sharer/sharer.php?u=www.instacollaboration.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID','Facebook Share', '540', '400');return false;"
+	
+	    <div class="btn-group-lg" style="text-align: center;">
+			<a class="btn btn-default color" onclick="javascript:popupCenter('https://www.facebook.com/sharer/sharer.php?u=www.instacollaboration.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID','Facebook Share', '540', '400');return false;"
 					href="https://www.facebook.com/sharer/sharer.php?u=www.instacollaboration.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID"
-					target="blank"><i class="fa fa-facebook"></i> Share </a></li>
-				<!-- Twitter Button -->
-				<li class="social-icon twitter"><a
-					onclick="javascript:popupCenter('https://twitter.com/share?&amp;url=www.instacollaboration.com&amp;text=Start Collaboration Now. http://www.instacollaboration.com','Tweet', '540', '400');return false;"
+					target="blank"><i class="fa fa-facebook fa-2x"></i></a>
+			<a class="btn btn-default color" onclick="javascript:popupCenter('https://twitter.com/share?&amp;url=www.instacollaboration.com&amp;text=Start Collaboration Now. http://www.instacollaboration.com','Tweet', '540', '400');return false;"
 					href="https://twitter.com/share?&amp;url=www.instacollaboration.com&amp;text=Start Collaboration Now. http://www.instacollaboration.com"
-					target="blank"><i class="fa fa-twitter"></i> Tweet </a></li>
-				<!-- Google + Button-->
-				<li class="social-icon google-plus"><a
-					onclick="javascript:popupCenter('https://plus.google.com/share?url=www.instacollaboration.com','Share on Google+', '600', '600');return false;"
+					target="blank"><i class="fa fa-twitter fa-2x"></i></a> 
+			<a class="btn btn-default color" onclick="javascript:popupCenter('https://plus.google.com/share?url=www.instacollaboration.com','Share on Google+', '600', '600');return false;"
 					href="https://plus.google.com/share?url=www.instacollaboration.com"
-					target="blank"><i class="fa fa-google-plus"></i> Google+</a></li>
-				<!-- LinkedIn Button -->
-				<li class="social-icon linkedin"><a
-					onclick="javascript:popupCenter('http://www.linkedin.com/shareArticle?mini=true&amp;url=www.instacollaboration.com&amp;title=Start Collaboration Now&amp;source=StieURl','Share on LinkedIn', '520', '570');return false;"
+					target="blank"><i class="fa fa-google-plus fa-2x"></i></a> 
+			<a class="btn btn-default color" onclick="javascript:popupCenter('http://www.linkedin.com/shareArticle?mini=true&amp;url=www.instacollaboration.com&amp;title=Start Collaboration Now&amp;source=StieURl','Share on LinkedIn', '520', '570');return false;"
 					href="http://www.linkedin.com/shareArticle?mini=true&amp;url=www.instacollaboration.com&amp;title=Start Collaboration Now&amp;source=UrlSource"
-					target="blank"><i class="fa fa-linkedin"></i> LinkedIn </a></li>
-			</ul>
+					target="blank"><i class="fa fa-linkedin fa-2x"></i></a> 
 		</div>
+		
 		<div id="FooterDiv1" class="footer">
 			<span class="footer2">© InstaCollaboration: all rights reserved</span>
     	</div>

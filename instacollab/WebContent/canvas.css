@@ -4,20 +4,24 @@ body {
 	position: relative;
 	width: 100%;
 	height: 100%;
+	background-image: none;
 }
 
+btnc {
+	background-color: #ff6600;
+}
 
 div {
-	
 	vertical-align: bottom;
-	height: 100%;
 	padding: 0px;
+	/*
+	height: 100%;
 	width: 100%;
+	*/
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
 	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
-	
 }
 
 *:fullscreen, *:-webkit-full-screen, *:-moz-full-screen {
@@ -95,7 +99,6 @@ input#chat {
 	position: relative;
 	width: 512px; /* 1024×576 or 16:9 */
 	height: 288px;
-	position: relative;
 	border: 2px solid #ff9900;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
@@ -144,13 +147,14 @@ canvas {
 }
 
 
-#menuDiv {
+.menuDiv {
 	position: absolute;
-	width: 100%;
+	/*width: 100%;
 	border: 0px solid;
 	height: 30px;
-	text-align: center;
+	text-align: center;*/
 }
+
 
 button {
 	position: relative;

@@ -78,7 +78,7 @@
 				});
 				
 				$("input[name=isPresentation]:radio").change(function () {
-			        if ($("#SelectedPresentation").attr("checked")) {
+			        if ($("#SelectedPresentation").is(':checked')) {
 			            $('#fileSelector').removeAttr('disabled');
 			            $('#fileSelector').attr('required', 'required');
 			        }
@@ -279,7 +279,7 @@
 			<a class="btn btn-default color" href="termsandconditions.html"><i class="fa fa-info fa-2x"></i></a> 
 		</div>
  
-		<div id=button_holder>
+		<div id=button_holder class="button_holder">
 
 			<div class="botton_div">
 				<a id="Start_Button" class="btn btn-default color btn-wt" href="#">
@@ -317,10 +317,11 @@
 					
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-upload"></i></span>
-    					<input type="text" class="form-control" placeholder="Upload presentation" readonly style="width:200px"/>
-						<span class="btn btn-default btn-file">
-        					Browse <input type="file" name="presentationFile" id="fileSelector" accept="application/pdf" /> 
-    					</span>
+    					<!-- <input type="text" class="form-control" placeholder="Upload presentation" readonly/>
+						<span class="input-group-btn">
+        					<i class="fa fa-upload"></i>  -->
+        				<input type="file" class="btn btn-default" name="presentationFile" id="fileSelector" accept="application/pdf" /> 
+    					</span> 
 					</div>
 					
 					<div class="input-group">
