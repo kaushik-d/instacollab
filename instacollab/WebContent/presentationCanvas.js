@@ -46,13 +46,20 @@ setUpPresentationFirst = function(pdf) {
 	window.numPresentationPages = pdf.numPages;
 	window.presentationPdf = pdf;
 	
-	//$("#menuDiv").append("<button id=\"previousPage\">Previous Page</button>");
-	//$("#previousPage").css({"height":"100%"});
-	//$("#previousPage").click(goPreviousPage);
+	$("#previousPage").removeClass('disabled');
+	$("#previousPage").click(goPreviousPage);
+	//$("#TotalPage").append("");
+	//$("#TotalPage").children("*").remove();
+	var TotalPage = window.document.getElementById('TotalPage');
+	TotalPage.innerHTML="";
+	$("#TotalPage").append(window.numPresentationPages.toString());
+	$("#nextPage").removeClass('disabled');
+	$("#nextPage").click(goNextPage);
 	
-	//$("#menuDiv").append("<button id=\"nextPage\">Next Page</button>");
-	//$("#nextPage").css({"height":"100%"});
-	//$("#nextPage").click(goNextPage);
+	var pageNum1 = window.currentPage + 1;
+	var Page = window.document.getElementById('currentPage');
+	Page.innerHTML="";
+	$("#currentPage").append(pageNum1.toString());
 }
 
 renderPresentationPage = function(pdf) {
@@ -81,8 +88,11 @@ renderPresentationPage = function(pdf) {
 
 goPreviousPage = function() {
 	if(currentPage > 0){
-		currentPage--;
-		redrawCurrentPageContents();
+		//currentPage--;
+		//redrawCurrentPageContents();
+		var crr = currentPage - 1;
+		changePage(crr);
+		
 		var mes = {
 				command : "changePage",
 				currentPage : currentPage
@@ -94,8 +104,9 @@ goPreviousPage = function() {
 
 goNextPage = function() {
 	if(currentPage < numPresentationPages-1){
-		currentPage++;
-		redrawCurrentPageContents();
+		var crr = currentPage + 1;
+		changePage(crr);
+		//redrawCurrentPageContents();
 		var mes = {
 				command : "changePage",
 				currentPage : currentPage,
@@ -110,6 +121,20 @@ changePage = function(pageNum) {
 	if(pageNum < numPresentationPages && pageNum >= 0){
 		currentPage = pageNum;
 		redrawCurrentPageContents();
+		
+		var pageNum1 = pageNum + 1;
+		var Page = window.document.getElementById('currentPage');
+		Page.innerHTML="";
+		$("#currentPage").append(pageNum1.toString());
+		
+		if(pageNum1 == numPresentationPages){
+			$("#nextPage").addClass('disabled');
+			$("#previousPage").removeClass('disabled');
+		}
+		if(pageNum1 == 1){
+			$("#previousPage").addClass('disabled');
+			$("#nextPage").removeClass('disabled');
+		}
 	}
 }
 

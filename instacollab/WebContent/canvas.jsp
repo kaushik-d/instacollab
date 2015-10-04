@@ -69,11 +69,11 @@
 		addFullScreenListners()
 
 		//$("#canvasDiv").append("<div class=\"btn-group menuDiv\" id=\"menuDiv\"></div>");
-		//$("#menuDiv").append("<a id=\"fullScreenButton\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-expand\"></i></a>");
-		//$("#menuDiv").append("<a id=\"previousPage\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-arrow-left\"></i></a>");
-		//$("#menuDiv").append("<a id=\"nextPage\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-arrow-right\"></i></a>");
-		//$("#menuDiv").append("<a id=\"hideMenu\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-times\"></i></a>");
-		//$("#menuDiv").append("<a id=\"showMenu\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-bars\"></i></a>");
+		//$("#menuDiv").append("<a id=\"fullScreenButton\" class=\"btn btn-default color btnc\" href=\"#\"><i class=\"fa fa-expand\"></i></a>");
+		//$("#menuDiv").append("<a id=\"previousPage\" class=\"btn btn-default color btnc\" href=\"#\"><i class=\"fa fa-arrow-left\"></i></a>");
+		//$("#menuDiv").append("<a id=\"nextPage\" class=\"btn btn-default color btnc\" href=\"#\"><i class=\"fa fa-arrow-right\"></i></a>");
+		//$("#menuDiv").append("<a id=\"hideMenu\" class=\"btn btn-default color btnc\" href=\"#\"><i class=\"fa fa-times\"></i></a>");
+		//$("#menuDiv").append("<a id=\"showMenu\" class=\"btn btn-default color btnc\" href=\"#\"><i class=\"fa fa-bars\"></i></a>");
 		
 		$("#showMenu").hide();
 		
@@ -116,35 +116,82 @@ window.onbeforeunload = function (e) {
     
 	<div id="canvasDiv">
 		<div class="btn-group menuDiv" id="menuDiv">
-			<a id="fullScreenButton" class="btn btn-default btnc" href="#"><i class="fa fa-expand"></i></a>
-			<a id="previousPage" class="btn btn-default btnc" href="#"><i class="fa fa-arrow-left"></i></a>
-			<a id="currentPage" class="btn btn-default disabled btnc"><i class="fa">0</i></a>
-			<a class="btn btn-default disabled btnc"><i class="fa">of</i></a>
-			<a id="TotalPage" class="btn btn-default disabled btnc"><i class="fa">10000</i></a>
-			<a id="nextPage" class="btn btn-default btnc" href="#"><i class="fa fa-arrow-right"></i></a>
-			<a id="nextPage" class="btn btn-default disabled btnc" href="#"><i class="fa fa-pencil"></i></a>
-			<a id="nextPage" class="btn btn-default disabled btnc" href="#"><i class="fa fa-eraser"></i></a>
-			<a id="hideMenu" class="btn btn-default btnc" href="#"><i class="fa fa-times"></i></a>
-			<a id="showMenu" class="btn btn-default btnc" href="#"><i class="fa fa-bars"></i></a>
+			<a id="fullScreenButton" class="btn btn-default color btnc" href="#"><i class="fa fa-expand"></i></a>
+			<a id="previousPage" class="btn btn-default color btnc" href="#"><i class="fa fa-arrow-left"></i></a>
+			<a class="btn btn-default disabled color btnc"><i id="currentPage" class="fa">0</i></a>
+			<a class="btn btn-default disabled color btnc"><i class="fa">of</i></a>
+			<a class="btn btn-default disabled color btnc"><i id="TotalPage" class="fa">0</i></a>
+			<a id="nextPage" class="btn btn-default color btnc" href="#"><i class="fa fa-arrow-right"></i></a>
+			<a id="pencil" class="btn btn-default disabled color btnc" href="#"><i class="fa fa-pencil"></i></a>
+			<a id="eraser" class="btn btn-default disabled color btnc" href="#"><i class="fa fa-eraser"></i></a>
+			<a id="showMenu" class="btn btn-default color btnc" href="#"><i class="fa fa-bars"></i></a>
+			<a id="hideMenu" class="btn btn-default color btnc" href="#"><i class="fa fa-times"></i></a>
 		</div>
 	</div>
 	
 	
 	<div id="messageDiv_holder">
 	<div id="messageDiv">
+	<!--  
+		<div class="input-group">
+			<span class="input-group-addon messageHead"><i class="fa fa-desktop pull-left"> Meeting room#</i></span>
+			<input id="MeetingRoom" type="text" class="form-control message" readonly />
+		</div>
+		<div class="input-group">
+			<span class="input-group-addon messageHead"><i class="fa fa-th-list pull-left"> Meeting topic</i></span>
+			<input id="MeetingTopic" type="text" class="form-control message" readonly />
+		</div>
+		<div class="input-group">
+			<span class="input-group-addon messageHead"><i class="fa fa-user pull-left"> Host</i></span>
+			<input id="MeetingHost" type="text" class="form-control message" readonly />
+		</div>
+		<div class="input-group">
+			<span class="input-group-addon messageHead"><i class="fa fa-envelope-o pull-left"> Host's e-mail</i></span>
+			<input id="MeetingHostEmail" type="text" class="form-control message" readonly />
+		</div>
+		-->
+		<div class="panel panel-info">
+  			<div class="panel-heading"><i class="fa fa-desktop fa-2x pull-left"></i> Meeting room#</div>
+  			<div class="panel-body" id="MeetingRoom"></div>
+		</div>
+		<div class="panel panel-info">
+  			<div class="panel-heading"><i class="fa fa-th-list fa-2x pull-left"></i>Meeting topic</div>
+  			<div class="panel-body" id="MeetingTopic"></div>
+		</div>
+		<div class="panel panel-info">
+  			<div class="panel-heading"><i class="fa fa-user fa-2x pull-left"></i>Host</div>
+  			<div class="panel-body" id="MeetingHost"></div>
+		</div>
+		<div class="panel panel-info">
+  			<div class="panel-heading"><i class="fa fa-envelope-o fa-2x pull-left"></i>Host's e-mail</div>
+  			<div class="panel-body" id="MeetingHostEmail"></div>
+		</div>
+	</div>
+	</div>
+	
+	<!--  
 		<p id="MeetingRoom">Meeting room#:</p>
 		<p id="MeetingTopic">Meeting topic:</p>
 		<p id="MeetingHost">Meeting host:</p>
 		<p id="MeetingHostEmail">Host e-mail:</p>
-	</div>
-	</div>
+		-->
+
 	<div id="chatArea">
+	<div  id="inputDiv">
+		<div class="input-group">
+			<span class="input-group-addon"><i class="fa fa-comments"></i></span>
+			<input placeholder="type and press enter to chat" id="chat" type="text" class="form-control" />
+		</div>
+	</div>
+		
+		<!-- 
 		<div  id="inputDiv">
 			<input type="text" placeholder="type and press enter to chat"
 				id="chat" />
 		</div>
+		 -->
 		<div id="console-container">
-			<div id="console"></div>
+			<div  class="well" id="console"></div>
 		</div>
 	</div>
 	

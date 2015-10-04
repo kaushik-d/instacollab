@@ -7,10 +7,6 @@ body {
 	background-image: none;
 }
 
-btnc {
-	background-color: #ff6600;
-}
-
 div {
 	vertical-align: bottom;
 	padding: 0px;
@@ -57,9 +53,9 @@ div:fullscreen>canvas {
 }
 
 input#chat {
-	width: 500px;
+	/*width: 500px;
 	position: relative;
-	font-size: 14px;
+	font-size: 14px; */
 }
 
 #inputDiv {
@@ -146,10 +142,36 @@ canvas {
 	height: 100%;
 }
 
+.btnc{
+	color: black;
+}
+
+.messageHead {
+	width: 10em;
+}
+
+.message {
+	width: 20em;
+}
+
+.panel{
+	margin-bottom: 0px;
+}
+
+.panel-body{
+	margin-bottom: 0px;
+	text-align: left;
+	padding: 5px;
+}
+
+.panel-heading{
+	padding: 5px;
+}
 
 .menuDiv {
 	position: absolute;
 	z-index: 10000;
+	background-color: white;
 	/*width: 100%;
 	border: 0px solid;
 	height: 30px;
