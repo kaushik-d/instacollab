@@ -68,12 +68,12 @@
 		
 		addFullScreenListners()
 
-		$("#canvasDiv").append("<div class=\"btn-group menuDiv\" id=\"menuDiv\"></div>");
-		$("#menuDiv").append("<a id=\"fullScreenButton\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-expand\"></i></a>");
-		$("#menuDiv").append("<a id=\"previousPage\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-arrow-left\"></i></a>");
-		$("#menuDiv").append("<a id=\"nextPage\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-arrow-right\"></i></a>");
-		$("#menuDiv").append("<a id=\"hideMenu\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-times\"></i></a>");
-		$("#menuDiv").append("<a id=\"showMenu\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-bars\"></i></a>");
+		//$("#canvasDiv").append("<div class=\"btn-group menuDiv\" id=\"menuDiv\"></div>");
+		//$("#menuDiv").append("<a id=\"fullScreenButton\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-expand\"></i></a>");
+		//$("#menuDiv").append("<a id=\"previousPage\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-arrow-left\"></i></a>");
+		//$("#menuDiv").append("<a id=\"nextPage\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-arrow-right\"></i></a>");
+		//$("#menuDiv").append("<a id=\"hideMenu\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-times\"></i></a>");
+		//$("#menuDiv").append("<a id=\"showMenu\" class=\"btn btn-default btnc\" href=\"#\"><i class=\"fa fa-bars\"></i></a>");
 		
 		$("#showMenu").hide();
 		
@@ -88,17 +88,6 @@
 		});
 		
 		
-		/*$("#menuDiv").css(
-				{"height":MENUBARHEIGHT,
-					"top":CURRENTCANVASHEIGHT-MENUBARHEIGHT,
-		//			"top": "2px",
-					//"buttom":CURRENTCANVASHEIGHT-MENUBARHEIGHT,
-					"width":"100%"});
-		
-		$("#menuDiv").append("<button id=\"fullScreenButton\">Fullscreen</button>");
-		
-		//$("#fullScreenButton")
-		$("#fullScreenButton").css({"height":"100%"});*/
 		$("#fullScreenButton").click(goFullScreen); 
 	});
 </script>
@@ -125,7 +114,22 @@ window.onbeforeunload = function (e) {
 			<a class="btn btn-default color" href="termsandconditions.html"><i class="fa fa-info fa-2x"></i></a> 
 	</div>
     
-	<div id="canvasDiv"></div>
+	<div id="canvasDiv">
+		<div class="btn-group menuDiv" id="menuDiv">
+			<a id="fullScreenButton" class="btn btn-default btnc" href="#"><i class="fa fa-expand"></i></a>
+			<a id="previousPage" class="btn btn-default btnc" href="#"><i class="fa fa-arrow-left"></i></a>
+			<a id="currentPage" class="btn btn-default disabled btnc"><i class="fa">0</i></a>
+			<a class="btn btn-default disabled btnc"><i class="fa">of</i></a>
+			<a id="TotalPage" class="btn btn-default disabled btnc"><i class="fa">10000</i></a>
+			<a id="nextPage" class="btn btn-default btnc" href="#"><i class="fa fa-arrow-right"></i></a>
+			<a id="nextPage" class="btn btn-default disabled btnc" href="#"><i class="fa fa-pencil"></i></a>
+			<a id="nextPage" class="btn btn-default disabled btnc" href="#"><i class="fa fa-eraser"></i></a>
+			<a id="hideMenu" class="btn btn-default btnc" href="#"><i class="fa fa-times"></i></a>
+			<a id="showMenu" class="btn btn-default btnc" href="#"><i class="fa fa-bars"></i></a>
+		</div>
+	</div>
+	
+	
 	<div id="messageDiv_holder">
 	<div id="messageDiv">
 		<p id="MeetingRoom">Meeting room#:</p>

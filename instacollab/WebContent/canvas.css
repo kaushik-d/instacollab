@@ -149,6 +149,7 @@ canvas {
 
 .menuDiv {
 	position: absolute;
+	z-index: 10000;
 	/*width: 100%;
 	border: 0px solid;
 	height: 30px;
