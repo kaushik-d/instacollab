@@ -135,6 +135,10 @@ changePage = function(pageNum) {
 			$("#previousPage").addClass('disabled');
 			$("#nextPage").removeClass('disabled');
 		}
+		if(pageNum1 != 1 && pageNum1 != numPresentationPages){
+			$("#previousPage").removeClass('disabled');
+			$("#nextPage").removeClass('disabled');
+		}
 	}
 }
 
