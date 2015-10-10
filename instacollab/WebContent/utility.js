@@ -226,7 +226,7 @@ redrawCurrentPageContents = function() {
 			
 			drawCommand = saveDrawCommandsForCurrentPage[i];
 			drawLinesSlave(drawCommand.slaveID, drawCommand.type,
-					drawCommand.x, drawCommand.y);
+					drawCommand.x, drawCommand.y,drawCommand.color, drawCommand.penStyle);
 		}
 
 	}
@@ -240,7 +240,7 @@ redrawCurrentPageContents = function() {
 			
 			drawCommand = saveDrawCommandsForCurrentPage[i];
 			drawLinesMaster(0, drawCommand.type,
-					drawCommand.x, drawCommand.y);
+					drawCommand.x, drawCommand.y,drawCommand.color, drawCommand.penStyle);
 		}
 
 	}

@@ -104,6 +104,22 @@ input#chat {
 	z-index: -20000;*/
 }
 
+.Red {
+	color: #ff0000; !important
+}
+
+.Red a:visited {
+	color: #ff0000;
+}
+
+.Blue {
+	color: #3399ff;
+}
+
+.Blue a:visited {
+	color: #3399ff;
+}
+
 
 #messageDiv_holder {
 	padding: 5px;
@@ -172,12 +188,14 @@ canvas {
 	position: absolute;
 	z-index: 10000;
 	background-color: white;
-	/*width: 100%;
-	border: 0px solid;
-	height: 30px;
-	text-align: center;*/
 }
 
+.infoDiv {
+	position: absolute;
+	z-index: 10000;
+	background-color: white;
+	transform: translate(0px,30px);
+}
 
 button {
 	position: relative;

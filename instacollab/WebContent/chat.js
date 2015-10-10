@@ -96,7 +96,7 @@ processCommands = function(message) {
 		initCanvasSlave(mes.canvasID.trim());
 	} else if (mes.command === "drawLinesSlave") {
 		if(mes.pageNum === currentPage) {
-			drawLinesSlave(mes.slaveID, mes.type, mes.x, mes.y);
+			drawLinesSlave(mes.slaveID, mes.type, mes.x, mes.y, mes.color, mes.penStyle);
 		}
 		saveDrawLinesSlave(mes);
 	} else if (mes.command === "setMySlaveID") {

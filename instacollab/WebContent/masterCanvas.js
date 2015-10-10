@@ -8,7 +8,7 @@ var lineStartedListMaster = new Array();
 var oldxListMaster = new Array();
 var oldyListMaster = new Array();
 
-function drawLinesMaster(ID, type, x, y) {
+function drawLinesMaster(ID, type, x, y, color, penstyle) {
 	//
 	// Check drawLinesSlave
 	//
@@ -31,7 +31,18 @@ function drawLinesMaster(ID, type, x, y) {
 			contextListMaster[ID].lineTo(x, y);
 			oldxListMaster[ID] = x;
 			oldyListMaster[ID] = y;
-			contextListMaster[ID].strokeStyle = '#ff0000';
+			//contextListMaster[ID].strokeStyle = '#ff0000';
+			contextListMaster[ID].strokeStyle = color;
+			contextListMaster[ID].lineWidth = 5;
+			
+			if(penstyle === 'E') {
+				contextListMaster[ID].globalCompositeOperation = "destination-out";
+				contextListMaster[ID].strokeStyle = "rgba(0,0,0,1)";
+				contextListMaster[ID].lineWidth = 15;
+			} else { // (currentPenstyle === 'P')
+				contextListMaster[ID].globalCompositeOperation = "source-over";
+			}
+			
 			contextListMaster[ID].stroke();
 		} else {
 			lineStartedListMaster[ID] = false;
@@ -50,15 +61,16 @@ function updateLine(evt) {
 		x : mousePos.x,
 		y : mousePos.y,
 		slaveID : mySlaveID,
-		pageNum : currentPage
+		pageNum : currentPage,
+		color: currentColor,
+		penStyle: currentPenstyle
 	};
 
 	saveDrawLinesMaster(mes);
 
-	//Chat.socket.send(JSON.stringify(mes));
 	Chat.sendMessage(JSON.stringify(mes));
 
-	drawLinesMaster(ID, "lineUpdate", mousePos.x, mousePos.y);
+	drawLinesMaster(ID, "lineUpdate", mousePos.x, mousePos.y, currentColor, currentPenstyle);
 }
 
 function startLine(evt) {
@@ -72,7 +84,9 @@ function startLine(evt) {
 		x : mousePos.x,
 		y : mousePos.y,
 		slaveID : mySlaveID,
-		pageNum : currentPage
+		pageNum : currentPage,
+		color: currentColor,
+		penStyle: currentPenstyle
 	};
 
 	saveDrawLinesMaster(mes);
@@ -80,7 +94,7 @@ function startLine(evt) {
 	//Chat.socket.send(JSON.stringify(mes));
 	Chat.sendMessage(JSON.stringify(mes));
 
-	drawLinesMaster(ID, "lineStart", mousePos.x, mousePos.y);
+	drawLinesMaster(ID, "lineStart", mousePos.x, mousePos.y, currentColor, currentPenstyle);
 	
 	canvasListMaster[ID].addEventListener('mousemove', updateLine, false);
 	canvasListMaster[ID].addEventListener('mousemove', updateMousePosition,
@@ -101,7 +115,9 @@ function endLine(evt) {
 		x : mousePos.x,
 		y : mousePos.y,
 		slaveID : mySlaveID,
-		pageNum : currentPage
+		pageNum : currentPage,
+		color: currentColor,
+		penStyle: currentPenstyle
 	};
 
 	saveDrawLinesMaster(mes);
@@ -109,7 +125,7 @@ function endLine(evt) {
 	//Chat.socket.send(JSON.stringify(mes));
 	Chat.sendMessage(JSON.stringify(mes));
 
-	drawLinesMaster(ID, "lineEnd", mousePos.x, mousePos.y);
+	drawLinesMaster(ID, "lineEnd", mousePos.x, mousePos.y, currentColor, currentPenstyle);
 	canvasListMaster[ID].removeEventListener('mousemove', updateLine, false);
 	canvasListMaster[ID].removeEventListener('mousemove', updateMousePosition,
 			false);

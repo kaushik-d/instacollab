@@ -7,7 +7,7 @@ var lineStartedListSlave = new Array();
 var oldxListSlave = new Array();
 var oldyListSlave = new Array();
 
-function drawLinesSlave(ID, type, x, y) {
+function drawLinesSlave(ID, type, x, y, color, penstyle) {
 //
 // Check drawLinesMaster
 //
@@ -28,7 +28,19 @@ function drawLinesSlave(ID, type, x, y) {
 			contextListSlave[ID].lineTo(x, y);
 			oldxListSlave[ID] = x;
 			oldyListSlave[ID] = y;
-			contextListSlave[ID].strokeStyle = '#ff0000';
+			//contextListSlave[ID].strokeStyle = '#ff0000';
+			contextListSlave[ID].strokeStyle = color;
+			contextListSlave[ID].lineWidth = 5;
+			
+			if(penstyle === 'E') {
+				contextListSlave[ID].globalCompositeOperation = "destination-out";
+				contextListSlave[ID].strokeStyle = "rgba(0,0,0,1)";
+				contextListSlave[ID].lineWidth = 15;
+			} else { // (currentPenstyle === 'P')
+				contextListSlave[ID].globalCompositeOperation = "source-over";
+			}
+			
+			
 			contextListSlave[ID].stroke();
 		} else {
 			lineStartedListSlave[ID] = false;

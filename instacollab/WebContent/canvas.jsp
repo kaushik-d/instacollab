@@ -62,6 +62,10 @@
 	var isPresentation = false;
 	var presentationURI = "NotAPresentation";
 	var currentPage = 0;
+	var currentColor = '#ff0000';
+	var currentPenstyle = 'P'; // P: Pen, E: eraser 
+	var dataURLP = null;
+	var dataURLE = null;
 	var canvasPresentation = null;
 	var contextPresentation = null;
 	var numPresentationPages = 1;
@@ -92,6 +96,36 @@
 			$("#showMenu").hide();
 		});
 		
+		$("#eraser").click(function(){
+			window.currentPenstyle = 'E';
+			 $('#M0').css('cursor', 'url('+dataURLE+') 1 30, auto');
+		});
+		
+		$("#pencilR").click(function(){
+			window.currentPenstyle = 'P';
+			$('#M0').css('cursor', 'url('+dataURLP+') 1 30, auto');
+			window.currentColor = '#ff0000';
+		});
+		
+		$("#pencilB").click(function(){
+			window.currentPenstyle = 'P';
+			$('#M0').css('cursor', 'url('+dataURLP+') 1 30, auto');
+			window.currentColor = '#3399ff';
+		});
+		
+		$("#infoClose").click(function(){
+			$("#infoTable").hide();
+			$("#info").show();
+			$("#infoClose").hide();
+		});
+		
+		$("#info").hide();
+		
+		$("#info").click(function(){
+			$("#infoTable").show();
+			$("#infoClose").show();
+			$("#info").hide();
+		});
 		
 		$("#fullScreenButton").click(goFullScreen); 
 		
@@ -105,8 +139,12 @@
 	    ctx.textAlign = "center";
 	    ctx.textBaseline = "middle";
 	    ctx.fillText("\uf040", 12, 12);
-	    var dataURL = canvas.toDataURL('image/png')
-	    $('#M0').css('cursor', 'url('+dataURL+') 1 30, auto');
+	    window.dataURLP = canvas.toDataURL('image/png')
+	    $('#M0').css('cursor', 'url('+dataURLP+') 1 30, auto');
+	    
+	    ctx.clearRect(0, 0, canvas.width, canvas.height);
+	    ctx.fillText("\uf12d", 12, 12);
+	    window.dataURLE = canvas.toDataURL('image/png')
 	    
 	});
 	
@@ -133,44 +171,51 @@ window.onbeforeunload = function (e) {
 			<a class="btn btn-default color" href="feedback.html"><i class="fa fa-comment fa-2x"></i></a> 
 			<a class="btn btn-default color" href="termsandconditions.html"><i class="fa fa-info fa-2x"></i></a> 
 	</div>
-    
+
 	<div id="canvasDiv">
 		<div class="btn-group menuDiv" id="menuDiv">
 			<a id="fullScreenButton" class="btn btn-default color btnc" href="#"><i id="idScreenIcon" class="fa fa-expand"></i></a>
-			<!-- <a id="exitfullScreenButton" class="btn btn-default color btnc" href="#"><i class="fa fa-compress"></i></a>  -->
-			<a id="previousPage" class="btn btn-default color btnc" href="#"><i class="fa fa-arrow-left"></i></a>
-			<a class="btn btn-default disabled color btnc"><i id="currentPage" class="fa">0</i></a>
-			<a class="btn btn-default disabled color btnc"><i class="fa">of</i></a>
-			<a class="btn btn-default disabled color btnc"><i id="TotalPage" class="fa">0</i></a>
-			<a id="nextPage" class="btn btn-default color btnc" href="#"><i class="fa fa-arrow-right"></i></a>
-			<a id="pencil" class="btn btn-default disabled color btnc" href="#"><i class="fa fa-pencil"></i></a>
-			<a id="eraser" class="btn btn-default disabled color btnc" href="#"><i class="fa fa-eraser"></i></a>
-			<a id="showMenu" class="btn btn-default color btnc" href="#"><i class="fa fa-bars"></i></a>
+			<a id="previousPage" class="btn btn-default color btnc" href="#"><i class="fa fa-arrow-left"></i></a> 
+			<a class="btn btn-default disabled color btnc"><i id="currentPage" class="fa">0</i></a> 
+			<a class="btn btn-default disabled color btnc"><i class="fa">of</i></a> 
+			<a class="btn btn-default disabled color btnc"><i id="TotalPage" class="fa">0</i></a> 
+			<a id="nextPage" class="btn btn-default color btnc" href="#"><i class="fa fa-arrow-right"></i></a> 
+			<a id="pencilR" class="btn btn-default color btnc" href="#"><i class="fa fa-pencil Red"></i></a> 
+			<a id="pencilB" class="btn btn-default color btnc" href="#"><i class="fa fa-pencil Blue"></i></a>
+			<a id="eraser" class="btn btn-default color btnc" href="#"><i class="fa fa-eraser"></i></a> 
+			<a id="showMenu" class="btn btn-default color btnc" href="#"><i class="fa fa-bars"></i></a> 
 			<a id="hideMenu" class="btn btn-default color btnc" href="#"><i class="fa fa-times"></i></a>
 		</div>
+
+		<div class="panel panel-default infoDiv">
+			<div class="panel-heading">
+				<a id="info" class="btn btn-default color" href="#"><i class="fa fa-info"></i></a>
+				<a id="infoClose" class="btn btn-default color" href="#"><i class="fa fa-times"></i></a>
+			</div>
+			<table id="infoTable" class="table">
+				<tr>
+					<td><em>Meeting room#</em></td>
+					<td id="MeetingRoom"></td>
+				</tr>
+				<tr>
+					<td><em>Meeting topic</em></td>
+					<td id="MeetingTopic"></td>
+				</tr>
+				<tr>
+					<td><em>Host</em></td>
+					<td id="MeetingHost"></td>
+				</tr>
+				<tr>
+					<td><em>Host's e-mail</em></td>
+					<td id="MeetingHostEmail"></td>
+				</tr>
+			</table>
+		</div>
+
 	</div>
-	
-	
+<!-- 
 	<div id="messageDiv_holder">
 	<div id="messageDiv">
-	<!--  
-		<div class="input-group">
-			<span class="input-group-addon messageHead"><i class="fa fa-desktop pull-left"> Meeting room#</i></span>
-			<input id="MeetingRoom" type="text" class="form-control message" readonly />
-		</div>
-		<div class="input-group">
-			<span class="input-group-addon messageHead"><i class="fa fa-th-list pull-left"> Meeting topic</i></span>
-			<input id="MeetingTopic" type="text" class="form-control message" readonly />
-		</div>
-		<div class="input-group">
-			<span class="input-group-addon messageHead"><i class="fa fa-user pull-left"> Host</i></span>
-			<input id="MeetingHost" type="text" class="form-control message" readonly />
-		</div>
-		<div class="input-group">
-			<span class="input-group-addon messageHead"><i class="fa fa-envelope-o pull-left"> Host's e-mail</i></span>
-			<input id="MeetingHostEmail" type="text" class="form-control message" readonly />
-		</div>
-		-->
 		<div class="panel panel-info">
   			<div class="panel-heading"><i class="fa fa-desktop fa-2x pull-left"></i> Meeting room#</div>
   			<div class="panel-body" id="MeetingRoom"></div>
@@ -189,7 +234,7 @@ window.onbeforeunload = function (e) {
 		</div>
 	</div>
 	</div>
-	
+ -->	
 	<!--  
 		<p id="MeetingRoom">Meeting room#:</p>
 		<p id="MeetingTopic">Meeting topic:</p>
