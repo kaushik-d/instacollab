@@ -32,7 +32,7 @@
 	</context-param>
 	
 	<!--  local DB settings  -->
-	<!-- 
+	
 	<context-param>
 		<param-name>dbURL</param-name>
 		<param-value>localhost:3306</param-value>
@@ -45,9 +45,9 @@
 		<param-name>dbPasswd</param-name>
 		<param-value>1234</param-value>
 	</context-param>
-	-->
+	
 	<!--  AWS RDB settings  -->
-	 
+	<!-- 
 	<context-param>
 		<param-name>dbURL</param-name>
 		<param-value>my-db-instance.cqkmpcckfpyh.us-east-1.rds.amazonaws.com:3306</param-value>
@@ -60,6 +60,6 @@
 		<param-name>dbPasswd</param-name>
 		<param-value>serampore</param-value>
 	</context-param>
-	
+	-->
 	
 </web-app>

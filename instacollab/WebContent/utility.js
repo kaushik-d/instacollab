@@ -105,6 +105,16 @@ function goFullScreen() {
 
 }
 
+function exitFullScreen() {
+	var parentDiv = document.getElementById("canvasDiv");
+	if (document.exitFullscreen) {
+		document.exitFullscreen();
+	} else if (document.mozCancelFullScreen) {
+		document.mozCancelFullScreen();
+	}
+
+}
+
 function restore() {
 	var message = null;
 	//if (!window.screenTop && !window.screenY) {
@@ -118,15 +128,14 @@ function restore() {
 		}
 		//Console.log('Info mozOrientation after: ' + screen.mozOrientation);
 		
-		if(screen.width > screen.height) {
+		//if(screen.width > screen.height) {
 			CURRENTCANVASWIDTH = screen.width;
 			CURRENTCANVASHEIGHT = screen.height;
-		} else {
-			CURRENTCANVASWIDTH = screen.height;
-			CURRENTCANVASHEIGHT = CURRENTCANVASWIDTH*INITICANVASHEIGHT/INITICANVASWIDTH;
-		}
+		//} else {
+		//	CURRENTCANVASWIDTH = screen.height;
+		//	CURRENTCANVASHEIGHT = CURRENTCANVASWIDTH*INITICANVASHEIGHT/INITICANVASWIDTH;
+		//}
 
-		
 		$("#canvasDiv").attr({
 			"width" : CURRENTCANVASWIDTH,
 			"height" : CURRENTCANVASHEIGHT
@@ -139,12 +148,6 @@ function restore() {
 			"width" : CURRENTCANVASWIDTH,
 			"height" : CURRENTCANVASHEIGHT
 		});
-		/*
-		$("#menuDiv").css({
-			"top" : CURRENTCANVASHEIGHT - MENUBARHEIGHT,
-		 "buttom":CURRENTCANVASHEIGHT-MENUBARHEIGHT
-		});
-		*/
 		
 		message = 'CURRENTCANVASWIDTH: ' + CURRENTCANVASWIDTH + '\nCURRENTCANVASHEIGHT:' + CURRENTCANVASHEIGHT;
 		writeMessage(message);
@@ -152,7 +155,16 @@ function restore() {
 		redrawCurrentPageContents();
 		
 		isCurrentlyFullscreen = true;
-
+		
+		//$("#exitfullScreenButton").show();
+		//$("#fullScreenButton").hide();
+		
+		$("#fullScreenButton").unbind("click",goFullScreen); 
+		$("#idScreenIcon").removeClass("fa-expand");
+		$("#idScreenIcon").addClass("fa-compress");
+		$("#fullScreenButton").click(exitFullScreen); 
+		//$("#exitfullScreenButton").click(exitFullScreen);
+		
 	} else {
 		CURRENTCANVASWIDTH = INITICANVASWIDTH;
 		CURRENTCANVASHEIGHT = INITICANVASHEIGHT;
@@ -168,12 +180,15 @@ function restore() {
 			"width" : CURRENTCANVASWIDTH,
 			"height" : CURRENTCANVASHEIGHT
 		});
-		/*
-		$("#menuDiv").css({
-			"top" : CURRENTCANVASHEIGHT - MENUBARHEIGHT,
-		 "buttom":CURRENTCANVASHEIGHT-MENUBARHEIGHT
-		});
-		*/
+
+		//$("#exitfullScreenButton").hide();
+		//$("#fullScreenButton").show();
+		
+		$("#fullScreenButton").unbind("click",exitFullScreen); 
+		$("#idScreenIcon").removeClass("fa-compress");
+		$("#idScreenIcon").addClass("fa-expand");
+		$("#fullScreenButton").click(goFullScreen); 
+		
 		redrawCurrentPageContents();
 		message = 'CURRENTCANVASWIDTH: ' + CURRENTCANVASWIDTH + '\nCURRENTCANVASHEIGHT:' + CURRENTCANVASHEIGHT;
 		writeMessage(message);

@@ -38,8 +38,20 @@
   </script>
 <script>
 	"use strict";
+	var screenRatio = window.screen.height / window.screen.width;
+	
 	var INITICANVASWIDTH = 512;
-	var INITICANVASHEIGHT = 288;
+	var INITICANVASHEIGHT = screenRatio*INITICANVASWIDTH;
+	
+	if(INITICANVASWIDTH <= 0.75*window.screen.width) {
+	//	
+	//	INITICANVASWIDTH = 0.8*window.screen.availWidth;
+	//	INITICANVASHEIGHT = INITICANVASWIDTH*ratio;
+	
+		INITICANVASWIDTH  = 0.75*window.screen.width;
+		INITICANVASHEIGHT = 0.75*window.screen.height;
+	}
+	
 	var CURRENTCANVASWIDTH = INITICANVASWIDTH;
 	var CURRENTCANVASHEIGHT = INITICANVASHEIGHT;
 	var MENUBARHEIGHT = 20;
@@ -62,18 +74,11 @@
 <script>
 	$(document).ready(function() {
 
-		initCanvasMaster("M0");
-
-		Chat.initialize();
+		$("#canvasDiv").css("width",INITICANVASWIDTH).css("height",INITICANVASHEIGHT);
 		
+		initCanvasMaster("M0");
+		Chat.initialize();
 		addFullScreenListners()
-
-		//$("#canvasDiv").append("<div class=\"btn-group menuDiv\" id=\"menuDiv\"></div>");
-		//$("#menuDiv").append("<a id=\"fullScreenButton\" class=\"btn btn-default color btnc\" href=\"#\"><i class=\"fa fa-expand\"></i></a>");
-		//$("#menuDiv").append("<a id=\"previousPage\" class=\"btn btn-default color btnc\" href=\"#\"><i class=\"fa fa-arrow-left\"></i></a>");
-		//$("#menuDiv").append("<a id=\"nextPage\" class=\"btn btn-default color btnc\" href=\"#\"><i class=\"fa fa-arrow-right\"></i></a>");
-		//$("#menuDiv").append("<a id=\"hideMenu\" class=\"btn btn-default color btnc\" href=\"#\"><i class=\"fa fa-times\"></i></a>");
-		//$("#menuDiv").append("<a id=\"showMenu\" class=\"btn btn-default color btnc\" href=\"#\"><i class=\"fa fa-bars\"></i></a>");
 		
 		$("#showMenu").hide();
 		
@@ -89,7 +94,22 @@
 		
 		
 		$("#fullScreenButton").click(goFullScreen); 
+		
+		var canvas = document.createElement("canvas");
+	    canvas.width = 24;
+	    canvas.height = 24;
+	    //document.body.appendChild(canvas);
+	    var ctx = canvas.getContext("2d");
+	    ctx.fillStyle = "#000000";
+	    ctx.font = "24px FontAwesome";
+	    ctx.textAlign = "center";
+	    ctx.textBaseline = "middle";
+	    ctx.fillText("\uf040", 12, 12);
+	    var dataURL = canvas.toDataURL('image/png')
+	    $('#M0').css('cursor', 'url('+dataURL+') 1 30, auto');
+	    
 	});
+	
 </script>
 <script>
 window.onbeforeunload = function (e) {
@@ -116,7 +136,8 @@ window.onbeforeunload = function (e) {
     
 	<div id="canvasDiv">
 		<div class="btn-group menuDiv" id="menuDiv">
-			<a id="fullScreenButton" class="btn btn-default color btnc" href="#"><i class="fa fa-expand"></i></a>
+			<a id="fullScreenButton" class="btn btn-default color btnc" href="#"><i id="idScreenIcon" class="fa fa-expand"></i></a>
+			<!-- <a id="exitfullScreenButton" class="btn btn-default color btnc" href="#"><i class="fa fa-compress"></i></a>  -->
 			<a id="previousPage" class="btn btn-default color btnc" href="#"><i class="fa fa-arrow-left"></i></a>
 			<a class="btn btn-default disabled color btnc"><i id="currentPage" class="fa">0</i></a>
 			<a class="btn btn-default disabled color btnc"><i class="fa">of</i></a>

@@ -318,18 +318,22 @@
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-upload"></i></span>
     					<!-- <input type="text" class="form-control" placeholder="Upload presentation" readonly/>
-						<span class="input-group-btn">
-        					<i class="fa fa-upload"></i>  -->
-        				<input type="file" class="btn btn-default" name="presentationFile" id="fileSelector" accept="application/pdf" /> 
-    					</span> 
+						<span class="btn btn-default btn-file">Browse  -->
+        					<input class="btn btn-default btn-file" type="file" name="presentationFile" id="fileSelector" accept="application/pdf" /> 
+        				<!-- </span> -->
 					</div>
 					
+					<!-- <div class="row">  -->
+            		<!-- <div class="col-lg-12">  -->
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-key"></i></span>
-						<input type="text" class="form-control" name="code"  maxlength="5" required
-						placeholder="Code from right" style="width:150px">
-						<img style="vertical-align: bottom" alt="Image Code" id="PCaptchaImg" src="CaptchaServlet">
+						<input type="text" class="form-control" name="code"  maxlength="5" required placeholder="Code from right" style="width:200px"/>
+						<img alt="Image Code" id="PCaptchaImg" src="CaptchaServlet" style="vertical-align: bottom">
+						<!-- <span class="input-group-addon"><i class="fa fa-key"></i></span> -->
 					</div>
+					<!-- </div>  -->
+					<!-- </div>  -->
+					
 					<div class="btn-group" role="group">
 						<input type="submit" class="btn btn-default" value="Submit" />
 						<input type="reset" class="btn btn-default" value="Reset" />

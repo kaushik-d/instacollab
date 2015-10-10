@@ -8,7 +8,9 @@ var oldxListSlave = new Array();
 var oldyListSlave = new Array();
 
 function drawLinesSlave(ID, type, x, y) {
-
+//
+// Check drawLinesMaster
+//
 	if (contextListSlave[ID] != null
 			&& typeof contextListSlave[ID] != 'undefined'
 			&& contextListSlave[ID] != undefined) {

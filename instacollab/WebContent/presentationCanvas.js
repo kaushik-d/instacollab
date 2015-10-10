@@ -68,9 +68,26 @@ renderPresentationPage = function(pdf) {
 		
 		pdf.getPage(currentPage + 1).then(function(page) {
 
-			var desiredWidth = CURRENTCANVASWIDTH;
 			var viewport = page.getViewport(1);
-			var scale = desiredWidth / viewport.width;
+			
+			var scale = 1;
+			var scale1 = 1;
+			var scale2 = 1;
+			
+			if( CURRENTCANVASWIDTH > viewport.width ) {
+				scale1 = CURRENTCANVASWIDTH / viewport.width;
+			}
+			
+			if( CURRENTCANVASHEIGHT > viewport.height ) {
+				scale2 = CURRENTCANVASHEIGHT / viewport.height;
+			}
+			
+			if(scale1 > scale2) {
+				scale = scale2;
+			} else {
+				scale = scale1;
+			}
+			
 			var scaledViewport = page.getViewport(scale);
 
 			var renderContext = {

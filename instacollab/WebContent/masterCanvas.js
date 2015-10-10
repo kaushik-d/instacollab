@@ -9,6 +9,9 @@ var oldxListMaster = new Array();
 var oldyListMaster = new Array();
 
 function drawLinesMaster(ID, type, x, y) {
+	//
+	// Check drawLinesSlave
+	//
 
 	if (contextListMaster[ID] != null
 			&& typeof contextListMaster[ID] != 'undefined'
@@ -78,6 +81,7 @@ function startLine(evt) {
 	Chat.sendMessage(JSON.stringify(mes));
 
 	drawLinesMaster(ID, "lineStart", mousePos.x, mousePos.y);
+	
 	canvasListMaster[ID].addEventListener('mousemove', updateLine, false);
 	canvasListMaster[ID].addEventListener('mousemove', updateMousePosition,
 			false);
