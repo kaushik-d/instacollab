@@ -52,12 +52,6 @@ div:fullscreen>canvas {
 	width: 100%;
 }
 
-input#chat {
-	/*width: 500px;
-	position: relative;
-	font-size: 14px; */
-}
-
 #inputDiv {
 	padding: 3px;
 	border: 2px solid #ff9900;

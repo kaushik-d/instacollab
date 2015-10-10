@@ -249,16 +249,9 @@ window.onbeforeunload = function (e) {
 			<input placeholder="type and press enter to chat" id="chat" type="text" class="form-control" />
 		</div>
 	</div>
-		
-		<!-- 
-		<div  id="inputDiv">
-			<input type="text" placeholder="type and press enter to chat"
-				id="chat" />
-		</div>
-		 -->
-		<div id="console-container">
-			<div  class="well" id="console"></div>
-		</div>
+	<div id="console-container">
+		<div  class="well" id="console"></div>
+	</div>
 	</div>
 	
 	    <div class="btn-group-lg" style="text-align: center;">
