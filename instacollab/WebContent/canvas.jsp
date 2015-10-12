@@ -129,6 +129,8 @@
 		
 		$("#fullScreenButton").click(goFullScreen); 
 		
+		$("#refresh").click(redrawCurrentPageContents);
+		
 		var canvas = document.createElement("canvas");
 	    canvas.width = 24;
 	    canvas.height = 24;
@@ -183,6 +185,7 @@ window.onbeforeunload = function (e) {
 			<a id="pencilR" class="btn btn-default color btnc" href="#"><i class="fa fa-pencil Red"></i></a> 
 			<a id="pencilB" class="btn btn-default color btnc" href="#"><i class="fa fa-pencil Blue"></i></a>
 			<a id="eraser" class="btn btn-default color btnc" href="#"><i class="fa fa-eraser"></i></a> 
+			<a id="refresh" class="btn btn-default color btnc" href="#"><i class="fa fa-refresh"></i></a> 
 			<a id="showMenu" class="btn btn-default color btnc" href="#"><i class="fa fa-bars"></i></a> 
 			<a id="hideMenu" class="btn btn-default color btnc" href="#"><i class="fa fa-times"></i></a>
 		</div>

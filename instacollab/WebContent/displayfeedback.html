@@ -16,14 +16,15 @@
 <meta name="robots" content="index" />
 
 <title>Send your comments</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript" src="view.js"></script>
-<script type="text/javascript" src="calendar.js"></script>
-
-<link rel="stylesheet" type="text/css" href="jscal2.css" media="all">
 <link href="base.css?v=1.0" rel="stylesheet">
-<link href="displayfeedback.css?v=1.0" rel="stylesheet">
-
+<link href="feedback.css?v=1.0" rel="stylesheet">
 <link
 	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
 	rel="stylesheet">
@@ -39,22 +40,28 @@
 						$("#commentText").keyup(
 										function() {
 											var charsSoFar = $(this).val().length;
-											$('#commentLevel').text("Comments: ("+charsSoFar+"/5000 characters)");
+											$('#commentLevel').val("Comments: ("+charsSoFar+"/5000 characters)");
 										});
 						
 						$(document).ajaxStart(
 								function() {
+									$(".feebbackform").hide();
 									$("#button_ok").hide();
-									$("#messageDiv").addClass("messageBoxBG");
+									$("#messageDiv").removeClass("messageBoxActive").addClass("messageBox");
+									$("#ReturnMessage").html("");
+									$("#ReturnMessage").html('<i class="fa fa-spinner fa-pulse fa-2x"></i>');
 								}).ajaxStop(
 								function() {
-									$("#messageDiv").removeClass("messageBoxBG");
+									$("#messageDiv").addClass("messageBoxActive").removeClass("messageBox");
 									$("#button_ok").show();
 								});
 						
 						$("#button_ok").click(function(){
-							$("#messageDiv").removeClass("messageBoxActive").addClass("messageBox");;
+							$("#messageDiv").removeClass("messageBoxActive").addClass("messageBox");
 							$("#messageDiv").hide();
+							$(".feebbackform").show();
+							var ImgAdd =  "CaptchaServlet?img=" + new Date().getTime();
+							$("#CaptchaImg").attr("src", ImgAdd);
 						})
 						
 					});
@@ -65,17 +72,17 @@
 
 		$("#messageDiv").show();
 
-		var url = "saveFeedback";
+		var url = "displayfeedback";
 		
 		$.ajax({
 			type: "POST",
 			url: url,
 			data: form.serialize(),
 			success: function(data) {
-				displaymessage(data);
+				displaymessage(data,"success");
 			},
 			error: function(data) {
-				displaymessage(data);
+				displaymessage(data,"success");
 			}
 		});
 		
@@ -84,15 +91,40 @@
 
 	};
 
-	var displaymessage = function(data) {
-		$("#messageDiv").removeClass("messageBox").addClass("messageBoxActive");
-		if(data.responseText == "CommentsSaved") {
-			$('#FeedbackForm')[0].reset();
-			$("#ReturnMessage").html("Your comments have been sent.<br>Thank you!");
-		} else if (data.responseText == "CaptchaError") {
-			$("#ReturnMessage").html("Wrong captcha code.<br>Please try again.");
+	var displaymessage = function(data,success) {
+		
+		if(success == "success") {
+			$("#messageDiv").hide();
+
+			var feedback = data;
+			var table = '<table class="table table-striped">';
+			table += '<tr>' ;
+			table += '<thead>';
+			table += '<td>Feedback_id</td>';
+			table += '<td>Name</td>';  
+			table += '<td>Email</td>';
+			table += '<td>Create_datetime</td>';
+			table +='</tr>';
+			table += '</thead>';
+			
+			for(var i = 0; i < feedback.length; i ++) {
+				table += '<tr>' ;
+					table += '<td>' + feedback[i].feedback_id  + '</td>';
+					table += '<td>' + feedback[i].name  + '</td>';  
+					table += '<td>' + feedback[i].email  + '</td>';
+					table += '<td>' + feedback[i].create_datetime  + '</td>';
+				table +='</tr>';
+					table += '<tr>' ;
+					table += '<td> Comments: ' + feedback[i].comments  + '</td>';
+				table +='</tr>';
+			}
+			table +='</table>';
+		
+			$("#resultTable").append(table);
+		
 		} else {
-			$("#ReturnMessage").html("We were not able to sent your comments.<br>Please try again.");
+			$("#messageDiv").removeClass("messageBox").addClass("messageBoxActive");
+			$("#ReturnMessage").html("We were not able to get data.<br>Please try again.");
 		}
 	};
 </script>
@@ -100,50 +132,27 @@
 
 <body>
 	<div id="background">
-		<div id="HeaderDiv" class="header">
-			<a href="index.jsp">Home</a> | <a>Demo</a> | <a>Help</a> | <a
-				href="feedback.html">Feedback</a> | <a
-				href="termsandconditions.html">Terms and conditions</a>
+		
+		<div class="btn-group-lg top-gap">
+			<a class="btn btn-default color" href="index.jsp"><i class="fa fa-home fa-2x"></i></a>
+			<a class="btn btn-default color" href="feedback.html"><i class="fa fa-medkit fa-2x"></i></a> 
+			<a class="btn btn-default color" href="feedback.html"><i class="fa fa-comment fa-2x"></i></a> 
+			<a class="btn btn-default color" href="termsandconditions.html"><i class="fa fa-info fa-2x"></i></a> 
 		</div>
-		<div class="holder">
+
+		<div class="button_holder">
 			<div class="feebbackform">
-				<form action="displayFeedback" method="post" id="FeedbackForm">
-					<table>
-						<tr>
-							<td><label for="Start_Date">Start Date</label></td>
-						</tr>
-						<tr>
-							<td>
-							<input type="text" name="Start_Date" id="Start_Date"
-								placeholder="" required maxlength="10"
-								style="width: 10em" />
-							<span id="Start_Date_Cal" class="fa fa-calendar"></span>
-						</tr>
-						<tr>
-							<td><label for="End_Date">End Date</label></td>
-						</tr>
-						<tr>
-							<td>
-							<input type="text" name="End_Date" id="End_Date"
-								placeholder="" required maxlength="10"
-								style="width: 10em" />
-							<span id=End_Date_Cal class="fa fa-calendar"></span></td>
-						</tr>
-						<tr>
-							<td><input
-								type="submit" value="Submit" /> <input type="reset"
-								value="Reset" /></td>
-						</tr>
-						<script type="text/javascript">
-							var cal = Calendar.setup({
-						          onSelect: function(cal) { cal.hide() },
-						          showTime: true
-						      });
-						      cal.manageFields("Start_Date_Cal", "Start_Date", "%m-%d-%Y");
-						      cal.manageFields("End_Date_Cal", "End_Date", "%m-%d-%Y");
-							</script>
-					</table>
+				<form action="displayfeedback" method="post" id="FeedbackForm">
+					<span>Feedbacks from last</span> <select name="days">
+						<option value=" 1 ">1</option>
+						<option value=" 7 ">7</option>
+						<option value=" 30 ">30</option>
+						<option value="ALL">All</option>
+					</select> <span>days.</span>
+					<input type="submit"/>
 				</form>
+			</div>
+			<div id="resultTable">
 			</div>
 			<div id="messageDiv" class="messageBox" style="z-index: 1;">
 				<table style="text-align: center; width:100%">
@@ -156,29 +165,19 @@
 				</table>
 			</div>
 		</div>
-		<div id="FooterDiv" class="footer">
-			<ul class="social-icons">
-				<!-- Facebook Button-->
-				<li class="social-icon facebook"><a
-					onclick="javascript:popupCenter('https://www.facebook.com/sharer/sharer.php?u=www.instacollaboration.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID','Facebook Share', '540', '400');return false;"
+		<div class="btn-group-lg">
+			<a class="btn btn-default color" onclick="javascript:popupCenter('https://www.facebook.com/sharer/sharer.php?u=www.instacollaboration.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID','Facebook Share', '540', '400');return false;"
 					href="https://www.facebook.com/sharer/sharer.php?u=www.instacollaboration.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID"
-					target="blank"><i class="fa fa-facebook"></i> Share </a></li>
-				<!-- Twitter Button -->
-				<li class="social-icon twitter"><a
-					onclick="javascript:popupCenter('https://twitter.com/share?&amp;url=www.instacollaboration.com&amp;text=Start Collaboration Now. http://www.instacollaboration.com','Tweet', '540', '400');return false;"
+					target="blank"><i class="fa fa-facebook fa-2x"></i></a>
+			<a class="btn btn-default color" onclick="javascript:popupCenter('https://twitter.com/share?&amp;url=www.instacollaboration.com&amp;text=Start Collaboration Now. http://www.instacollaboration.com','Tweet', '540', '400');return false;"
 					href="https://twitter.com/share?&amp;url=www.instacollaboration.com&amp;text=Start Collaboration Now. http://www.instacollaboration.com"
-					target="blank"><i class="fa fa-twitter"></i> Tweet </a></li>
-				<!-- Google + Button-->
-				<li class="social-icon google-plus"><a
-					onclick="javascript:popupCenter('https://plus.google.com/share?url=www.instacollaboration.com','Share on Google+', '600', '600');return false;"
+					target="blank"><i class="fa fa-twitter fa-2x"></i></a> 
+			<a class="btn btn-default color" onclick="javascript:popupCenter('https://plus.google.com/share?url=www.instacollaboration.com','Share on Google+', '600', '600');return false;"
 					href="https://plus.google.com/share?url=www.instacollaboration.com"
-					target="blank"><i class="fa fa-google-plus"></i> Google+</a></li>
-				<!-- LinkedIn Button -->
-				<li class="social-icon linkedin"><a
-					onclick="javascript:popupCenter('http://www.linkedin.com/shareArticle?mini=true&amp;url=www.instacollaboration.com&amp;title=Start Collaboration Now&amp;source=StieURl','Share on LinkedIn', '520', '570');return false;"
+					target="blank"><i class="fa fa-google-plus fa-2x"></i></a> 
+			<a class="btn btn-default color" onclick="javascript:popupCenter('http://www.linkedin.com/shareArticle?mini=true&amp;url=www.instacollaboration.com&amp;title=Start Collaboration Now&amp;source=StieURl','Share on LinkedIn', '520', '570');return false;"
 					href="http://www.linkedin.com/shareArticle?mini=true&amp;url=www.instacollaboration.com&amp;title=Start Collaboration Now&amp;source=UrlSource"
-					target="blank"><i class="fa fa-linkedin"></i> LinkedIn </a></li>
-			</ul>
+					target="blank"><i class="fa fa-linkedin fa-2x"></i></a> 
 		</div>
 		<div id="FooterDiv1" class="footer">
 			<span class="footer2">© InstaCollaboration: all rights reserved</span>

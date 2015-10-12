@@ -1,16 +1,24 @@
 package com.instacollab.chat;
 
+import com.google.gson.stream.JsonWriter;
+
 import java.sql.Connection;
+import java.io.IOException;
 //import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
 import java.sql.Blob;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Types;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.stream.JsonWriter;
 
 //import javax.servlet.ServletContext;
 
@@ -37,6 +45,77 @@ public class DBconnection {
 		dbUser = context.getInitParameter("dbUser");
 		dbPass = context.getInitParameter("dbPasswd");
 
+	}
+	
+	public boolean getFeedbackFromDb(String days, HttpServletResponse response){
+		
+		Connection conn = null;
+		ResultSet result = null;
+		boolean success = true;
+		try {
+			
+			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
+
+			String sql = "SELECT * FROM "
+					+ feedbackDbTable
+					+ " WHERE (create_datetime >= ?)";
+			
+			PreparedStatement statement = conn.prepareStatement(sql);
+			
+			long daysInMS = 365*24*60*60*1000;
+			
+			if(days.contains("1")) {
+				daysInMS = 1*24*60*60*1000;
+			} else if (days.contains("7")) {
+				daysInMS = 7*24*60*60*1000;
+			} else if (days.contains("30")) {
+				daysInMS = 1*24*60*60*1000;
+			} else {
+				daysInMS = 365*24*60*60*1000;
+			}
+			
+			statement.setTimestamp(1, new java.sql.Timestamp(System.currentTimeMillis()-daysInMS));
+
+			result  = statement.executeQuery();
+			
+			response.setContentType("application/json; charset=UTF-8");
+			response.setCharacterEncoding("UTF-8");
+			JsonWriter writer = new JsonWriter(new OutputStreamWriter(
+					response.getOutputStream(), "UTF-8"));
+			writer.setLenient( true );
+			writer.beginArray();
+			while (result.next()) {
+				writer.beginObject();
+				ResultSetMetaData rsmd = result.getMetaData();
+
+				for (int idx = 1; idx <= rsmd.getColumnCount(); idx++) {
+					writer.name(rsmd.getColumnLabel(idx));
+					writer.value(result.getString(idx));
+				}
+				writer.endObject();
+			}
+			writer.endArray();
+			
+			writer.close();
+			response.getOutputStream().flush();
+			
+		} catch (SQLException | IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (conn != null) {
+				// closes the database connection
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+
+		}
+		
+		return success;
+		
 	}
 	
 	public boolean saveFeedbackToDb(String name, String email, String comments, String IP) {
