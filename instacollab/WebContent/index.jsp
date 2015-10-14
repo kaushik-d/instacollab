@@ -274,17 +274,27 @@
 
 		<div class="btn-group-lg top-gap">
 			<a class="btn btn-default color" href="index.jsp"><i class="fa fa-home fa-2x"></i></a>
-			<a class="btn btn-default color" href="feedback.html"><i class="fa fa-medkit fa-2x"></i></a> 
+			<a class="btn btn-default color" href="help.html"><i class="fa fa-question fa-2x"></i></a> 
 			<a class="btn btn-default color" href="feedback.html"><i class="fa fa-comment fa-2x"></i></a> 
 			<a class="btn btn-default color" href="termsandconditions.html"><i class="fa fa-info fa-2x"></i></a> 
 		</div>
- 
+
+		<div class="banner">
+			<h3>Start collaboration from any device from any where at any
+				time.</h3>
+			<p>
+				<a class="btn btn-default learnBtn" href="help.html" role="button"><strong>Learn
+					more</strong></a>
+			</p>
+		</div>
+		
 		<div id=button_holder class="button_holder">
 
 			<div class="botton_div">
 				<a id="Start_Button" class="btn btn-default color btn-wt" href="#">
 				<i class="fa fa-play"></i> Start a meeting</a>
 			</div>
+			
 			
 			<div id="Start_Presentation" class="Start_Action">
 				<form action="login" method="post" enctype="multipart/form-data" id="PresentationForm">

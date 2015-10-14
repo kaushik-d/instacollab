@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 
@@ -15,23 +14,58 @@
 <meta name="distribution" content="global" /> 
 <meta name="robots" content="index" />
 
-<title>Start collaboration now</title>
+<title>Terms and Conditions</title>
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <link href="base.css?v=1.0" rel="stylesheet">
-<link href="feedback.css?v=1.0" rel="stylesheet">
 
+	
+<style type="text/css">
+div.terms {
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.85);
+	border-radius: 25px;
+	text-align: left;
+}
+
+body {
+	position: relative;
+	background-image: url("images/officeBkG_1.jpg");
+	background-color: white;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+div {
+	text-align: center;
+	vertical-align: bottom;
+	height: 100%;
+	padding: 5px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma,
+		verdana, arial, sans-serif;
+}
+
+li:before {    
+font-family: 'FontAwesome';
+content: '\f067';
+margin:0 5px 0 -15px;
+color: #f00;
+text-align: left;
+}
+</style>
 </head>
-
 <body>
 	<div id="background">
-		
+				
 		<div class="btn-group-lg top-gap">
 			<a class="btn btn-default color" href="index.jsp"><i class="fa fa-home fa-2x"></i></a>
 			<a class="btn btn-default color" href="help.html"><i class="fa fa-question fa-2x"></i></a> 
@@ -39,21 +73,27 @@
 			<a class="btn btn-default color" href="termsandconditions.html"><i class="fa fa-info fa-2x"></i></a> 
 		</div>
 
-
-		<div class="button_holder">
-			<div class="feebbackform">
-				<table style="text-align: center; width:100%">
-						<tr><td>
-							<p id="Message"><strong>
-							We currently support only <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a> browser.
-							</strong>
-							</p>
-						</td></tr>
-				</table>
-			</div>
-
+		<div class="jumbotron" style="text-align:left">
+			<p>Start collaboration from any device from any where at any
+				time. InstaCollaboration is the quickest and easiest way to hold a
+				brainstorming session with contributors seating either in the same
+				room or at worlds apart. Instantly schedule or participate in online
+				meetings and brainstorming sessions from any device just using a web
+				browser.</p>
+			<ul>
+				<li>Schedule live online meetings with either a whiteboard or a
+					PDF presentation</li>
+				<li>Share ideas by drawings, sketches, or annotations instantly
+					with one another</li>
+				<li>Live chat with meeting participants</li>
+				<li>Invite participants by sharing your meeting room number via
+					e-mail or social media from within the app</li>
+				<li>Present documents or slides instantly</li>
+				<li>Interactive white board that any participant can write on
+					and see live by all Start now at www.InstaCollaboration.com</li>
+			</ul>
 		</div>
-		
+
 		<div class="btn-group-lg">
 			<a class="btn btn-default color" onclick="javascript:popupCenter('https://www.facebook.com/sharer/sharer.php?u=www.instacollaboration.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID','Facebook Share', '540', '400');return false;"
 					href="https://www.facebook.com/sharer/sharer.php?u=www.instacollaboration.com&amp;appId=XXX_YOUR_FACEBOOK_APP_ID"
@@ -74,5 +114,4 @@
 		</div>
 	</div>
 </body>
-
 </html>

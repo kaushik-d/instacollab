@@ -1,39 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>instacollab</display-name>
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
-  <filter-mapping>
-    <filter-name>filter1</filter-name>
-    <url-pattern></url-pattern>
-  </filter-mapping>
-  <context-param>
-    <param-name>emailhost</param-name>
-    <param-value>smtp.gmail.com</param-value>
-  </context-param>
-  <context-param>
-    <param-name>emailfrom</param-name>
-    <param-value>instacollaboration@gmail.com</param-value>
-  </context-param>
-  <context-param>
-    <param-name>emailpasswd</param-name>
-    <param-value>serampore</param-value>
-  </context-param>
-  <context-param>
-    <param-name>emailport</param-name>
-    <param-value>587</param-value>
-  </context-param>
-  <context-param>
-    <param-name>dbURL</param-name>
-    <param-value>localhost:3306</param-value>
-  </context-param>
-  <context-param>
-    <param-name>dbUser</param-name>
-    <param-value>root</param-value>
-  </context-param>
-  <context-param>
-    <param-name>dbPasswd</param-name>
-    <param-value>1234</param-value>
-  </context-param>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>instacollab</display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<filter-mapping>
+		<filter-name>filter1</filter-name>
+		<url-pattern></url-pattern>
+	</filter-mapping>
+	
+	<!--  gmail settings  -->
+	
+	<context-param>
+		<param-name>emailhost</param-name>
+		<param-value>smtp.gmail.com</param-value>
+	</context-param>
+	<context-param>
+		<param-name>emailfrom</param-name>
+		<param-value>instacollaboration@gmail.com</param-value>
+	</context-param>
+	<context-param>
+		<param-name>emailpasswd</param-name>
+		<param-value>serampore</param-value>
+	</context-param>
+	<context-param>
+		<param-name>emailport</param-name>
+		<param-value>587</param-value>
+	</context-param>
+	
+	<!--  local DB settings  -->
+	<!--
+	<context-param>
+		<param-name>dbURL</param-name>
+		<param-value>localhost:3306</param-value>
+	</context-param>
+	<context-param>
+		<param-name>dbUser</param-name>
+		<param-value>root</param-value>
+	</context-param>
+	<context-param>
+		<param-name>dbPasswd</param-name>
+		<param-value>1234</param-value>
+	</context-param>
+	-->
+	<!--  AWS RDB settings  -->
+	 
+	<context-param>
+		<param-name>dbURL</param-name>
+		<param-value>my-db-instance.cqkmpcckfpyh.us-east-1.rds.amazonaws.com:3306</param-value>
+	</context-param>
+	<context-param>
+		<param-name>dbUser</param-name>
+		<param-value>db_user</param-value>
+	</context-param>
+	<context-param>
+		<param-name>dbPasswd</param-name>
+		<param-value>serampore</param-value>
+	</context-param>
+	
+	
 </web-app>

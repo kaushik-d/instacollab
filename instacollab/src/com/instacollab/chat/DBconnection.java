@@ -70,7 +70,7 @@ public class DBconnection {
 			} else if (days.contains("7")) {
 				daysInMS = 7*24*60*60*1000;
 			} else if (days.contains("30")) {
-				daysInMS = 1*24*60*60*1000;
+				daysInMS = 30*24*60*60*1000;
 			} else {
 				daysInMS = 365*24*60*60*1000;
 			}
